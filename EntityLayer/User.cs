@@ -15,7 +15,7 @@ namespace EntityLayer
         public string name { get; set; }
         [StringLength(50)]
         public string surname { get; set; }
-        [StringLength(50)] 
+        [StringLength(50)]  
         public string password { get; set; }
         [StringLength(11)]
         public string phoneNumber { get; set; }

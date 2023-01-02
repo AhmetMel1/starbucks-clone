@@ -11,7 +11,7 @@ namespace EntityLayer
     {
         [Key]
         public int addressId { get; set; }
-        [StringLength(50)] 
+        [StringLength(50)]  
         public string province { get; set; }
         [StringLength(50)]
         public string district { get; set; }

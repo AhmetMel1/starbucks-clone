@@ -11,7 +11,7 @@ namespace EntityLayer
     {
         [Key]
         public int userTypeId { get; set; }
-        [StringLength(50)] 
+        [StringLength(50)]  
         public string userTypeName { get; set; }
         //Relationship with user 
         public ICollection<User> users { get; set; }
