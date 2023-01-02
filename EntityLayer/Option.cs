@@ -13,7 +13,7 @@ namespace EntityLayer
         public int optionId { get; set; }
         [StringLength(50)]
         public string optionName { get; set; }
-        public int optionUnitPrice { get; set; }
+        public int optionUnitPrice { get; set; } 
         //Relationship with OptionType
         public int optionTypeId { get; set; }
         public OptionType optionType { get; set; }

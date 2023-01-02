@@ -12,7 +12,7 @@ namespace EntityLayer
         [Key]
         public int orderId { get; set; }
         public byte paymentType { get; set; }
-        [StringLength(50)] 
+        [StringLength(50)]  
         public string orderDate { get; set; }
         public int orderQuantity { get; set; }
         public byte orderStatus { get; set; }

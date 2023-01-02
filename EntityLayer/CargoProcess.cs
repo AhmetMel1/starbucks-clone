@@ -11,7 +11,7 @@ namespace EntityLayer
     {
         [Key]
         public int cargoId { get; set; }
-        [StringLength(50)]
+        [StringLength(50)] 
         public string cargoStatus { get; set; }
         //Relationship with Order 
         public ICollection<Order> orders{ get; set; }

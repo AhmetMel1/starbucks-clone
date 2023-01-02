@@ -12,7 +12,7 @@ namespace EntityLayer
         [Key]
         public int sizeId { get; set; }
         [StringLength(50)]
-        public string sizeName { get; set; }
+        public string sizeName { get; set; } 
         //Relationship with ProductSize
         public ICollection<ProductSize> productSizes { get; set; }
 

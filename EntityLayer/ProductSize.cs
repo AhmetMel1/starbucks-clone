@@ -14,7 +14,7 @@ namespace EntityLayer
         public int productSizePrice { get; set; }
         public int productSizeCapacity { get; set; }
         public int unitPrice { get; set; }
-
+         
         //Relationship with Product
         public int productId { get; set; }
         public Product product { get; set; }

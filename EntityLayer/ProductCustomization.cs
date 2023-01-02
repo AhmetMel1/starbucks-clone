@@ -11,7 +11,7 @@ namespace EntityLayer
     {
         [Key]
         public int ProductCustomizationId { get; set; }
-        //Relationship with Product
+        //Relationship with Product 
         public int productId { get; set; }
         public Product product { get; set; }
         //Relationship with Customization

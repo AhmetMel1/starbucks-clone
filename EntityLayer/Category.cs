@@ -14,7 +14,7 @@ namespace EntityLayer
         [StringLength(200)]
         public string categoryLogoUrl { get; set; }
         //Relationship with Product
-        public ICollection<Product> products { get; set; }
+        public ICollection<Product> products { get; set; } 
         //Kendine çok olucak
         public int? parentCategoryId { get; set; }
         public Category category { get; set; }

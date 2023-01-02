@@ -14,7 +14,7 @@ namespace EntityLayer
         [StringLength(50)] 
         public string uploadDate { get; set; }
 
-        //Relationship with user 
+        //Relationship with user  
         public int userId { get; set; }
         public User user { get; set; }
 

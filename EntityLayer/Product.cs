@@ -18,7 +18,7 @@ namespace EntityLayer
         [StringLength(200)]
         public string productDescription { get; set; }
         //Relationship with Category
-        public int categoryId { get; set; }
+        public int categoryId { get; set; } 
         public Category category { get; set; }
         //Relationship with ProductCustomization
         public ICollection<ProductCustomization> productCustomizations { get; set; }
