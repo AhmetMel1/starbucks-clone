@@ -25,5 +25,16 @@ namespace DataAccessLayer.ConCreate
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCustomization> ProductCustomizations { get; set; }
+        public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<Property> Properties { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<Store> Stores { get; set; }
+        public DbSet<StoreFavorite> StoreFavorites { get; set; }
+        public DbSet<StoreOpeningHour> StoreOpeningHours { get; set; }
+        public DbSet<StoreProduct> StoreProducts { get; set; }
+        public DbSet<StoreProperty> StoreProperties { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<WorkTime> WorkTimes { get; set; }
 	}
 }
