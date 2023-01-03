@@ -9,6 +9,7 @@ namespace EntityLayer
 {
     public class Property
     {
+        [Key]
         public int PropertyId { get; set; }
         [StringLength(50)]
         public string PropertyName { get; set; }
