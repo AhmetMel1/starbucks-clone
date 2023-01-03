@@ -21,8 +21,7 @@ namespace EntityLayer
         public string phoneNumber { get; set; }
 
         public bool userDeleted { get; set; }
-
-
+        public DateOnly birthday { get; set; }
         //Relationship with Address
         public  int addressId { get; set; }
         public virtual Address address { get; set; }
