@@ -14,5 +14,6 @@ namespace BusinessLayer.Abstract
         void optionDelete(Option option);
         List<Option> optionList();
         Option optionGetById(int id);
+        Option optionGetByName(string name);
     }
 }

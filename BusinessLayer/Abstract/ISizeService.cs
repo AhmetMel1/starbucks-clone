@@ -14,5 +14,6 @@ namespace BusinessLayer.Abstract
         void sizeDelete(Size size);
         List<Size> sizeList();
         Size sizeGetById(int id);
+        Size sizeGetByName(string name);
     }
 }

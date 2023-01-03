@@ -26,6 +26,11 @@ namespace BusinessLayer.Concrete
             return sizeDal.get(x => x.sizeId == id);
         }
 
+        public Size sizeGetByName(string name)
+        {
+            return sizeDal.get(x => x.sizeName == name);
+        }
+
         public void sizeInsert(Size size)
         {
             sizeDal.insert(size);

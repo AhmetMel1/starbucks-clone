@@ -26,6 +26,11 @@ namespace BusinessLayer.Concrete
             return customizationDal.get(x => x.customizationId == id);
         }
 
+        public Customization customizationGetByName(string name)
+        {
+            return customizationDal.get(x => x.customizationName == name);
+        }
+
         public void customizationInsert(Customization customization)
         {
             customizationDal.insert(customization);

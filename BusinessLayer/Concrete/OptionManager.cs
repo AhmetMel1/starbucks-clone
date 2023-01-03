@@ -26,6 +26,11 @@ namespace BusinessLayer.Concrete
             return optionDal.get(x => x.optionId == id);
         }
 
+        public Option optionGetByName(string name)
+        {
+            return optionDal.get(x => x.optionName == name);
+        }
+
         public void optionInsert(Option option)
         {
             optionDal.insert(option);

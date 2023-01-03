@@ -14,5 +14,6 @@ namespace BusinessLayer.Abstract
         void customizationDelete(Customization customization);
         List<Customization> customizationList();
         Customization customizationGetById(int id);
+        Customization customizationGetByName(string name);
     }
 }

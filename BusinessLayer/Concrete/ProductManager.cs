@@ -26,6 +26,11 @@ namespace BusinessLayer.Concrete
             return productDal.get(x => x.productId == id);
         }
 
+        public Product productGetByName(string name)
+        {
+            return productDal.get(x => x.productName == name);
+        }
+
         public void productInsert(Product product)
         {
             productDal.insert(product);
