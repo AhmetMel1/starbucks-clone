@@ -14,6 +14,6 @@ namespace EntityLayer
         [StringLength(50)]  
         public string userTypeName { get; set; }
         //Relationship with user 
-        public ICollection<User> users { get; set; }
+        public  virtual ICollection<User> users { get; set; }
     }
 }

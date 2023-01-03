@@ -22,7 +22,7 @@ namespace EntityLayer
         [StringLength(10)]
         public string apartmentNumber { get; set; }
         //Relationship with User 
-        public ICollection<User> users { get; set; }
+        public virtual ICollection<User> users { get; set; }
 
     }
 }

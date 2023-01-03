@@ -20,14 +20,14 @@ namespace EntityLayer
         public string cardAddedDate { get; set; }
 
         //Relationship with Product size
-        public int productSizeId  { get; set; }
-        public ProductSize productSize { get; set; }
+        public  int productSizeId  { get; set; }
+        public virtual ProductSize productSize { get; set; }
         //Relationship with CargoProcces 
-        public int cargoId { get; set; }
-        public CargoProcess cargoProcess { get; set; }
+        public  int cargoId { get; set; }
+        public virtual CargoProcess cargoProcess { get; set; }
         //Relationship with user  
-        public int userId { get; set; }
-        public User user { get; set; }
+        public  int userId { get; set; }
+        public virtual User user { get; set; }
 
 
     }

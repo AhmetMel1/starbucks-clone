@@ -14,7 +14,7 @@ namespace EntityLayer
         [StringLength(50)] 
         public string cargoStatus { get; set; }
         //Relationship with Order 
-        public ICollection<Order> orders{ get; set; }
+        public virtual ICollection<Order> orders{ get; set; }
 
     }
 }
