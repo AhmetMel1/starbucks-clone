@@ -13,11 +13,12 @@ namespace EntityLayer
         public int orderId { get; set; }
         public byte paymentType { get; set; }
         [StringLength(50)]  
-        public DateTime orderDate { get; set; }
+        public string orderDate { get; set; }
         public int orderQuantity { get; set; }
         public byte orderStatus { get; set; }
         [StringLength(50)]
-        public DateTime cardAddedDate { get; set; }
+        public string cardAddedDate { get; set; }
+        public bool orderDeleted { get; set; }
 
         //Relationship with Product size
         public  int productSizeId  { get; set; }

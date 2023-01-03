@@ -19,7 +19,9 @@ namespace EntityLayer
         public string password { get; set; }
         [StringLength(11)]
         public string phoneNumber { get; set; }
-        public DateOnly birthday { get; set; }
+
+        public bool userDeleted { get; set; }
+
 
         //Relationship with Address
         public  int addressId { get; set; }

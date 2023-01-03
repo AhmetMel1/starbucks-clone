@@ -12,7 +12,8 @@ namespace EntityLayer
         [Key]
         public int favoriteId { get; set; }
         [StringLength(50)] 
-        public DateTime uploadDate { get; set; }
+        public string uploadDate { get; set; }
+        public bool favoriteDeleted { get; set; }
 
         //Relationship with user  
         public  int userId { get; set; }

@@ -13,9 +13,10 @@ namespace EntityLayer
         public int menuId { get; set; }
         [StringLength(50)] 
         public int menuName { get; set; }
+        public bool menuDeleted { get; set; }
 
         //KENDİNE ÇOK OLACAK 
-       
+
     }
 }
  
