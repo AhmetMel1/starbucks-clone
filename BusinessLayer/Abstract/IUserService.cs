@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IUserServis
+    public interface IUserService
     {
         void userInsert(User user);
         void userDelete(User user);
