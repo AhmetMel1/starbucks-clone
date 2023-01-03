@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.ConCreate.EntityFramework
 {
-    internal class EfWorkTimeRepository:GenericRepository<WorkTime>,IWorkTimeDal
+   public class EfWorkTimeRepository:GenericRepository<WorkTime>,IWorkTimeDal
     {
     }
 }

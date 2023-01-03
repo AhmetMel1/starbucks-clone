@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.ConCreate.EntityFramework
 {
-    internal class EfStoreOpeningHourRepository:GenericRepository<StoreOpeningHour>,IStoreOpeningHourDal
+   public class EfStoreOpeningHourRepository:GenericRepository<StoreOpeningHour>,IStoreOpeningHourDal
     {
     }
 }

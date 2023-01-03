@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.ConCreate.EntityFramework
 {
-    internal class EfStoreFavoriteRepository:GenericRepository<StoreFavorite>,IStoreFavoriteDal
+   public class EfStoreFavoriteRepository:GenericRepository<StoreFavorite>,IStoreFavoriteDal
     {
     }
 }

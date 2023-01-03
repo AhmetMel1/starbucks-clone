@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.ConCreate.EntityFramework
 {
-    internal class EfStoreProductRepository:GenericRepository<StoreProduct>,IStoreProductDal
+    public class EfStoreProductRepository:GenericRepository<StoreProduct>,IStoreProductDal
     {
     }
 }

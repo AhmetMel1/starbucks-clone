@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.ConCreate.EntityFramework
 {
-    internal class EfStorePropertyRepository:GenericRepository<StoreProperty>,IStorePropertyDal
+    public class EfStorePropertyRepository:GenericRepository<StoreProperty>,IStorePropertyDal
     {
     }
 }
