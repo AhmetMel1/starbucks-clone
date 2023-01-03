@@ -9,10 +9,10 @@ namespace BusinessLayer.Abstract
 {
     public interface IProductSizeService
     {
-        void productInsert(Product product);
-        void productUpdate(Product product);
-        void productDelete(Product product);
-        List<Product> productList();
-        Product productGetById(int id);
+        void productSizeInsert(ProductSize productSize);
+        void productSizeUpdate(ProductSize productSize);
+        void productSizeDelete(ProductSize productSize);
+        List<ProductSize> productSizeList();
+        ProductSize productSizeGetById(int id);
     }
 }
