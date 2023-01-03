@@ -24,4 +24,8 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ConCreate\EntityFramework\" />
+  </ItemGroup>
+
 </Project>
