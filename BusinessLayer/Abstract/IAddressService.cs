@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IAddressServis
+    public interface IAddressService
     {
         void addressInsert(Address address);
         void addressDelete(Address address);

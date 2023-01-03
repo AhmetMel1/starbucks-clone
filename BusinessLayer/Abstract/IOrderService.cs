@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IOrderServis
+    public interface IOrderService
     {
         void orderInsert(Order order);
         void orderDelete(Order order);
