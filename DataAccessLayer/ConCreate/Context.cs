@@ -12,7 +12,7 @@ namespace DataAccessLayer.ConCreate
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=LAPTOP-GC0KUGMH\\SQLEXPRESS; ; database=DBBusBilet ;Encrypt=False; Integrated Security=True;");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=LAPTOP-GC0KUGMH\\SQLEXPRESS; ; database=Starbucks ;Encrypt=False; Integrated Security=True;");
         }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<CargoProcess> CargoProcesses { get; set; }
