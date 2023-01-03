@@ -13,7 +13,7 @@ namespace EntityLayer
         [Key]
         public int menuId { get; set; }
         [StringLength(50)] 
-        public int menuName { get; set; }
+        public string menuName { get; set; }
         public bool menuDeleted { get; set; }
 
         //

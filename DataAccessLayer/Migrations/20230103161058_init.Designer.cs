@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230103154110_init")]
+    [Migration("20230103161058_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -106,6 +106,11 @@ namespace DataAccessLayer.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("categoryName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int?>("categoryParentId")
                         .HasColumnType("int");
 
@@ -183,9 +188,10 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("menuDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("menuName")
+                    b.Property<string>("menuName")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("menuParentId")
                         .HasColumnType("int");

@@ -49,6 +49,7 @@ namespace DataAccessLayer.Migrations
                 {
                     categoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    categoryName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     categoryLogoUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     categoryDeleted = table.Column<bool>(type: "bit", nullable: false),
                     categoryParentId = table.Column<int>(type: "int", nullable: true)
@@ -69,7 +70,7 @@ namespace DataAccessLayer.Migrations
                 {
                     menuId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    menuName = table.Column<int>(type: "int", maxLength: 50, nullable: false),
+                    menuName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     menuDeleted = table.Column<bool>(type: "bit", nullable: false),
                     menuParentId = table.Column<int>(type: "int", nullable: true)
                 },

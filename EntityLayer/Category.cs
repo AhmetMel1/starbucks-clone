@@ -12,6 +12,8 @@ namespace EntityLayer
     {
         [Key]
         public int categoryId { get; set; }
+        [StringLength(50)]
+        public string categoryName { get; set; }
         [StringLength(200)]
         public string categoryLogoUrl { get; set; }
         public bool categoryDeleted { get; set; }

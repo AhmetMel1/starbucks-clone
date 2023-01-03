@@ -103,6 +103,11 @@ namespace DataAccessLayer.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("categoryName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int?>("categoryParentId")
                         .HasColumnType("int");
 
@@ -180,9 +185,10 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("menuDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("menuName")
+                    b.Property<string>("menuName")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("menuParentId")
                         .HasColumnType("int");
