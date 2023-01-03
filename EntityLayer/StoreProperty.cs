@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class StoreProperty
-    {
+    public class StoreProperty //kübra
+    { 
         [Key]
         public int StorePropertyId { get; set; }
         //relationship with property
@@ -16,6 +16,6 @@ namespace EntityLayer
         public Property Property { get; set; }
         //relationship with store
         public int StoreId { get; set; }
-        public Store Store { get; set; }
+        public virtual Store Store { get; set; }
     }
 }

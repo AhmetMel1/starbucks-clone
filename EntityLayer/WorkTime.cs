@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class WorkTime
+    public class WorkTime //kübra
     {
         [Key]
         public int workTimeId { get; set; }
-        public ICollection<StoreOpeningHour> StoreOpenings { get; set; }
+        public virtual ICollection<StoreOpeningHour> StoreOpenings { get; set; }
         public int openingTime { get; set; }
         public int closingTime { get; set; }
 

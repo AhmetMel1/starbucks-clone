@@ -22,16 +22,16 @@ namespace EntityLayer
 
 
         //Relationship with Address
-        public int addressId { get; set; }
-        public Address address { get; set; }
+        public  int addressId { get; set; }
+        public virtual Address address { get; set; }
         //Relationship with userType
-        public int userTypeId { get; set; }
-        public UserType userType { get; set; }
+        public  int userTypeId { get; set; }
+        public virtual UserType userType { get; set; }
         //Relationship with order
-        public ICollection<Order> orders { get; set; }
+        public virtual ICollection<Order> orders { get; set; }
 
         //Relationship with favorite 
-        public ICollection<Favorite> favorites { get; set; }
+        public virtual ICollection<Favorite> favorites { get; set; }
 
        
     }

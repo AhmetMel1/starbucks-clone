@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class StoreProduct
+    public class StoreProduct //kübra
     {
         [Key]
         public int StoreProductId { get; set; }
         public int StockQuantity { get; set; }
         //relationship with product
+        public int PropertyId { get; set; }
+        public virtual Property Property { get; set; }
 
         //relationship with store
         public int StoreId { get; set; }
-        public Store Store { get; set; }
+        public virtual Store Store { get; set; }
     }
 }
