@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,13 @@ namespace EntityLayer
         public string categoryLogoUrl { get; set; }
         public bool categoryDeleted { get; set; }
         //Relationship with Product
-        public virtual ICollection<Product> products { get; set; } 
+        public virtual ICollection<Product> products { get; set; }
         //Kendine çok olucak
-        public int? parentCategoryId { get; set; }
-        public virtual Category category { get; set; }
+        [ForeignKey("categoryParent")]
+
+        public int? categoryParentId { get; set; }
+        public virtual Category categoryParent { get; set; }
+        [InverseProperty("categoryParent")]
+        public virtual ICollection<Category> categoryChildren { get; set; }
     }
 }

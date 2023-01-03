@@ -14,7 +14,7 @@ namespace EntityLayer
         public bool StorePropertyDeleted { get; set; }
         //relationship with property
         public int PropertyId { get; set; }
-        public Property Property { get; set; }
+        public virtual Property Property { get; set; }
         //relationship with store
         public int StoreId { get; set; }
         public virtual Store Store { get; set; }

@@ -12,8 +12,8 @@ namespace EntityLayer
         [Key]
         public int workTimeId { get; set; }
         public virtual ICollection<StoreOpeningHour> StoreOpenings { get; set; }
-        public TimeOnly openingTime { get; set; }
-        public TimeOnly closingTime { get; set; }
+        public DateTime openingTime { get; set; }
+        public DateTime closingTime { get; set; }
         public bool WorkTimeDeleted { get; set; }
 
 
