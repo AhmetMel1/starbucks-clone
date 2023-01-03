@@ -14,9 +14,9 @@ namespace EntityLayer
         [StringLength(50)]
         public string customizationName { get; set; }
         //Relationship with ProductCustomization
-        public ICollection<ProductCustomization> productCustomizations { get; set; } 
+        public virtual ICollection<ProductCustomization> productCustomizations { get; set; } 
         //Relationship with Option
         public int optionId { get; set; }
-        public Option option { get; set; }
+        public virtual Option option { get; set; }
     }
 }

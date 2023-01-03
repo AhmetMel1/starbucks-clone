@@ -14,7 +14,7 @@ namespace EntityLayer
         [StringLength(50)]
         public string sizeName { get; set; } 
         //Relationship with ProductSize
-        public ICollection<ProductSize> productSizes { get; set; }
+        public virtual ICollection<ProductSize> productSizes { get; set; }
 
     }
 }

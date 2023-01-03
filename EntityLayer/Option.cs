@@ -16,11 +16,11 @@ namespace EntityLayer
         public int optionUnitPrice { get; set; } 
         //Relationship with OptionType
         public int optionTypeId { get; set; }
-        public OptionType optionType { get; set; }
+        public virtual OptionType optionType { get; set; }
         //Relationship with Customization
-        public ICollection<Customization> customizations { get; set; }
+        public virtual ICollection<Customization> customizations { get; set; }
         //Kendine çok olucak
         public int? parentOptionId { get; set; }
-        public Option option { get; set; }
+        public virtual Option option { get; set; }
     }
 }
