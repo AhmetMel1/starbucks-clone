@@ -21,6 +21,7 @@ namespace EntityLayer
         public string StoreName { get; set; }
         [StringLength(50)]
         public string StoreLocation { get; set; }
+        public bool StoreDeleted { get; set; }
 
         // Relationship with StoreOpeningHour
         public virtual ICollection<StoreOpeningHour> StoreOpeningHours { get; set; }
