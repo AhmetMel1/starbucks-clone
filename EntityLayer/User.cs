@@ -12,6 +12,8 @@ namespace EntityLayer
         [Key]
         public int userId { get; set; }
         [StringLength(50)]
+        public string userName { get; set; }
+        [StringLength(50)]
         public string name { get; set; }
         [StringLength(50)]
         public string surname { get; set; }

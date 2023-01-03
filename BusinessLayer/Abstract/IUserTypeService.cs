@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IUserTypeServis
+    public interface IUserTypeService
     {
         void userTypeInsert(UserType userType);
         void userTypeUpdate(UserType userType);

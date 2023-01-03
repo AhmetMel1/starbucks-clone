@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface ICargoProccessServis
+    public interface ICargoProccessService
     {
         void cargoProccessInsert(CargoProcess cargoProcess);
         void cargoProccessUpdate(CargoProcess cargoProcess);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IMenuServis
+    public interface IMenuService
     {
         void menuInsert(Menu menu);
         void menuUpdate(Menu menu);
