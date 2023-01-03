@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Store
+    public class Store//kübra
     {
 
         public Store()
@@ -23,12 +23,12 @@ namespace EntityLayer
         public string StoreLocation { get; set; }
 
         // Relationship with StoreOpeningHour
-        public ICollection<StoreOpeningHour> StoreOpeningHours { get; set; }
+        public virtual ICollection<StoreOpeningHour> StoreOpeningHours { get; set; }
         //relationship with storeproperty
-        public ICollection<StoreProperty> StoreProperties { get; set; }
+        public virtual ICollection<StoreProperty> StoreProperties { get; set; }
         //relationship with storefavorite
-        public ICollection<StoreFavorite> StoreFavorites { get; set; }
+        public virtual ICollection<StoreFavorite> StoreFavorites { get; set; }
         //relaionship with storeproduct 
-        public ICollection<StoreProduct> StoreProducts { get; set; }
+        public virtual ICollection<StoreProduct> StoreProducts { get; set; }
     }
 }

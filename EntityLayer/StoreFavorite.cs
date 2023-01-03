@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class StoreFavorite
+    public class StoreFavorite //kübra
     {
         [Key]
         public int StoreFavoriteId { get; set; }
         //relationship with store
         public int StoreId { get; set; }
-        public Store Store { get; set; }
+        public virtual Store Store { get; set; }
         // relationship with user
 
     }

@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class StoreOpeningHour
+    public class StoreOpeningHour //kübra
     {
         [Key]
         public int storeOpeningHourId { get; set; }
 
         //Relationship with store
         public int StoreId { get; set; }
-        public Store Store { get; set; }
+        public virtual Store Store { get; set; }
 
         //relationship WorkTime
         public int workTimeId { get; set; }
 
-        public WorkTime workTime { get; set; }
+        public virtual WorkTime workTime { get; set; }
 
     }
 }

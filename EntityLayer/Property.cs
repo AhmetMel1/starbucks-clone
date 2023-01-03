@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Property
+    public class Property //kübra 
     {
         [Key]
         public int PropertyId { get; set; }
@@ -15,6 +15,6 @@ namespace EntityLayer
         public string PropertyName { get; set; }
         public string PropertyMode { get; set; }
         //relationship with storeproperty
-        public ICollection<StoreProperty> StoreProperties { get; set; }
+        public virtual ICollection<StoreProperty> StoreProperties { get; set; }
     }
 }
