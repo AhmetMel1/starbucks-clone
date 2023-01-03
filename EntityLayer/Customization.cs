@@ -13,6 +13,7 @@ namespace EntityLayer
         public int customizationId { get; set; }
         [StringLength(50)]
         public string customizationName { get; set; }
+        public bool customizationDeleted { get; set; }
         //Relationship with ProductCustomization
         public virtual ICollection<ProductCustomization> productCustomizations { get; set; } 
         //Relationship with Option

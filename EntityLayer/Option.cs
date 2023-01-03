@@ -13,7 +13,8 @@ namespace EntityLayer
         public int optionId { get; set; }
         [StringLength(50)]
         public string optionName { get; set; }
-        public int optionUnitPrice { get; set; } 
+        public int optionUnitPrice { get; set; }
+        public bool optionDeleted { get; set; }
         //Relationship with OptionType
         public int optionTypeId { get; set; }
         public virtual OptionType optionType { get; set; }

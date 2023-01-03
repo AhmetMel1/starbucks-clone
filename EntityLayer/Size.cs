@@ -12,7 +12,8 @@ namespace EntityLayer
         [Key]
         public int sizeId { get; set; }
         [StringLength(50)]
-        public string sizeName { get; set; } 
+        public string sizeName { get; set; }
+        public bool sizeDeleted { get; set; }
         //Relationship with ProductSize
         public virtual ICollection<ProductSize> productSizes { get; set; }
 

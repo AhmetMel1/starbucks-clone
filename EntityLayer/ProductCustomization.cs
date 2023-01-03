@@ -10,7 +10,8 @@ namespace EntityLayer
     public class ProductCustomization
     {
         [Key]
-        public int ProductCustomizationId { get; set; }
+        public int productCustomizationId { get; set; }
+        public bool productCustomizationDeleted { get; set; }
         //Relationship with Product 
         public int productId { get; set; }
         public virtual Product product { get; set; }

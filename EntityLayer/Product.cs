@@ -17,6 +17,7 @@ namespace EntityLayer
         public string productLogoUrl { get; set; }
         [StringLength(200)]
         public string productDescription { get; set; }
+        public bool productDeleted { get; set; }
         //Relationship with Category
         public int categoryId { get; set; } 
         public virtual Category category { get; set; }
