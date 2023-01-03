@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    internal interface IStoreFavoriteDal:IGenericDal<StoreFavorite>
+    public interface IStoreFavoriteDal:IGenericDal<StoreFavorite>
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    internal interface IStoreOpeningHourDal:IGenericDal<IStoreOpeningHourDal>
+    public interface IStoreOpeningHourDal:IGenericDal<IStoreOpeningHourDal>
     {
     }
 }
