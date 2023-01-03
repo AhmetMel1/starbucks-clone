@@ -11,6 +11,7 @@ namespace EntityLayer
     { 
         [Key]
         public int StorePropertyId { get; set; }
+        public bool StorePropertyDeleted { get; set; }
         //relationship with property
         public int PropertyId { get; set; }
         public Property Property { get; set; }

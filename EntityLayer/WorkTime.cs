@@ -14,6 +14,7 @@ namespace EntityLayer
         public virtual ICollection<StoreOpeningHour> StoreOpenings { get; set; }
         public int openingTime { get; set; }
         public int closingTime { get; set; }
+        public bool WorkTimeDeleted { get; set; }
 
 
     }

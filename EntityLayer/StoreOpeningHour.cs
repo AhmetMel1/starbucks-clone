@@ -11,6 +11,7 @@ namespace EntityLayer
     {
         [Key]
         public int storeOpeningHourId { get; set; }
+        public bool StoreOpeningHourDeleted { get; set; }
 
         //Relationship with store
         public int StoreId { get; set; }

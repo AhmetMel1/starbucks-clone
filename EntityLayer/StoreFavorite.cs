@@ -11,6 +11,7 @@ namespace EntityLayer
     {
         [Key]
         public int StoreFavoriteId { get; set; }
+        public bool StoreFavoriteDeleted { get; set; }
         //relationship with store
         public int StoreId { get; set; }
         public virtual Store Store { get; set; }
