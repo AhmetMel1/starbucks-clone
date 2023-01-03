@@ -13,6 +13,7 @@ namespace EntityLayer
         public int cargoId { get; set; }
         [StringLength(50)] 
         public string cargoStatus { get; set; }
+        public bool cargoProcessDeleted { get; set; }
         //Relationship with Order 
         public virtual ICollection<Order> orders{ get; set; }
 

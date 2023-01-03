@@ -20,6 +20,8 @@ namespace EntityLayer
         [StringLength(11)]
         public string phoneNumber { get; set; }
 
+        public bool userDeleted { get; set; }
+
 
         //Relationship with Address
         public  int addressId { get; set; }

@@ -18,6 +18,7 @@ namespace EntityLayer
         public byte orderStatus { get; set; }
         [StringLength(50)]
         public string cardAddedDate { get; set; }
+        public bool orderDeleted { get; set; }
 
         //Relationship with Product size
         public  int productSizeId  { get; set; }
