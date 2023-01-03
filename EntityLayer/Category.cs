@@ -13,6 +13,7 @@ namespace EntityLayer
         public int categoryId { get; set; }
         [StringLength(200)]
         public string categoryLogoUrl { get; set; }
+        public bool categoryDeleted { get; set; }
         //Relationship with Product
         public virtual ICollection<Product> products { get; set; } 
         //Kendine çok olucak

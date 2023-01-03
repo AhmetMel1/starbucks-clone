@@ -14,7 +14,8 @@ namespace EntityLayer
         public int productSizePrice { get; set; }
         public int productSizeCapacity { get; set; }
         public int unitPrice { get; set; }
-         
+        public bool productSizeDeleted { get; set; }
+
         //Relationship with Product
         public int productId { get; set; }
         public virtual Product product { get; set; }

@@ -13,6 +13,7 @@ namespace EntityLayer
         public int optionTypeId { get; set; }
         [StringLength(50)]
         public string optionTypeName { get; set; }
+        public bool optionTypeDeleted { get; set; }
         //Relationship with Option
         public virtual ICollection<Option> options { get; set; }
     }
