@@ -14,6 +14,6 @@ namespace EntityLayer
         [StringLength(50)]
         public string optionTypeName { get; set; }
         //Relationship with Option
-        public ICollection<Option> options { get; set; }
+        public virtual ICollection<Option> options { get; set; }
     }
 } 

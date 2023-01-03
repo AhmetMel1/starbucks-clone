@@ -17,12 +17,12 @@ namespace EntityLayer
          
         //Relationship with Product
         public int productId { get; set; }
-        public Product product { get; set; }
+        public virtual Product product { get; set; }
         //Relationship with Size
         public int sizeId { get; set; }
-        public Size size { get; set; }
+        public virtual Size size { get; set; }
 
         //Relationship with Order
-        public ICollection<Order> orders { get; set; }
+        public virtual ICollection<Order> orders { get; set; }
     }
 }
