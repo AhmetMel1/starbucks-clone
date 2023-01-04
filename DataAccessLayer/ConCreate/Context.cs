@@ -13,8 +13,9 @@ namespace DataAccessLayer.ConCreate
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=LAPTOP-GC0KUGMH\\SQLEXPRESS; ; database=Starbucks ;Encrypt=False; Integrated Security=True;");
-        }
-        public DbSet<Address> Addresses { get; set; }
+			//optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=RUZGAR; database=Starbucks ;Encrypt=False; User ID=sa;Password=1234");
+		}
+		public DbSet<Address> Addresses { get; set; }
         public DbSet<CargoProcess> CargoProcesses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customization> Customizations { get; set; }
