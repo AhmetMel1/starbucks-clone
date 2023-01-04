@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.ConCreate.EntityFramework
 {
-    public class EfUserTypeRepository:GenericRepository<UserType>,IUserTypeDal
+    public class EfAdminRepository:GenericRepository<Admin>,IAdminDal
     {
     }
 }

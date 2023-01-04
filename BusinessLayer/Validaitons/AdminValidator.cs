@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Validaitons
 {
-    public class UserTypeValidator : AbstractValidator<UserType>
+    public class AdminValidator : AbstractValidator<Admin>
     {
-        public UserTypeValidator() { }  
+        public AdminValidator() { }  
     }
 }

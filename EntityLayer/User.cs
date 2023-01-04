@@ -29,7 +29,7 @@ namespace EntityLayer
         public virtual Address address { get; set; }
         //Relationship with userType
         public  int userTypeId { get; set; }
-        public virtual UserType userType { get; set; }
+        public virtual Admin userType { get; set; }
         //Relationship with order
         public virtual ICollection<Order> orders { get; set; }
 

@@ -38,7 +38,7 @@ namespace BusinessLayer.Concrete
 
         public void WorkTimeUpdate(WorkTime workTime)
         {
-            return workTimeDal.update(workTime);
+            workTimeDal.update(workTime);
         }
     }
 }

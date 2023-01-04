@@ -34,7 +34,7 @@ namespace DataAccessLayer.ConCreate
         public DbSet<StoreProduct> StoreProducts { get; set; }
         public DbSet<StoreProperty> StoreProperties { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<WorkTime> WorkTimes { get; set; }
 	}
 }
