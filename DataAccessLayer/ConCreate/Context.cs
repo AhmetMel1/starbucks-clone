@@ -12,7 +12,9 @@ namespace DataAccessLayer.ConCreate
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=LAPTOP-GC0KUGMH\\SQLEXPRESS; ; database=Starbucks ;Encrypt=False; Integrated Security=True;");
+            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=LAPTOP-GC0KUGMH\\SQLEXPRESS; ; database=Starbucks ;Encrypt=False; Integrated Security=True;");
+            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=RUZGAR; database=Starbucks ;Encrypt=False; User ID=sa;Password=1234");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=405-14; database=Starbucks ;Encrypt=False; User ID=sa;Password=1234");
         }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<CargoProcess> CargoProcesses { get; set; }
@@ -34,7 +36,7 @@ namespace DataAccessLayer.ConCreate
         public DbSet<StoreProduct> StoreProducts { get; set; }
         public DbSet<StoreProperty> StoreProperties { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<WorkTime> WorkTimes { get; set; }
 	}
 }
