@@ -34,13 +34,13 @@
                         <td>
                                         <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.sizeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
                         </td>
-                                    <td><a href="/Size/UpdateSize/@item.sizeId" type="button" class="btn btn-outline-primary p-2 ">Update</a></td>
+                                    <td><a href="/Size/UpdateSize/@item.sizeId" type="button" class="btn btn-outline-primary ">Update</a></td>
                     </tr>
                 }
 
     </tbody>
 </table>
-<div class="text-center d-flex justify-content-start p-2">
+<div class="text-center d-flex justify-content-center">
     <a href="/Size/AddSize" class="btn btn-success"><ion-icon name="add"></ion-icon></a>
 </div>
 </div>
@@ -48,19 +48,19 @@
 
 <!-- Modal -->
         @*#decisionPopup Model*@
-<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title" id="silLabel">Uyarı</h1>
+                <h1 class="modal-title" id="deleteLabel">Uyarı</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Silmek istediğinizden emin misiniz?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
-                <a id="delete-btn" href="" class="btn btn-success">Evet</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
             </div>
         </div>
     </div>
