@@ -9,7 +9,7 @@ namespace EntityLayer
 {
     public class Admin
     {
-        [Key]
+        [Key]   
         public int adminId { get; set; }
         [StringLength(50)]  
         public string adminName { get; set; }

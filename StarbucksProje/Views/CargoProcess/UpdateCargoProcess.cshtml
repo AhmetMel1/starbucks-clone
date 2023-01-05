@@ -1,7 +1,7 @@
 ﻿@using EntityLayer
 @model CargoProcess
 @{
-    ViewData["Title"] = "AddCargoProcess";
+    ViewData["Title"] = "UpdateCargoProcess";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,18 +10,28 @@
         <div class="card-body">
             <h4 class="card-title">Cargo Process</h4>
             <p class="card-description">
-                Cargo Process Add
+                Cargo Process Update
             </p>
-            <form class="forms-sample" action="/CargoProcess/AddCargoProcess" method="post">
+            <form class="forms-sample" action="/CargoProcess/UpdateCargoProcess" method="post">
+                <input type="hidden" class="form-control" name="cargoId" value="@Model.cargoId">
                 <div class="form-group">
                     <label for="exampleInputEmail3">Cargo Status</label>
-                    <input type="text" class="form-control" placeholder="Cargo Status" name="cargoStatus">
+                    <input type="text" class="form-control" placeholder="Cargo Status" name="cargoStatus" value="@Model.cargoStatus">
                 </div>
                 <div class="form-group">
                     <label for="exampleSelectGender">Status</label>
                     <select class="form-control" name="cargoProcessDeleted">
-                        <option value="False">Active</option>
-                        <option value="True">Pasive</option>
+                        @if(Model.cargoProcessDeleted)
+                        {
+                            <option value="False">Active</option>
+                            <option value="True" selected>Pasive</option>
+                        }
+                        else
+                        {
+                            <option value="False"selected>Active</option>
+                            <option value="True">Pasive</option>
+                        }
+
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -30,7 +40,4 @@
         </div>
     </div>
 </div>
-
-
-
 

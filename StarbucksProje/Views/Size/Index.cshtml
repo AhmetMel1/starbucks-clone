@@ -52,11 +52,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title" id="deleteLabel">Uyarı</h1>
+                <h1 class="modal-title" id="deleteLabel">Warning!</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Silmek istediğinizden emin misiniz?
+                Are you sure you want to delete?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -70,7 +70,6 @@
     $(document).ready(function(){
         $('#decisionPopup').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
-          console.log(button);
             var sizeId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
             a.href = "/Size/DeleteSize/" + sizeId;

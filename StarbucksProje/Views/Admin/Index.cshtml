@@ -1,29 +1,33 @@
 ﻿@using EntityLayer
-@model List<CargoProcess>
-
+@model List<Admin>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <div class="col-11 grid-margin stretch-card">
     <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Cargo Id</th>
-                    <th>Cargo Status</th>
+                    <th>adminId</th>
+                    <th>admin Name</th>
+                    <th>adminPassword</th>
+                    <th>adminEmail</th>
+                    <th>adminType</th>
                     <th>Status</th>
-                    <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.cargoId</td>
-                        <td>@item.cargoStatus</td>
-                        @if (@item.cargoProcessDeleted)
+                        <td>@item.adminId</td>
+                        <td>@item.adminName</td>
+                        <td>@item.adminPassword</td>
+                        <td>@item.adminEmail</td>
+                        <td>@item.adminType</td>
+                        @if (@item.adminDeleted)
                         {
                             <td>Pasive</td>
                         }
@@ -32,16 +36,16 @@
                             <td>Active</td>
                         }
                         <td>
-                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.cargoId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.adminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
                         </td>
-                        <td><a href="/CargoProcess/UpdateCargoProcess/@item.cargoId" type="button" class="btn btn-outline-primary ">Update</a></td>
+                        <td><a href="/Admin/UpdateAdmin/@item.adminId" type="button" class="btn btn-outline-primary ">Update</a></td>
                     </tr>
                 }
 
             </tbody>
         </table>
         <div class="text-center d-flex justify-content-center">
-            <a href="/CargoProcess/AddCargoProcess" class="btn btn-success"><ion-icon name="add"></ion-icon></a>
+            <a href="/Admin/AddAdmin" class="btn btn-success"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
 </div>
@@ -70,12 +74,10 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var cargoId = button.attr('data-bs-whatever');
+            var adminId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/CargoProcess/DeleteCargoProcess/" + cargoId;
+            a.href = "/Admin/DeleteAdmin/" + adminId;
         });
     });
 </script>
-
-
 
