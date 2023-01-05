@@ -9,10 +9,10 @@ namespace EntityLayer
 {
     public class User
     {
+        public string userName;
+
         [Key]
         public int userId { get; set; }
-        [StringLength(50)]
-        public string userName { get; set; }
         [StringLength(50)]
         public string name { get; set; }
         [StringLength(50)]
@@ -23,7 +23,7 @@ namespace EntityLayer
         public string phoneNumber { get; set; }
 
         public bool userDeleted { get; set; }
-        public DateTime birthday { get; set; }
+        public DateOnly birthday { get; set; }
         //Relationship with Address
         public  int addressId { get; set; }
         public virtual Address address { get; set; }
