@@ -32,10 +32,10 @@ namespace StarbucksProje.Controllers
             sm.sizeUpdate(size);
             return RedirectToAction("Index");
         }
+        [HttpGet]
         public IActionResult UpdateSize(int id)
         {
-            Size size = sm.sizeGetById(id);
-         
+            Size size = sm.sizeGetById(id); 
             return View(size);
         }
         [HttpPost]
