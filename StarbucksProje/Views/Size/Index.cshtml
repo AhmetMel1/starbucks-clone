@@ -1,9 +1,79 @@
-﻿
+﻿@using EntityLayer
+@model List<Size>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
-<div>Deneme</div>
+ <div class="col-11 grid-margin stretch-card">
+              <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
+                  <table class="table">
+    <thead>
+        <tr>
+             <th>Size Id</th>
+            <th>Size Name</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.sizeId</td>
+                        <td>@item.sizeName</td>
+                        @if (@item.sizeDeleted)
+                        {
+                                <td>Pasive</td>
+                        }
+                        else
+                        {
+                                <td>Active</td>
+                        }
+                        <td>
+                                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.sizeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><i class="fas fa-trash"></i> </button>
+                        </td>
+                                    <td><a href="/Size/UpdateSize/@item.sizeId" type="button" class="btn btn-outline-primary p-2 ">Update</a></td>
+                    </tr>
+                }
+
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Size/AddSize" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+        @*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Uyarı</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                <a id="delete-btn" href="" class="btn btn-success">Evet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script> 
+    $(document).ready(function(){
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget);
+            var sizeId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Size/DeleteSize/" + sizeId;
+        });
+    });
+</script>
 

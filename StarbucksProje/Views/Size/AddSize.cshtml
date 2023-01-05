@@ -1,0 +1,33 @@
+﻿@using EntityLayer
+@model Size
+@{
+    ViewData["Title"] = "AddSize";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-11 grid-margin stretch-card">
+              <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
+                <div class="card-body">
+                  <h4 class="card-title">Size</h4>
+                  <p class="card-description">
+                    Size Add
+                  </p>
+                  <form class="forms-sample" action="/Size/AddSize" method="post">
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Size Name</label>
+                      <input type="text" class="form-control" placeholder="Size Name" name="sizeName">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Status</label>
+                        <select class="form-control" name="sizeDeleted">
+                          <option value="False">Active</option>
+                          <option value="True">Pasive</option>
+                        </select>
+                      </div>
+                    <input type="submit" class="btn btn-primary me-2"></input>
+                    <a class="btn btn-light" type="reset" href="/Size/Index">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+
