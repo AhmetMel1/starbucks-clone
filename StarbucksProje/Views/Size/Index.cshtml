@@ -32,7 +32,7 @@
                                 <td>Active</td>
                         }
                         <td>
-                                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.sizeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><i class="fas fa-trash"></i> </button>
+                                        <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.sizeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
                         </td>
                                     <td><a href="/Size/UpdateSize/@item.sizeId" type="button" class="btn btn-outline-primary p-2 ">Update</a></td>
                     </tr>
@@ -70,6 +70,7 @@
     $(document).ready(function(){
         $('#decisionPopup').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
+          console.log(button);
             var sizeId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
             a.href = "/Size/DeleteSize/" + sizeId;
@@ -77,3 +78,4 @@
     });
 </script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
