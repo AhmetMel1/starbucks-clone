@@ -10,7 +10,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Cargo Id</th>
                     <th>Cargo Status</th>
                     <th>Status</th>
                     <th></th>
@@ -21,7 +20,6 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.cargoId</td>
                         <td>@item.cargoStatus</td>
                         @if (@item.cargoProcessDeleted)
                         {
@@ -40,7 +38,7 @@
 
             </tbody>
         </table>
-        <div class="text-center d-flex justify-content-center">
+        <div class="text-center d-flex justify-content-start">
             <a href="/CargoProcess/AddCargoProcess" class="btn btn-success m-2"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
