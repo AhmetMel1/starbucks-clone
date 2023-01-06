@@ -1,17 +1,18 @@
 ﻿@using EntityLayer
-@model List<Size>
+@model List<Category>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
- <div class="col-11 grid-margin stretch-card">
+<div class="col-11 grid-margin stretch-card">
               <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
                   <table class="table">
     <thead>
         <tr>
-             <th>Size Id</th>
-            <th>Size Name</th>
+             <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Category Logo</th>
+            <th>Parent Category Name</th>
             <th>Status</th>
             <th></th>
             <th></th>
@@ -20,34 +21,48 @@
     <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@item.sizeId</td>
-                        <td>@item.sizeName</td>
-                        @if (@item.sizeDeleted)
+                    var sayac = 0;
+                <tr>
+                <td>@item.categoryId</td>
+                <td>@item.categoryName</td>
+                <td>@item.categoryLogoUrl</td>
+                        @foreach (var parent in Model)
                         {
-                                <td>Pasive</td>
+                            @if (item.categoryParentId == parent.categoryId)
+                            {
+                                <td>@parent.categoryName</td>         
+                                sayac++;
+                            }
+                        }
+                        @if (sayac == 0)
+                        {
+                     <td></td>                
+                        }
+                        @if (@item.categoryDeleted)
+                        {
+                        <td>Pasive</td>
                         }
                         else
                         {
-                                <td>Active</td>
+                    <td>Active</td>
                         }
-                        <td>
-                                        <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.sizeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
-                        </td>
-                                    <td><a href="/Size/UpdateSize/@item.sizeId" type="button" class="btn btn-outline-primary ">Update</a></td>
-                    </tr>
+                <td>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.categoryId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
+                </td>
+                <td><a href="/Category/UpdateCategory/@item.categoryId" type="button" class="btn btn-outline-primary ">Update</a></td>
+            </tr>
                 }
 
     </tbody>
 </table>
 <div class="text-center d-flex justify-content-center">
-    <a href="/Size/AddSize" class="btn btn-success m-2"><ion-icon name="add"></ion-icon></a>
+    <a href="/Category/AddCategory" class="btn btn-success m-2"><ion-icon name="add"></ion-icon></a>
 </div>
 </div>
 </div>
 
 <!-- Modal -->
-        @*#decisionPopup Model*@
+@*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -70,10 +85,9 @@
     $(document).ready(function(){
         $('#decisionPopup').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);
-            var sizeId = button.attr('data-bs-whatever');
+            var categoryId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/Size/DeleteSize/" + sizeId;
+            a.href = "/Category/DeleteCategory/" + categoryId;
         });
     });
 </script>
-

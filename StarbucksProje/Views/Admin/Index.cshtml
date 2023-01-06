@@ -11,11 +11,10 @@
             <thead>
                 <tr>
                     <th>adminId</th>
-                    <th>admin Name</th>
-                    <th>adminPassword</th>
+                    <th>Status</th>
                     <th>adminEmail</th>
                     <th>adminType</th>
-                    <th>Status</th>
+                    <th>adminDeleted</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,9 +23,10 @@
                     <tr>
                         <td>@item.adminId</td>
                         <td>@item.adminName</td>
-                        <td>@item.adminPassword</td>
                         <td>@item.adminEmail</td>
                         <td>@item.adminType</td>
+                        <td>@item.adminDeleted</td>
+
                         @if (@item.adminDeleted)
                         {
                             <td>Pasive</td>
@@ -45,7 +45,7 @@
             </tbody>
         </table>
         <div class="text-center d-flex justify-content-center">
-            <a href="/Admin/AddAdmin" class="btn btn-success"><ion-icon name="add"></ion-icon></a>
+            <a href="/Admin/AddAdmin" class="btn btn-success m-2"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
 </div>
@@ -76,8 +76,9 @@
             var button = $(event.relatedTarget);
             var adminId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/Admin/DeleteAdmin/" + adminId;
+            a.href = "/Admin/DeleteAdmin/" + adminId
         });
     });
 </script>
+
 

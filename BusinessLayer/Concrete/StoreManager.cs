@@ -41,5 +41,15 @@ namespace BusinessLayer.Concrete
         {
             return storeDal.get(x => x.StoreId == id);
         }
+
+        public void StoreInsert(global::StarbucksProje.Controllers.StoreConttoller store)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StoreInsert(global::StarbucksProje.Controllers.StoreConttoller store)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

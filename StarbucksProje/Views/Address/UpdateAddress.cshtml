@@ -1,0 +1,49 @@
+﻿@using EntityLayer
+@model Address
+@{
+    ViewData["Title"] = "UpdateAddress";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5 overflow-auto" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Address</h4>
+            <p class="card-description">
+                Address Update
+            </p>
+            <form class="forms-sample" action="/Address/UpdateAddress" method="post">
+                <input type="hidden" class="form-control" name="addressId" value="@Model.addressId">
+                <div class="form-group">
+                    <label>Province</label>
+                    <input type="text" class="form-control" placeholder="Province" name="province" value="@Model.province">
+                </div>
+                <div class="form-group">
+                    <label>District</label>
+                    <input type="text" class="form-control" placeholder="District" name="district"value="@Model.district">
+                </div>
+                <div class="form-group">
+                    <label>Neighbourhood</label>
+                    <input type="text" class="form-control" placeholder="Neighbourhood" name="neighbourhood" value="@Model.neighbourhood">
+                </div>
+                <div class="form-group">
+                    <label>Street</label>
+                    <input type="text" class="form-control" placeholder="Street" name="street"value="@Model.street">
+                </div>
+                <div class="form-group">
+                    <label>Apartment Number</label>
+                    <input type="text" class="form-control" placeholder="Apartment Number" name="apartmentNumber" value="@Model.apartmentNumber">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectGender">Status</label>
+                    <select class="form-control" name="addressDeleted">
+                        <option value="False">Active</option>
+                        <option value="True">Pasive</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <a class="btn btn-light" type="reset" href="/Address/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
