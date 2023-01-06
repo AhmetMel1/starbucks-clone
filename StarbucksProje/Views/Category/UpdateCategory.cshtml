@@ -8,7 +8,7 @@
     var id = Convert.ToInt32(TempData["id"]);
 }
 <div class="col-11 grid-margin stretch-card">
-              <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
+              <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
                 <div class="card-body">
                   <h4 class="card-title">Category</h4>
                   <p class="card-description">
@@ -24,7 +24,7 @@
                       <label>Category Logo</label>
                       <input type="text" class="form-control" placeholder="Category Logo" name="categoryLogoUrl" value="@Model[id].categoryLogoUrl">
                     </div>
-                    <label>Parent Category</label>
+                    <label>Parent Category Name</label>
                      <div class="form-group">
                     <select class="form-control" name="categoryParentId">
                         <option></option>
@@ -48,8 +48,11 @@
                           <option value="True">Pasive</option>
                         </select>
                       </div>
-                       <button type="submit" class="btn btn-primary me-2">Submit</button>
-                    <a class="btn btn-light" type="reset" href="/Category/Index">Cancel</a>
+                        <button type="submit" class="btn btn-inverse-info me-2">
+                           <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                           Submit
+                       </button>
+                    <a class="btn btn-inverse-secondary" type="reset" href="/Category/Index">Cancel</a>
                   </form>
                 </div>
               </div>

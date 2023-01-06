@@ -5,11 +5,10 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="col-11 grid-margin stretch-card">
-              <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
-                  <table class="table">
+              <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+                  <table class="table table-hover">
     <thead>
         <tr>
-             <th>Product Id</th>
             <th>Product Name</th>
             <th>Product Logo</th>
             <th>Product Description</th>
@@ -23,7 +22,6 @@
                 @foreach (var item in Model)
                 {
                         <tr>
-                                <td>@item.productId</td>
                                 <td>@item.productName</td>
                                 <td>@item.productLogoUrl</td>
                                 <td>@item.productLogoUrl</td>
@@ -38,16 +36,16 @@
                                         <td>Active</td>
                         }
                             <td>
-                                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.productId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
+                                                    <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.productId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                             </td>
-                                            <td><a href="/Product/UpdateProduct/@item.productId" type="button" class="btn btn-outline-primary ">Update</a></td>
+                                                <td><a href="/Product/UpdateProduct/@item.productId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
                         </tr>
                 }
 
     </tbody>
 </table>
-<div class="text-center d-flex justify-content-center">
-    <a href="/Product/AddProduct" class="btn btn-success m-2"><ion-icon name="add"></ion-icon></a>
+<div class="text-center d-flex justify-content-start">
+    <a href="/Product/AddProduct" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
 </div>
 </div>
 </div>
@@ -65,8 +63,8 @@
                 Are you sure you want to delete?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+                <button type="button" class="btn btn-inverse-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-inverse-success">Yes</a>
             </div>
         </div>
     </div>
