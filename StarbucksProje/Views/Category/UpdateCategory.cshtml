@@ -8,37 +8,29 @@
     var id = Convert.ToInt32(TempData["id"]);
 }
 <div class="col-11 grid-margin stretch-card">
-<<<<<<< HEAD
-              <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
-=======
-              <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
->>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
-                <div class="card-body">
-                  <h4 class="card-title">Category</h4>
-                  <p class="card-description">
-                    Category Update
-                  </p>
-                  <form class="forms-sample" action="/Category/UpdateCategory" method="post">
-                      <input type="hidden" class="form-control" name="categoryId" value="@Model[id].categoryId">
-                    <div class="form-group">
-                      <label>Category Name</label>
-                      <input type="text" class="form-control" placeholder="Category Name" name="categoryName" value="@Model[id].categoryName">
-                    </div>
-                    <div class="form-group">
-                      <label>Category Logo</label>
-                      <input type="text" class="form-control" placeholder="Category Logo" name="categoryLogoUrl" value="@Model[id].categoryLogoUrl">
-                    </div>
-<<<<<<< HEAD
-                    <label>Parent Category</label>
-=======
-                    <label>Parent Category Name</label>
->>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
-                     <div class="form-group">
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Category</h4>
+            <p class="card-description">
+                Category Update
+            </p>
+            <form class="forms-sample" action="/Category/UpdateCategory" method="post">
+                <input type="hidden" class="form-control" name="categoryId" value="@Model[id].categoryId">
+                <div class="form-group">
+                    <label>Category Name</label>
+                    <input type="text" class="form-control" placeholder="Category Name" name="categoryName" value="@Model[id].categoryName">
+                </div>
+                <div class="form-group">
+                    <label>Category Logo</label>
+                    <input type="text" class="form-control" placeholder="Category Logo" name="categoryLogoUrl" value="@Model[id].categoryLogoUrl">
+                </div>
+                <label>Parent Category Name</label>
+                <div class="form-group">
                     <select class="form-control" name="categoryParentId">
                         <option></option>
                         @foreach (var item in Model)
                         {
-                            if(item.categoryId==Model[id].categoryId)
+                            if (item.categoryId == Model[id].categoryId)
                             {
                                 <option value="@item.categoryId" selected>@item.categoryName</option>
                             }
@@ -48,26 +40,21 @@
                             }
                         }
                     </select>
-                    </div>
-                    <div class="form-group">
-                      <label>Status</label>
-                        <select class="form-control" name="categoryDeleted">
-                          <option value="False">Active</option>
-                          <option value="True">Pasive</option>
-                        </select>
-                      </div>
-<<<<<<< HEAD
-                       <button type="submit" class="btn btn-primary me-2">Submit</button>
-                    <a class="btn btn-light" type="reset" href="/Category/Index">Cancel</a>
-=======
-                        <button type="submit" class="btn btn-inverse-info me-2">
-                           <i class="mdi mdi-file-check btn-icon-prepend"></i>
-                           Submit
-                       </button>
-                    <a class="btn btn-inverse-secondary" type="reset" href="/Category/Index">Cancel</a>
->>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
-                  </form>
                 </div>
-              </div>
-            </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" name="categoryDeleted">
+                        <option value="False">Active</option>
+                        <option value="True">Pasive</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-inverse-info me-2">
+                    <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                    Submit
+                </button>
+                <a class="btn btn-inverse-secondary" type="reset" href="/Category/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
 

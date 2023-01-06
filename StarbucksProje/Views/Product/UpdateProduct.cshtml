@@ -8,43 +8,43 @@
     var product = Model.productModel;
 }
 <div class="col-11 grid-margin stretch-card">
-              <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-                <div class="card-body">
-                  <h4 class="card-title">Product</h4>
-                  <p class="card-description">
-                    Product Add
-                  </p>
-                  <form class="forms-sample" action="/Product/UpdateProduct" method="post">
-                      <input type="hidden" class="form-control" placeholder="Product Name" name="productId" value="@product.productId">
-                    <div class="form-group">
-                      <label>Product Name</label>
-                      <input type="text" class="form-control" placeholder="Product Name" name="productName"value="@product.productName">
-                    </div>
-                    <div class="form-group">
-                      <label>Product Logo</label>
-                      <input type="text" class="form-control" placeholder="Product Logo" name="productLogoUrl" value="@product.productLogoUrl">
-                    </div>
-                    <div class="form-group">
-                      <label>Product Description</label>
-                      <input type="text" class="form-control" placeholder="Product Description" name="productDescription" value="@product.productDescription">
-                    </div>
-                    <div class="form-group">
-                      <label>Category Name</label>
-                        <select class="form-control" name="categoryId">
-                        @foreach (var item in Model.categoryModel)
-                        {
-                            if(item.categoryId==product.categoryId)
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Product</h4>
+            <p class="card-description">
+                Product Add
+            </p>
+            <form class="forms-sample" action="/Product/UpdateProduct" method="post">
+                <input type="hidden" class="form-control" placeholder="Product Name" name="productId" value="@product.productId">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" class="form-control" placeholder="Product Name" name="productName" value="@product.productName">
+                </div>
+                <div class="form-group">
+                    <label>Product Logo</label>
+                    <input type="text" class="form-control" placeholder="Product Logo" name="productLogoUrl" value="@product.productLogoUrl">
+                </div>
+                <div class="form-group">
+                    <label>Product Description</label>
+                    <input type="text" class="form-control" placeholder="Product Description" name="productDescription" value="@product.productDescription">
+                </div>
+                <div class="form-group">
+                    <label>Category Name</label>
+                    <select class="form-control" name="categoryId">
+                            @foreach (var item in Model.categoryModel)
                             {
-                                    <option value="@item.categoryId" selected>@item.categoryName</option>
+                                if (item.categoryId == product.categoryId)
+                                {
+                                <option value="@item.categoryId" selected>@item.categoryName</option>
                                 }
                                 else
                                 {
-                                        <option value="@item.categoryId">@item.categoryName</option>                                  
-                                } 
-                        }
-                        </select>
+                                <option value="@item.categoryId">@item.categoryName</option>
+                                }
+                            }
+                    </select>
                     <div class="form-group">
-                      <label>Status</label>
+                        <label>Status</label>
                         <select class="form-control" name="productDeleted">
                                 @if (product.productDeleted)
                                 {
@@ -53,18 +53,18 @@
                                 }
                                 else
                                 {
-                                <option value="False"selected>Active</option>
+                                <option value="False" selected>Active</option>
                                 <option value="True">Pasive</option>
                                 }
                         </select>
-                      </div>
-                        <button type="submit" class="btn btn-inverse-info me-2">
-                           <i class="mdi mdi-file-check btn-icon-prepend"></i>
-                           Submit
-                       </button>
+                    </div>
+                    <button type="submit" class="btn btn-inverse-info me-2">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                        Submit
+                    </button>
                     <a class="btn btn-inverse-secondary" type="reset" href="/Product/Index">Cancel</a>
-                  </form>
-                </div>
-              </div>
-            </div>
+            </form>
+        </div>
+    </div>
+</div>
 

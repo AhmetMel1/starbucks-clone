@@ -5,52 +5,47 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
- <div class="col-11 grid-margin stretch-card">
-              <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-                  <table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Size Name</th>
-            <th>Status</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="col-11 grid-margin stretch-card">
+    <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Size Name</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td>@item.sizeName</td>
                         @if (@item.sizeDeleted)
                         {
-                                <td>Pasive</td>
+                            <td>Pasive</td>
                         }
                         else
                         {
-                                <td>Active</td>
+                            <td>Active</td>
                         }
                         <td>
-                                                <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.sizeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.sizeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                         </td>
-                                        <td><a href="/Size/UpdateSize/@item.sizeId" type="button"class="btn btn-inverse-warning btn-fw">Update</a></td>
+                        <td><a href="/Size/UpdateSize/@item.sizeId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
                     </tr>
                 }
 
-    </tbody>
-</table>
-<<<<<<< HEAD
-<div class="text-center d-flex justify-content-center">
-    <a href="/Size/AddSize" class="btn btn-success m-2"><ion-icon name="add"></ion-icon></a>
-=======
-<div class="text-center d-flex justify-content-start">
-    <a href="/Size/AddSize" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>  
->>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
-</div>
-</div>
+            </tbody>
+        </table>
+        <div class="text-center d-flex justify-content-start">
+            <a href="/Size/AddSize" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->
-        @*#decisionPopup Model*@
+@*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -69,10 +64,10 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script> 
-    $(document).ready(function(){
+<script>
+    $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget);
+            var button = $(event.relatedTarget);
             var sizeId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
             a.href = "/Size/DeleteSize/" + sizeId;
