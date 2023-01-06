@@ -1,5 +1,92 @@
+<<<<<<< HEAD
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+=======
+﻿@using EntityLayer
+@model List<Address>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>province</th>
+                    <th>district</th>
+                    <th>neighbourhood</th>
+                    <th>street</th>
+                    <th>apartmentNumber</th>
+                    <th>addressDeleted</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.province</td>
+                        <td>@item.district</td>
+                        <td>@item.neighbourhood</td>
+                        <td>@item.street</td>
+                        <td>@item.apartmentNumber</td>
+                        <td>@item.addressDeleted</td>
+                        @if (@item.addressDeleted)
+                        {
+                            <td>Pasive</td>
+                        }
+                        else
+                        {
+                            <td>Active</td>
+                        }
+                        <td>
+                                    <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.addressId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                        </td>
+                            <td><a href="/Address/UpdateAddress/@item.addressId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <div class="text-center d-flex justify-content-start">
+            <a href="/Address/AddAddress" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="deleteLabel">Warning!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-inverse-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-inverse-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var addressId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Address/DeleteAddress/" + addressId
+        });
+    });
+</script>
+
+>>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a

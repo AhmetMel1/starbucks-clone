@@ -5,11 +5,18 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="col-11 grid-margin stretch-card">
+<<<<<<< HEAD
               <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
                   <table class="table">
     <thead>
         <tr>
              <th>Category Id</th>
+=======
+              <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+                  <table class="table table-hover">
+    <thead>
+        <tr>
+>>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
             <th>Category Name</th>
             <th>Category Logo</th>
             <th>Parent Category Name</th>
@@ -23,7 +30,10 @@
                 {
                     var sayac = 0;
                 <tr>
+<<<<<<< HEAD
                 <td>@item.categoryId</td>
+=======
+>>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
                 <td>@item.categoryName</td>
                 <td>@item.categoryLogoUrl</td>
                         @foreach (var parent in Model)
@@ -36,7 +46,11 @@
                         }
                         @if (sayac == 0)
                         {
+<<<<<<< HEAD
                      <td></td>                
+=======
+                             <td>NULL</td>                
+>>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
                         }
                         @if (@item.categoryDeleted)
                         {
@@ -47,16 +61,27 @@
                     <td>Active</td>
                         }
                 <td>
+<<<<<<< HEAD
                     <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.categoryId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
                 </td>
                 <td><a href="/Category/UpdateCategory/@item.categoryId" type="button" class="btn btn-outline-primary ">Update</a></td>
+=======
+                        <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.categoryId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                </td>
+                    <td><a href="/Category/UpdateCategory/@item.categoryId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+>>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
             </tr>
                 }
 
     </tbody>
 </table>
+<<<<<<< HEAD
 <div class="text-center d-flex justify-content-center">
     <a href="/Category/AddCategory" class="btn btn-success m-2"><ion-icon name="add"></ion-icon></a>
+=======
+<div class="text-center d-flex justify-content-start">
+    <a href="/Category/AddCategory" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+>>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
 </div>
 </div>
 </div>
@@ -74,8 +99,13 @@
                 Are you sure you want to delete?
             </div>
             <div class="modal-footer">
+<<<<<<< HEAD
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                 <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+=======
+                <button type="button" class="btn btn-inverse-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-inverse-success">Yes</a>
+>>>>>>> a8bc19fe68808101e9989993b00009f5aba77f4a
             </div>
         </div>
     </div>
