@@ -2,12 +2,14 @@
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using StarbucksProje.Models;
 
 namespace StarbucksProje.Controllers
 {
     public class ProductController : Controller
     {
         ProductManager pm = new ProductManager(new EfProductRepository());
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index()
         {
             var products=pm.productList();
@@ -16,7 +18,9 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddProduct()
         {
-            return View();
+            CategoryProductModel model= new CategoryProductModel();
+            model.categoryModel=cm.categoryList();
+            return View(model);
         }
         [HttpPost]
         public IActionResult AddProduct(Product product)
@@ -28,6 +32,19 @@ namespace StarbucksProje.Controllers
         {
             var product = pm.productGetById(id);
             product.productDeleted = true;
+            pm.productUpdate(product);
+            return RedirectToAction("Index");
+        }
+        public IActionResult UpdateProduct(int id)
+        {
+            CategoryProductModel model = new CategoryProductModel();
+            model.categoryModel = cm.categoryList();
+            model.productModel = pm.productGetById(id);
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateProduct(Product product)
+        {
             pm.productUpdate(product);
             return RedirectToAction("Index");
         }

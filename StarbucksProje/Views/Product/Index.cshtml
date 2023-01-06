@@ -12,8 +12,8 @@
             <th>Product Name</th>
             <th>Product Logo</th>
             <th>Product Description</th>
+            <th>Category Name</th>
             <th>Status</th>
-            <th>Category Id</th>
             <th></th>
             <th></th>
         </tr>
@@ -24,9 +24,8 @@
                         <tr>
                                 <td>@item.productName</td>
                                 <td>@item.productLogoUrl</td>
-                                <td>@item.productLogoUrl</td>
                                 <td>@item.productDescription</td>
-                                <td>@item.categoryId</td>
+                                <td>@item.category.categoryName</td>
                         @if (@item.productDeleted)
                         {
                                         <td>Pasive</td>
@@ -36,9 +35,9 @@
                                         <td>Active</td>
                         }
                             <td>
-                                                    <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.productId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                                <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.productId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                             </td>
-                                                <td><a href="/Product/UpdateProduct/@item.productId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+                                <td><a href="/Product/UpdateProduct/@item.productId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
                         </tr>
                 }
 
