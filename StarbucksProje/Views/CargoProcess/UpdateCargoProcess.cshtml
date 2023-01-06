@@ -15,11 +15,11 @@
             <form class="forms-sample" action="/CargoProcess/UpdateCargoProcess" method="post">
                 <input type="hidden" class="form-control" name="cargoId" value="@Model.cargoId">
                 <div class="form-group">
-                    <label for="exampleInputEmail3">Cargo Status</label>
+                    <label>Cargo Status</label>
                     <input type="text" class="form-control" placeholder="Cargo Status" name="cargoStatus" value="@Model.cargoStatus">
                 </div>
                 <div class="form-group">
-                    <label for="exampleSelectGender">Status</label>
+                    <label>Status</label>
                     <select class="form-control" name="cargoProcessDeleted">
                         @if(Model.cargoProcessDeleted)
                         {

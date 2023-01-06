@@ -15,11 +15,11 @@
             <form class="forms-sample" action="/Size/UpdateSize" method="post">
                 <input type="hidden" class="form-control" name="sizeId" value="@Model.sizeId">
                 <div class="form-group">
-                    <label for="exampleInputEmail3">Size Name</label>
+                    <label>Size Name</label>
                     <input type="text" class="form-control" placeholder="Size Name" name="sizeName" value="@Model.sizeName">
                 </div>
                 <div class="form-group">
-                    <label for="exampleSelectGender">Status</label>
+                    <label>Status</label>
                     <select class="form-control" name="sizeDeleted">
                         @if(Model.sizeDeleted)
                         {
