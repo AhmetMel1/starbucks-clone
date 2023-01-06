@@ -5,58 +5,60 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="col-11 grid-margin stretch-card">
-              <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-                  <table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Category Name</th>
-            <th>Category Logo</th>
-            <th>Parent Category Name</th>
-            <th>Status</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+
+    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Category Logo</th>
+                    <th>Parent Category Name</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach (var item in Model)
                 {
                     var sayac = 0;
-                <tr>
-                <td>@item.categoryName</td>
-                <td>@item.categoryLogoUrl</td>
+                    <tr>
+                        <td>@item.categoryName</td>
+                        <td>@item.categoryLogoUrl</td>
                         @foreach (var parent in Model)
                         {
                             @if (item.categoryParentId == parent.categoryId)
                             {
-                                <td>@parent.categoryName</td>         
+                                <td>@parent.categoryName</td>
                                 sayac++;
                             }
                         }
                         @if (sayac == 0)
                         {
-                             <td>NULL</td>                
+                            <td>NULL</td>
                         }
                         @if (@item.categoryDeleted)
                         {
-                        <td>Pasive</td>
+                            <td>Pasive</td>
                         }
                         else
                         {
-                    <td>Active</td>
+                            <td>Active</td>
                         }
-                <td>
-                        <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.categoryId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
-                </td>
-                    <td><a href="/Category/UpdateCategory/@item.categoryId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
-            </tr>
+                        <td>
+
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.categoryId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                        </td>
+                        <td><a href="/Category/UpdateCategory/@item.categoryId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+                    </tr>
                 }
 
-    </tbody>
-</table>
-<div class="text-center d-flex justify-content-start">
-    <a href="/Category/AddCategory" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
-</div>
-</div>
+            </tbody>
+        </table>
+        <div class="text-center d-flex justify-content-start">
+            <a href="/Category/AddCategory" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->
@@ -79,10 +81,10 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script> 
-    $(document).ready(function(){
+<script>
+    $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget);
+            var button = $(event.relatedTarget);
             var categoryId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
             a.href = "/Category/DeleteCategory/" + categoryId;
