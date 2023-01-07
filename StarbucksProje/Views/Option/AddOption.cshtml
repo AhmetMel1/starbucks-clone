@@ -1,0 +1,65 @@
+﻿@using StarbucksProje.Models
+@model OptionTypeModel
+@{
+    ViewData["Title"] = "AddOption";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    var options = Model.optionModel;
+    var optionTypes = Model.optionTypeModel;
+}
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Option</h4>
+            <p class="card-description">
+                Option Add
+            </p>
+            <form class="forms-sample" action="/Option/AddOption" method="post">
+                <div class="form-group">
+                    <label>Option Name</label>
+                    <input type="text" class="form-control" placeholder="Option Name" name="optionName">
+                </div>
+
+                <div class="form-group">
+                    <label>Option Unit Price</label>
+                    <input type="text" class="form-control" placeholder="Option Unit Price" name="optionUnitPrice">
+                </div>
+
+                 <label>Option Type Name</label>
+                <div class="form-group">
+                    <select class="form-control" name="optionTypeId">
+                        @foreach (var item in optionTypes)
+                        {
+                            <option value="@item.optionTypeId">@item.optionTypeName</option>
+                        }
+                    </select>
+                </div>
+
+                <label>Parent Option Name</label>
+                <div class="form-group">
+                    <select class="form-control" name="optionParentId">
+                        <option value="">NULL</option>
+                        @foreach (var item in options)
+                        {
+                                    <option value="@item.optionId">@item.optionName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" name="optionDeleted">
+                        <option value="False">Active</option>
+                        <option value="True">Pasive</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-inverse-info me-2">
+                    <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                    Submit
+                </button>
+                <a class="btn btn-inverse-secondary" type="reset" href="/Option/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
