@@ -18,20 +18,19 @@ namespace StarbucksProje.Controllers
         {
             return View();
         }
-
-        //[HttpPost]
-        //public IActionResult AddStore(StoreConttoller store)
-        //{
-        //    sm.StoreInsert(store);
-        //    return RedirectToAction("Index");
-        //}
-        //public IActionResult DeleteStore(int id)
-        //{
-        //    StoreConttoller store = sm.StorestoreGetById(id);
-        //    store.DeleteStore = true;
-        //    sm.StoreUpdate(store);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public IActionResult AddStore(Store store)
+        {
+            sm.StoreInsert(store);
+            return RedirectToAction("Index"); 
+        }
+        public IActionResult DeleteStore(int id )
+        {
+            Store store = sm.StorestoreGetById(id);
+            store.StoreDeleted=true;
+            sm.StoreUpdate(store);
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public IActionResult UpdateStore(int id)
         {
