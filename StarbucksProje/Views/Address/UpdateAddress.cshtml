@@ -36,8 +36,16 @@
                 <div class="form-group">
                     <label for="exampleSelectGender">Status</label>
                     <select class="form-control" name="addressDeleted">
-                        <option value="False">Active</option>
-                        <option value="True">Pasive</option>
+                        @if (Model.addressDeleted)
+                        {
+                                <option value="False">Active</option>
+                                <option value="True" selected>Pasive</option>
+                        }
+                        else
+                        {
+                                <option value="False"selected>Active</option>
+                                <option value="True">Pasive</option>
+                        }
                     </select>
                 </div>
                 <button type="submit" class="btn btn-inverse-info me-2">
