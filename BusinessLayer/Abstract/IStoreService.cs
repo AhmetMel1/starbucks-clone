@@ -14,5 +14,6 @@ namespace BusinessLayer.Abstract
         void StoreDelete(Store store);
         List<Store> storeList();
         Store StorestoreGetById(int id);
+        Store storeGetByName(string name);
     }
 }
