@@ -18,8 +18,6 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddProduct()
         {
-            return View();
-
             CategoryProductModel model= new CategoryProductModel();
             model.categoryModel=cm.categoryList();
             return View(model);
