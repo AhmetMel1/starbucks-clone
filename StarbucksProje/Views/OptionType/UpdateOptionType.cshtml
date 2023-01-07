@@ -1,0 +1,45 @@
+﻿@using EntityLayer
+@model OptionType
+@{
+    ViewData["Title"] = "UpdateOptionType";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Option Type</h4>
+            <p class="card-description">
+                Option Type Update
+            </p>
+            <form class="forms-sample" action="/OptionType/UpdateOptionType" method="post">
+                <input type="hidden" class="form-control" placeholder="Option Type Name" name="optionTypeId" value="@Model.optionTypeId">
+                <div class="form-group">
+                    <label>Option Type Name</label>
+                    <input type="text" class="form-control" placeholder="Option Type Name" name="optionTypeName" value="@Model.optionTypeName">
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" name="optionTypeDeleted">
+                        @if (Model.optionTypeDeleted)
+                        {
+                                    <option value="False">Active</option>
+                                    <option value="True" selected>Pasive</option>
+                        }
+                        else
+                        {
+                                    <option value="False" selected>Active</option>
+                                        <option value="True" >Pasive</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-inverse-info me-2">
+                    <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                    Submit
+                </button>
+                <a class="btn btn-inverse-secondary" type="reset" href="/OptionType/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
