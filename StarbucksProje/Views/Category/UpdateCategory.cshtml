@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @{
-    var id = Convert.ToInt32(TempData["id"]);
+    var index = ViewBag.id-1;
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
@@ -15,14 +15,14 @@
                 Category Update
             </p>
             <form class="forms-sample" action="/Category/UpdateCategory" method="post">
-                <input type="hidden" class="form-control" name="categoryId" value="@Model[id].categoryId">
+                <input type="hidden" class="form-control" name="categoryId" value="@Model[index].categoryId">
                 <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" class="form-control" placeholder="Category Name" name="categoryName" value="@Model[id].categoryName">
+                    <input type="text" class="form-control" placeholder="Category Name" name="categoryName" value="@Model[index].categoryName">
                 </div>
                 <div class="form-group">
                     <label>Category Logo</label>
-                    <input type="text" class="form-control" placeholder="Category Logo" name="categoryLogoUrl" value="@Model[id].categoryLogoUrl">
+                    <input type="text" class="form-control" placeholder="Category Logo" name="categoryLogoUrl" value="@Model[index].categoryLogoUrl">
                 </div>
                 <label>Parent Category Name</label>
                 <div class="form-group">
@@ -30,7 +30,7 @@
                         <option></option>
                         @foreach (var item in Model)
                         {
-                            if (item.categoryId == Model[id].categoryId)
+                            if (item.categoryId == Model[index].categoryId)
                             {
                                 <option value="@item.categoryId" selected>@item.categoryName</option>
                             }
@@ -44,8 +44,16 @@
                 <div class="form-group">
                     <label>Status</label>
                     <select class="form-control" name="categoryDeleted">
-                        <option value="False">Active</option>
-                        <option value="True">Pasive</option>
+                        @if (Model[index].categoryDeleted)
+                        {
+                                    <option value="False">Active</option>
+                                    <option value="True" selected>Pasive</option>
+                        }
+                        else
+                        {
+                                    <option value="False"selected>Active</option>
+                                    <option value="True">Pasive</option>
+                        }
                     </select>
                 </div>
                 <button type="submit" class="btn btn-inverse-info me-2">

@@ -35,7 +35,7 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult UpdateCategory(int id)
         {
-            TempData["id"] = id;
+            ViewBag.id = id;
             var categories = cm.categoryList();
             return View(categories);
         }
@@ -43,7 +43,6 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateCategory(Category category)
         {
             cm.categoryUpdate(category);
-            TempData["id"] = null;
             return RedirectToAction("Index");
         }
     }
