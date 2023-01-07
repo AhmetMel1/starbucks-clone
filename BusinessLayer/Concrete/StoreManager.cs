@@ -41,5 +41,10 @@ namespace BusinessLayer.Concrete
         {
             return storeDal.get(x => x.StoreId == id);
         }
+        public Store storeGetByName(string name)
+        {
+            return storeDal.get(x=>x.StoreName == name);
+        }
+
     }
 }
