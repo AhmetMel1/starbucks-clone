@@ -1,0 +1,54 @@
+﻿@using StarbucksProje.Models
+@model ProductCustomizationModel
+@{
+    ViewData["Title"] = "AddProductCustomization";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    var products = Model.productModel;
+    var customizations = Model.customizationModel;
+}
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Product Customization</h4>
+            <p class="card-description">
+                Product Customization Add
+            </p>
+            <form class="forms-sample" action="/ProductCustomization/AddProductCustomization" method="post">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <select class="form-control" name="productId">
+                        @foreach (var item in products)
+                        {
+                            <option value="@item.productId">@item.productName</option>
+                        }
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label>Customization Name</label>
+                    <select class="form-control" name="customizationId">
+                        @foreach (var item in customizations)
+                        {
+                            <option value="@item.customizationId">@item.customizationName</option>
+                        }
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" name="productCustomizationDeleted">
+                            <option value="False">Active</option>
+                            <option value="True">Pasive</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-inverse-info me-2">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                        Submit
+                    </button>
+                    <a class="btn btn-inverse-secondary" type="reset" href="/ProductCustomization/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
