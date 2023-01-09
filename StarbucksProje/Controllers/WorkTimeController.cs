@@ -12,7 +12,7 @@ namespace StarbucksProje.Controllers
         public IActionResult Index()
         {
             var WorkTime = wm.WorkTimeList();
-            return View();
+            return View(WorkTime);
         }
         [HttpGet]
         public IActionResult AddWorkTime()
