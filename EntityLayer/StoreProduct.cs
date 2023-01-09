@@ -14,8 +14,8 @@ namespace EntityLayer
         public int StockQuantity { get; set; }
         public bool StoreProductDeleted { get; set; }
         //relationship with product
-        public int PropertyId { get; set; }
-        public virtual Property Property { get; set; }
+        public int productId { get; set; }
+        public virtual Product Product { get; set; }
 
         //relationship with store
         public int StoreId { get; set; }

@@ -28,6 +28,8 @@ namespace EntityLayer
 
         //Relationship with Favorite
         public virtual ICollection<Favorite>favorites{ get; set; }
+        // Relationship with StoreProduct
+        public virtual ICollection<Product> Products { get; set; }
 
     }
 }
