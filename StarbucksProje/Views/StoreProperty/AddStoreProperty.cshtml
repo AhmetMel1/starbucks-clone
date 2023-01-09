@@ -1,0 +1,53 @@
+﻿@using StarbucksProje.Models
+@model StorePropertyModel
+@{
+    ViewData["Title"] = "AddStoreProperty";
+}
+@{
+    var store = Model.storeModel;
+    var property = Model.propertyModel;
+}
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Store Property</h4>
+            <p class="card-description">
+                Store Property Add
+            </p>
+            <form class="forms-sample" action="/StoreProperty/AddStoreProperty" method="post">
+                <div class="form-group">
+                    <label>Store Name</label>
+                    <select class="form-control" name="StoreId">
+                        @foreach (var item in store)
+                        {
+                                <option value="@item.StoreId">@item.StoreName</option>
+                        }
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label>Property Name</label>
+                    <select class="form-control" name="PropertyId">
+                        @foreach (var item in property)
+                        {
+                                <option value="@item.PropertyId">@item.PropertyName</option>
+                        }
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" name="StorePropertyDeleted">
+                            <option value="False">Active</option>
+                            <option value="True">Pasive</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-inverse-info me-2">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                        Submit
+                    </button>
+                    <a class="btn btn-inverse-secondary" type="reset" href="/StoreProperty/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
