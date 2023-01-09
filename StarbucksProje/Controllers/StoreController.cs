@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace StarbucksProje.Controllers
 {
-    public class StoreConttoller : Controller
+    public class StoreController : Controller
     {
         StoreManager sm = new StoreManager(new EfStoreRepository());
         public IActionResult Index()
@@ -21,7 +21,7 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult AddStore(Store store)
         {
-            sm.StoreInsert(store);
+           sm.StoreInsert(store);
             return RedirectToAction("Index"); 
         }
         public IActionResult DeleteStore(int id )
@@ -34,8 +34,8 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult UpdateStore(int id)
         {
-            Store size = sm.StorestoreGetById(id);
-            return View(size);
+            Store store = sm.StorestoreGetById(id);
+            return View(store);
         }
         [HttpPost]
         public IActionResult StoreUpdate(Store store)
