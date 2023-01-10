@@ -336,7 +336,7 @@ namespace DataAccessLayer.Migrations
                 {
                     favoriteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    uploadDate = table.Column<DateTime>(type: "datetime2", maxLength: 50, nullable: false),
+                    uploadDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     favoriteDeleted = table.Column<bool>(type: "bit", nullable: false),
                     userId = table.Column<int>(type: "int", nullable: false),
                     productId = table.Column<int>(type: "int", nullable: false)
@@ -444,10 +444,10 @@ namespace DataAccessLayer.Migrations
                     orderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     paymentType = table.Column<byte>(type: "tinyint", nullable: false),
-                    orderDate = table.Column<DateTime>(type: "datetime2", maxLength: 50, nullable: false),
+                    orderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     orderQuantity = table.Column<int>(type: "int", nullable: false),
                     orderStatus = table.Column<byte>(type: "tinyint", nullable: false),
-                    cardAddedDate = table.Column<DateTime>(type: "datetime2", maxLength: 50, nullable: false),
+                    cardAddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     orderDeleted = table.Column<bool>(type: "bit", nullable: false),
                     productSizeId = table.Column<int>(type: "int", nullable: false),
                     cargoId = table.Column<int>(type: "int", nullable: false),

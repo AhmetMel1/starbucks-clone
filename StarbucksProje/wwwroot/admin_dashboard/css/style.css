@@ -22235,6 +22235,10 @@ dl li {
   vertical-align: middle;
 }
 
+.sidebar .nav .nav-item .nav-link i.menu-icon:hover .menu-icon {
+  color: #2a1c5a;
+}
+
 .sidebar .nav .nav-item .nav-link i.menu-arrow {
   display: inline-block;
   -webkit-font-smoothing: antialiased;
@@ -22281,14 +22285,14 @@ dl li {
 }
 
 .sidebar .nav .nav-item.active > .nav-link {
-  background: #183188;
+  background: #f3eaf6;
   position: relative;
 }
 
 .sidebar .nav .nav-item.active > .nav-link i,
 .sidebar .nav .nav-item.active > .nav-link .menu-title,
 .sidebar .nav .nav-item.active > .nav-link .menu-arrow {
-  color: #ffffff;
+  color: #2a1c5a;
 }
 
 .sidebar .nav .nav-item.active > .nav-link i.menu-arrow::before {
@@ -22304,8 +22308,8 @@ dl li {
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link {
-  background: #183188;
-  color: #ffffff;
+  background: #f3eaf6;
+  color: #2a1c5a;
 }
 
 .sidebar .nav.sub-menu {

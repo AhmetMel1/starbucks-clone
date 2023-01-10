@@ -1,5 +1,5 @@
 ﻿@using EntityLayer
-@model List<StoreOpeningHour>
+@model List<Property>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,8 +10,8 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Store Name</th>
-                    <th>Work Time</th>
+                    <th>Property Name</th>
+                    <th>Property Mode</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
@@ -21,10 +21,8 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Store.StoreName</td>
-                        <td>@item.workTime.openingTime</td>
-                        <td>@item.workTime.closingTime</td>
-                        @if (@item.StoreOpeningHourDeleted)
+                        <td>@item.PropertyName</td>
+                        @if (@item.PropertyDeleted)
                         {
                             <td>Pasive</td>
                         }
@@ -33,22 +31,20 @@
                             <td>Active</td>
                         }
                         <td>
-                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.storeOpeningHourId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.PropertyId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                         </td>
-                        <td><a href="/StoreOpeningHour/UpdateStoreOpeningHour/@item.storeOpeningHourId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
-
+                        <td><a href="/Property/UpdateProperty/@item.PropertyId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
                     </tr>
                 }
 
             </tbody>
         </table>
         <div class="text-center d-flex justify-content-start">
-            <a href="/StoreOpeningHour/AddStoreOpeningHour" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+            <a href="/Property/AddProperty" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
 </div>
-</div>
-</div>
+
 <!-- Modal -->
 @*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
@@ -73,10 +69,11 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var storeOpeningHourId = button.attr('data-bs-whatever');
+            var PropertyId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/StoreOpeningHour/DeleteStoreOpeningHour/" + storeOpeningHourId;
+            a.href = "/Property/DeleteProperty/" + PropertyId;
         });
     });
 </script>
+
 

@@ -190,7 +190,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("uploadDate")
-                        .HasMaxLength(50)
                         .HasColumnType("datetime2");
 
                     b.Property<int>("userId")
@@ -295,7 +294,6 @@ namespace DataAccessLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("orderId"));
 
                     b.Property<DateTime>("cardAddedDate")
-                        .HasMaxLength(50)
                         .HasColumnType("datetime2");
 
                     b.Property<int>("cargoId")
@@ -305,7 +303,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("orderDate")
-                        .HasMaxLength(50)
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("orderDeleted")

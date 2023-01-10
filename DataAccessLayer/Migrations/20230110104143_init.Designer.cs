@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230110072413_init")]
+    [Migration("20230110104143_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -193,7 +193,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("uploadDate")
-                        .HasMaxLength(50)
                         .HasColumnType("datetime2");
 
                     b.Property<int>("userId")
@@ -298,7 +297,6 @@ namespace DataAccessLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("orderId"));
 
                     b.Property<DateTime>("cardAddedDate")
-                        .HasMaxLength(50)
                         .HasColumnType("datetime2");
 
                     b.Property<int>("cargoId")
@@ -308,7 +306,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("orderDate")
-                        .HasMaxLength(50)
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("orderDeleted")

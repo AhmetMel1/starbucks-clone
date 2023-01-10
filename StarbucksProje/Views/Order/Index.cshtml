@@ -1,30 +1,35 @@
 ﻿@using EntityLayer
-@model List<StoreOpeningHour>
+@model List<Order>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="col-11 grid-margin stretch-card">
-    <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Store Name</th>
-                    <th>Work Time</th>
-                    <th>Status</th>
-                    <th></th>
-                    <th></th>
+                   
+                    <th>paymentType</th>
+                    <th>orderDate</th>
+                    <th>orderQuantity</th>
+                    <th>orderStatus</th>
+                    <th>cardAddedDate</th>
+                    <th>orderDeleted</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Store.StoreName</td>
-                        <td>@item.workTime.openingTime</td>
-                        <td>@item.workTime.closingTime</td>
-                        @if (@item.StoreOpeningHourDeleted)
+                        
+                        <td>@item.paymentType</td>
+                        <td>@item.orderDate</td>
+                        <td>@item.orderQuantity</td>
+                        <td>@item.orderStatus</td>
+                        <td>@item.cardAddedDate</td>
+                        @if (@item.orderDeleted)
                         {
                             <td>Pasive</td>
                         }
@@ -33,22 +38,20 @@
                             <td>Active</td>
                         }
                         <td>
-                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.storeOpeningHourId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.orderId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                         </td>
-                        <td><a href="/StoreOpeningHour/UpdateStoreOpeningHour/@item.storeOpeningHourId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
-
+                        <td><a href="/Order/UpdateOrder/@item.orderId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
                     </tr>
                 }
 
             </tbody>
         </table>
         <div class="text-center d-flex justify-content-start">
-            <a href="/StoreOpeningHour/AddStoreOpeningHour" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+            <a href="/Order/AddOrder" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
 </div>
-</div>
-</div>
+
 <!-- Modal -->
 @*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
@@ -73,9 +76,9 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var storeOpeningHourId = button.attr('data-bs-whatever');
+            var orderId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/StoreOpeningHour/DeleteStoreOpeningHour/" + storeOpeningHourId;
+            a.href = "/Order/DeleteOrder/" + orderId
         });
     });
 </script>
