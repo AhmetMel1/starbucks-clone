@@ -10,7 +10,7 @@ namespace StarbucksProje.Controllers
     {
         CustomizationManager cm = new CustomizationManager(new EfCustomizationRepository());
         OptionManager om= new OptionManager(new EfOptionRepository());
-        public IActionResult Index()
+        public IActionResult ListCustomization()
         {
             var customizations = cm.customizationList();
             return View(customizations);
@@ -26,14 +26,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddCustomization(Customization customization)
         {
             cm.customizationInsert(customization);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListCustomization");
         }
         public IActionResult DeleteCustomization(int id)
         {
             var customization=cm.customizationGetById(id);
             customization.customizationDeleted = true;
             cm.customizationUpdate(customization);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListCustomization");
         }
         [HttpGet]
         public IActionResult UpdateCustomization(int id)
@@ -47,7 +47,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateCustomization(Customization customization)
         {
             cm.customizationUpdate(customization);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListCustomization");
         }
     }
 }

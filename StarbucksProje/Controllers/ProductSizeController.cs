@@ -11,7 +11,7 @@ namespace StarbucksProje.Controllers
         ProductSizeManager psm=new ProductSizeManager(new EfProductSizeRepository());
         ProductManager pm=new ProductManager(new EfProductRepository());
         SizeManager sm=new SizeManager(new EfSizeRepository());
-        public IActionResult Index()
+        public IActionResult ListProductSize()
         {
             var pruductSizes=psm.productSizeList();
             return View(pruductSizes);
@@ -29,14 +29,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddProductSize(ProductSize productSize)
         {
             psm.productSizeUpdate(productSize);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProductSize");
         }
         public IActionResult DeleteProductSize(int id)
         {
             ProductSize productSize = psm.productSizeGetById(id);
             productSize.productSizeDeleted = true;
             psm.productSizeUpdate(productSize);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProductSize");
         }
         [HttpGet]
         public IActionResult UpdateProductSize(int id)
@@ -51,7 +51,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateProductSize(ProductSize productSize)
         {
             psm.productSizeUpdate(productSize);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProductSize");
         }
     }
 }

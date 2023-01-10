@@ -8,7 +8,7 @@ namespace StarbucksProje.Controllers
 	public class SizeController : Controller
 	{
 		SizeManager sm = new SizeManager(new EfSizeRepository());
-		public IActionResult Index()
+		public IActionResult ListSize()
 		{
 			var sizes = sm.sizeList();
 			return View(sizes);
@@ -23,14 +23,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddSize(Size size)
         {
             sm.sizeInsert(size);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListSize");
         }
         public IActionResult DeleteSize(int id)
         {
             Size size = sm.sizeGetById(id);
             size.sizeDeleted = true;
             sm.sizeUpdate(size);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListSize");
         }
         [HttpGet]
         public IActionResult UpdateSize(int id)
@@ -43,7 +43,7 @@ namespace StarbucksProje.Controllers
         {
             
                 sm.sizeUpdate(size);
-                return RedirectToAction("Index");           
+                return RedirectToAction("ListSize");           
         }
     }
 }

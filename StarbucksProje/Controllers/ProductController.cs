@@ -10,7 +10,7 @@ namespace StarbucksProje.Controllers
     {
         ProductManager pm = new ProductManager(new EfProductRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult Index()
+        public IActionResult ListProduct()
         {
             var products=pm.productList();
             return View(products);
@@ -26,14 +26,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddProduct(Product product)
         {
             pm.productInsert(product);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProduct");
         }
         public IActionResult DeleteProduct(int id)
         {
             var product = pm.productGetById(id);
             product.productDeleted = true;
             pm.productUpdate(product);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProduct");
         }
         public IActionResult UpdateProduct(int id)
         {
@@ -46,7 +46,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateProduct(Product product)
         {
             pm.productUpdate(product);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProduct");
         }
     }
 }

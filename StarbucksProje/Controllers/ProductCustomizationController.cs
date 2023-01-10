@@ -11,7 +11,7 @@ namespace StarbucksProje.Controllers
         ProductCustomizationManager pcm = new ProductCustomizationManager(new EfProductCustomizationRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
         CustomizationManager cm = new CustomizationManager(new EfCustomizationRepository());
-        public IActionResult Index()
+        public IActionResult ListProductCustomization()
         {
             var productCustomizations=pcm.productCustomizationList();
             return View(productCustomizations);
@@ -28,14 +28,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddProductCustomization(ProductCustomization productCustomization)
         {
             pcm.productCustomizationInsert(productCustomization);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProductCustomization");
         }
         public IActionResult DeleteProductCustomization(int id)
         {
             var productCustomization = pcm.productCustomizationGetById(id);
             productCustomization.productCustomizationDeleted = true;
             pcm.productCustomizationUpdate(productCustomization);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProductCustomization");
         }
         [HttpGet]
         public IActionResult UpdateProductCustomization(int id)
@@ -50,7 +50,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateProductCustomization(ProductCustomization productCustomization)
         {
             pcm.productCustomizationUpdate(productCustomization);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProductCustomization");
         }
     }
 }

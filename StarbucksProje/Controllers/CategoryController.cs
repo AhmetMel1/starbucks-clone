@@ -8,7 +8,7 @@ namespace StarbucksProje.Controllers
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult Index()
+        public IActionResult ListCategory()
         {
             var categories=cm.categoryList();
             return View(categories);
@@ -23,14 +23,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddCategory(Category category)
         {
             cm.categoryInsert(category);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListCategory");
         }
         public IActionResult DeleteCategory(int id)
         {
             var category=cm.categoryGetById(id);
             category.categoryDeleted = true;
             cm.categoryUpdate(category);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListCategory");
         }
         [HttpGet]
         public IActionResult UpdateCategory(int id)
@@ -43,7 +43,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateCategory(Category category)
         {
             cm.categoryUpdate(category);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListCategory");
         }
     }
 }

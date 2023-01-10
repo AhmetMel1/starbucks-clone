@@ -24,7 +24,7 @@
       </div>
     </div>
     <!-- partial:./partials/_sidebar.html -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <nav class="sidebar sidebar-offcanvas accordion" id="sidebar">
       <ul class="nav">
         <li class="nav-item sidebar-category">
           <p>Navigation</p>
@@ -41,28 +41,28 @@
           <p>Forms</p>
           <span></span>
         </li>
-        <!--ADMİNS-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                        <ion-icon name="man"></ion-icon>
+        <!--Admins-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-admin" aria-expanded="false" aria-controls="collapse-admin">
+            <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Admins</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic">
+          <div class="collapse" id="collapse-admin" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
             </ul>
           </div>
         </li>
-        <!--Addresses-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
-           <ion-icon name="location"></ion-icon>
+         <!--Addresses-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-address" aria-expanded="false" aria-controls="collapse-address">
+            <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Addresses</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic2">
+          <div class="collapse" id="collapse-address" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
@@ -70,55 +70,55 @@
           </div>
         </li>
         <!--CargoProcesses-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic3" aria-expanded="false" aria-controls="ui-basic3">
-                        <ion-icon name="cube"></ion-icon>
-            <span class="menu-title">Cargo Processes</span>
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-cargoProcess" aria-expanded="false" aria-controls="collapse-cargoProcess">
+            <i class="mdi mdi-palette menu-icon"></i>
+            <span class="menu-title">CargoProcesses</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic3">
+          <div class="collapse" id="collapse-cargoProcess" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="/CargoProcess/Index">List</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="/CargoProcess/AddCargoProcess">Add</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
             </ul>
           </div>
         </li>
         <!--Categories-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic4" aria-expanded="false" aria-controls="ui-basic4">
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-category" aria-expanded="false" aria-controls="collapse-category">
             <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Categories</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic4">
+          <div class="collapse" id="collapse-category" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/Category/Index">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/Category/AddCategory">Add</a></li>
             </ul>
           </div>
         </li>
         <!--Customizations-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic5">
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-customization" aria-expanded="false" aria-controls="collapse-customization">
             <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Customizations</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic5">
+          <div class="collapse" id="collapse-customization" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/Customization/ListCustomization">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/Customization/AddCustomization">Add</a></li>
             </ul>
           </div>
         </li>
-        <!--Favorites-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic6" aria-expanded="false" aria-controls="ui-basic6">
-           <ion-icon name="star"></ion-icon>
+         <!--Favorites-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-favorite" aria-expanded="false" aria-controls="collapse-favorite">
+            <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Favorites</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic6">
+          <div class="collapse" id="collapse-favorite" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
@@ -126,13 +126,13 @@
           </div>
         </li>
         <!--Menus-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic7">
-                      <ion-icon name="grid"></ion-icon>
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-menu" aria-expanded="false" aria-controls="collapse-menu">
+            <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Menus</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic7">
+          <div class="collapse" id="collapse-menu" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
@@ -140,41 +140,41 @@
           </div>
         </li>
         <!--Options-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic8" aria-expanded="false" aria-controls="ui-basic8">
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-option" aria-expanded="false" aria-controls="collapse-option">
             <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Options</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic8">
+          <div class="collapse" id="collapse-option" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
-            </ul>
-          </div>
-        </li>
-         <!--OptionTypes-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic9" aria-expanded="false" aria-controls="ui-basic9">
+              <li class="nav-item"> <a class="nav-link" href="~/Option/ListOption">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/Option/AddOption">Add</a></li>
+               <!--OptionTypes-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-optionType" aria-expanded="false" aria-controls="collapse-optionType">
             <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">Option Types</span>
+            <span class="menu-title">OptionTypes</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic9">
+          <div class="collapse" id="collapse-optionType" data-bs-parent="#collapse-optionType">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
+               <li class="nav-item"> <a class="nav-link" href="~/OptionType/ListOptionType">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/OptionType/AddOptionType">Add</a></li>
             </ul>
           </div>
         </li>
-        <!--Orders-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic10" aria-expanded="false" aria-controls="ui-basic10">
-                        <ion-icon name="reorder-four"></ion-icon>
+            </ul>
+          </div>
+        </li>
+         <!--Orders-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-order" aria-expanded="false" aria-controls="collapse-order">
+            <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Orders</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic10">
+          <div class="collapse" id="collapse-order" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
@@ -182,97 +182,94 @@
           </div>
         </li>
         <!--Products-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic11">
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-product" aria-expanded="false" aria-controls="collapse-product">
             <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Products</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic11">
+          <div class="collapse" id="collapse-product" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--ProductCustomizations-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic12" aria-expanded="false" aria-controls="ui-basic12">
+              <li class="nav-item"> <a class="nav-link" href="~/Product/ListProduct">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/Product/AddProduct">Add</a></li>
+              <!--ProductCustomizations-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-productCustomization" aria-expanded="false" aria-controls="collapse-productCustomization">
             <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">Product Customizations</span>
+            <span class="menu-title">Customizations</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic12">
+          <div class="collapse" id="collapse-productCustomization" data-bs-parent="#collapse-product">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/ProductCustomization/ListProductCustomization">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/ProductCustomization/AddProductCustomization">Add</a></li>
             </ul>
           </div>
         </li>
         <!--ProductSizes-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic13" aria-expanded="false" aria-controls="ui-basic13">
-            <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">Product Sizes</span>
-            <i class="menu-arrow"></i>
-          </a>
-          <div class="collapse" id="ui-basic13">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
-            </ul>
-          </div>
-        </li>
-         <!--Properties-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic14" aria-expanded="false" aria-controls="ui-basic14">
-            <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">Properties</span>
-            <i class="menu-arrow"></i>
-          </a>
-          <div class="collapse" id="ui-basic14">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
-            </ul>
-          </div>
-        </li>
-         <!--Sizes-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic15" aria-expanded="false" aria-controls="ui-basic15">
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-productSize" aria-expanded="false" aria-controls="collapse-productSize">
             <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Sizes</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic15">
+          <div class="collapse" id="collapse-productSize" data-bs-parent="#collapse-product">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="~/ProductSize/ListProductSize">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/ProductSize/AddProductSize">Add</a></li>
+            </ul>
+          </div>
+        </li>
+            </ul>
+          </div>
+        </li>
+        <!--Properties-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-property" aria-expanded="false" aria-controls="collapse-property">
+            <i class="mdi mdi-palette menu-icon"></i>
+            <span class="menu-title">Properties</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="collapse-property" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
             </ul>
           </div>
         </li>
-         <!--Stores-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic16" aria-expanded="false" aria-controls="ui-basic16">
+        <!--Sizes-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-size" aria-expanded="false" aria-controls="collapse-size">
+            <i class="mdi mdi-palette menu-icon"></i>
+            <span class="menu-title">Sizes</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="collapse-size" data-bs-parent="#sidebar">
+            <ul class="nav flex-column sub-menu">
+               <li class="nav-item"> <a class="nav-link" href="~/Size/ListSize">List</a></li>
+              <li class="nav-item"> <a class="nav-link" href="~/Size/AddSize">Add</a></li>
+            </ul>
+          </div>
+        </li>
+        <!--Stores-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-store" aria-expanded="false" aria-controls="collapse-store">
             <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Stores</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic16">
+          <div class="collapse" id="collapse-store" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
-            </ul>
-          </div>
-        </li>
-        <!--StoreFavorites-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic17" aria-expanded="false" aria-controls="ui-basic17">
+              <!--StoreFavorites-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-storeFavorite" aria-expanded="false" aria-controls="collapse-storeFavorite">
             <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">Store Favorites</span>
+            <span class="menu-title">Favorites</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic17">
+          <div class="collapse" id="collapse-storeFavorite" data-bs-parent="#collapse-store">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
@@ -280,13 +277,13 @@
           </div>
         </li>
         <!--StoreOpeningHours-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic18" aria-expanded="false" aria-controls="ui-basic18">
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-storeOpeningHour" aria-expanded="false" aria-controls="collapse-storeOpeningHour">
             <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">Store Opening Hours</span>
+            <span class="menu-title">Opening Hours</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic18">
+          <div class="collapse" id="collapse-storeOpeningHour" data-bs-parent="#collapse-store">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
@@ -294,41 +291,44 @@
           </div>
         </li>
          <!--StoreProducts-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic19" aria-expanded="false" aria-controls="ui-basic19">
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-storeProduct" aria-expanded="false" aria-controls="collapse-storeProduct">
             <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">Store Products</span>
+            <span class="menu-title">Products</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic19">
+          <div class="collapse" id="collapse-storeProduct" data-bs-parent="#collapse-store">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
             </ul>
           </div>
         </li>
-         <!--StoreProperties-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic20" aria-expanded="false" aria-controls="ui-basic20">
+        <!--StoreProperties-->
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-StoreProperty" aria-expanded="false" aria-controls="collapse-StoreProperty">
             <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">Store Properties</span>
+            <span class="menu-title">Properties</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic20">
+          <div class="collapse" id="collapse-StoreProperty" data-bs-parent="#collapse-store">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
+            </ul>
+          </div>
+        </li>
             </ul>
           </div>
         </li>
         <!--Users-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic21" aria-expanded="false" aria-controls="ui-basic21">
-           <ion-icon name="people"></ion-icon>
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-user" aria-expanded="false" aria-controls="collapse-user">
+            <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Users</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic21">
+          <div class="collapse" id="collapse-user" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
@@ -336,13 +336,13 @@
           </div>
         </li>
         <!--WorkTimes-->
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic22" aria-expanded="false" aria-controls="ui-basic22">
+         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapse-workTime" aria-expanded="false" aria-controls="collapse-workTime">
             <i class="mdi mdi-palette menu-icon"></i>
             <span class="menu-title">Work Times</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic22">
+          <div class="collapse" id="collapse-workTime" data-bs-parent="#sidebar">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="#">List</a></li>
               <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
@@ -515,7 +515,7 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:./partials/_footer.html -->
-        <footer class="footer">
+        @*<footer class="footer">
           <div class="card">
             <div class="card-body">
               <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
@@ -524,7 +524,7 @@
               </div>
             </div>
           </div>
-        </footer>
+        </footer>*@
         <!-- partial -->
       </div>
       <!-- main-panel ends -->

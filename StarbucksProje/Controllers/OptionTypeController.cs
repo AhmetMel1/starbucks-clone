@@ -8,7 +8,7 @@ namespace StarbucksProje.Controllers
     public class OptionTypeController : Controller
     {
         OptionTypeManager otm = new OptionTypeManager(new EfOptionTypeRepository());
-        public IActionResult Index()
+        public IActionResult ListOptionType()
         {
             var optionTypes = otm.optionTypeList();
             return View(optionTypes);
@@ -23,14 +23,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddOptionType(OptionType optionType)
         {
             otm.optionTypeInsert(optionType);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListOptionType");
         }
         public IActionResult DeleteOptionType(int id)
         {
             OptionType optionType = otm.optionTypeGetById(id);
             optionType.optionTypeDeleted = true;
             otm.optionTypeUpdate(optionType);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListOptionType");
         }
         [HttpGet]
         public IActionResult UpdateOptionType(int id)
@@ -43,7 +43,7 @@ namespace StarbucksProje.Controllers
         {
 
             otm.optionTypeUpdate(optionType);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListOptionType");
         }
     }
 }

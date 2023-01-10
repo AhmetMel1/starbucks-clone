@@ -10,7 +10,7 @@ namespace StarbucksProje.Controllers
     {
         OptionManager om = new OptionManager(new EfOptionRepository());
         OptionTypeManager otm = new OptionTypeManager(new EfOptionTypeRepository());
-        public IActionResult Index()
+        public IActionResult ListOption()
         {
             var options=om.optionList();
             return View(options);
@@ -27,14 +27,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddOption(Option option)
         {
             om.optionInsert(option);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListOption");
         }
         public IActionResult DeleteOption(int id)
         {
             var option = om.optionGetById(id);
             option.optionDeleted = true;
             om.optionUpdate(option);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListOption");
         }
         [HttpGet]
         public IActionResult UpdateOption(int id)
@@ -49,7 +49,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateOption(Option option)
         {
             om.optionUpdate(option);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListOption");
         }
     }
 }
