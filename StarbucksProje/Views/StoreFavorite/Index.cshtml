@@ -1,17 +1,15 @@
 ﻿@using EntityLayer
-@model List<StoreOpeningHour>
+@model List<StoreFavorite>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 <div class="col-11 grid-margin stretch-card">
     <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Store Name</th>
-                    <th>Work Time</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
@@ -22,9 +20,7 @@
                 {
                     <tr>
                         <td>@item.Store.StoreName</td>
-                        <td>@item.workTime.openingTime</td>
-                        <td>@item.workTime.closingTime</td>
-                        @if (@item.StoreOpeningHourDeleted)
+                        @if (@item.StoreFavoriteDeleted)
                         {
                             <td>Pasive</td>
                         }
@@ -33,9 +29,9 @@
                             <td>Active</td>
                         }
                         <td>
-                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.storeOpeningHourId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.StoreFavoriteId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                         </td>
-                        <td><a href="/StoreOpeningHour/UpdateStoreOpeningHour/@item.storeOpeningHourId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+                        <td><a href="/StoreFavorite/UpdateStoreFavorite/@item.StoreFavoriteId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
 
                     </tr>
                 }
@@ -43,7 +39,7 @@
             </tbody>
         </table>
         <div class="text-center d-flex justify-content-start">
-            <a href="/StoreOpeningHour/AddStoreOpeningHour" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+            <a href="/StoreFavorite/AddStoreFavorite" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
 </div>
@@ -73,10 +69,11 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var storeOpeningHourId = button.attr('data-bs-whatever');
+            var StoreFavoriteId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/StoreOpeningHour/DeleteStoreOpeningHour/" + storeOpeningHourId;
+            a.href = "/StoreFavorite/DeleteStoreFavorite/" + StoreFavoriteId;
         });
     });
 </script>
+
 

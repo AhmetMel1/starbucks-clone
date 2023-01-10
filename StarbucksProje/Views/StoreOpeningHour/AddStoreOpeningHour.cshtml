@@ -1,13 +1,11 @@
 ﻿@using StarbucksProje.Models
 @model StoreOpeningHourModel
 @{
-    ViewData["Title"] = "AddStoreOpeningHour";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
-
-@{
-    var products = Model.storeModel;
-    var store = Model.workTimeModel;
+}@{
+    var store = Model.storeModel;
+    var workTime = Model.workTimeModel;
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
@@ -20,38 +18,34 @@
                 <div class="form-group">
                     <label>Store Name</label>
                     <select class="form-control" name="StoreId">
-                        @foreach (var item in products)
-                        {
-                            <option value="@item.StoreId">@item.StoreName</option>
-                        }
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Work time</label>
-                    <select class="form-control" name="workTimeId">
                         @foreach (var item in store)
                         {
-                            @*<option value="@item.workTimeId">@item.</option>*@
+                                <option value="@item.StoreId">@item.StoreName</option>
                         }
                     </select>
-                </div>
-                <div class="form-group">
-                    <label>Status</label>
-                    <select class="form-control" name="StoreProductDeleted">
-                        <option value="False">Active</option>
-                        <option value="True">Pasive</option>
+                    </div>
+                    <div class="form-group">
+                    <label>Work Time</label>
+                    <select class="form-control" name="workTimeId">
+                        @foreach (var item in workTime)
+                        {
+                                <option value="@item.workTimeId">@item.openingTime</option>
+                        }
                     </select>
-                </div>
-                <button type="submit" class="btn btn-inverse-info me-2">
-                    <i class="mdi mdi-file-check btn-icon-prepend"></i>
-                    Submit
-                </button>
-                <a class="btn btn-inverse-secondary" type="reset" href="/StoreProduct/Index">Cancel</a>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" name="storeOpeningHourDeleted">
+                            <option value="False">Active</option>
+                            <option value="True">Pasive</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-inverse-info me-2">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                        Submit
+                    </button>
+                    <a class="btn btn-inverse-secondary" type="reset" href="/StoreOpeningHour/Index">Cancel</a>
             </form>
         </div>
     </div>
 </div>
-
-
-
-
