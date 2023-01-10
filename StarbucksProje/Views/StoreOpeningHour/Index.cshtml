@@ -1,0 +1,83 @@
+﻿@using EntityLayer
+@model List<StoreOpeningHour>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Store Name</th>
+                    <th>Opening Hour</th>
+                    <th>Closing Hour</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Store.StoreName</td>
+                        <td>@item.workTime.openingTime</td>
+                        <td>@item.workTime.closingTime</td>
+                        @if (@item.StoreOpeningHourDeleted)
+                        {
+                            <td>Pasive</td>
+                        }
+                        else
+                        {
+                            <td>Active</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.storeOpeningHourId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                        </td>
+                        <td><a href="/StoreOpeningHour/UpdateStoreOpeningHour/@item.storeOpeningHourId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <div class="text-center d-flex justify-content-start">
+            <a href="/StoreOpeningHour/AddStoreOpeningHour" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="deleteLabel">Warning!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-inverse-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-inverse-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var storeOpeningHourId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/StoreOpeningHour/DeleteStoreOpeningHour/" + storeOpeningHourId;
+        });
+    });
+</script>
+
