@@ -61,6 +61,12 @@
                         &:before {
                             vertical-align: middle;
                         }
+
+                        &:hover {
+                            .menu-icon {
+                                color: #2a1c5a; //$sidebar-dark-menu-hover-color;
+                            }
+                        }
                     }
 
                     &.menu-arrow {
@@ -110,13 +116,13 @@
 
             &.active {
                 > .nav-link {
-                    background: $sidebar-dark-menu-active-bg;
+                    background: #f3eaf6; //$sidebar-dark-menu-hover-bg;
                     position: relative;
 
                     i,
                     .menu-title,
                     .menu-arrow {
-                        color: $sidebar-dark-menu-active-color;
+                        color: #2a1c5a; //$sidebar-dark-menu-hover-color;
                     }
 
                     i {
@@ -140,8 +146,8 @@
 
                 &:hover {
                     > .nav-link {
-                        background: $sidebar-dark-menu-hover-bg;
-                        color: $sidebar-dark-menu-hover-color;
+                        background: #f3eaf6; //$sidebar-dark-menu-hover-bg;
+                        color: #2a1c5a; //$sidebar-dark-menu-hover-color;
                     }
                 }
             }
