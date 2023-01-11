@@ -1,5 +1,5 @@
 ﻿@using EntityLayer
-@model List<Category>
+@model CategoryListModel
 @{
     ViewData["Title"] = "AddCategory";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -25,8 +25,8 @@
                 <label>Parent Category Name</label>
                 <div class="form-group">
                     <select class="form-control" name="categoryParentId">
-                        <option value="">NULL</option>
-                        @foreach (var item in Model)
+                        <option value="null">Itself Parent</option>
+                        @foreach (var item in Model.categoryListModel)
                         {
                             <option value="@item.categoryId">@item.categoryName</option>
                         }

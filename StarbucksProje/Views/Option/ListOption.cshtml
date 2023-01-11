@@ -21,31 +21,26 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    var sayac = 0;
                             <tr>
                                 <td>@item.optionName</td>
                                 <td>@item.optionUnitPrice</td>
                                 <td>@item.optionType.optionTypeName</td>
-                                @foreach (var parent in Model)
+                                @if(@item.optionParentId==null)
                                 {
-                                @if (item.optionParentId == parent.optionId)
-                                {
-                                            <td>@parent.optionName</td>
-                                sayac++;
+                                <td>Itself Parent</td>
                                 }
-                        }
-                        @if (sayac == 0)
-                        {
-                                    <td>NULL</td>
-                        }
-                        @if (@item.optionDeleted)
-                        {
+                                else
+                                {
+                                <td>@item.optionParent.optionName</td>
+                                }
+                                @if (@item.optionDeleted)
+                                {
                                             <td>Pasive</td>
-                        }
-                        else
-                        {
+                                }
+                                else
+                                {
                                             <td>Active</td>
-                        }
+                                }
                                 <td>
                                     <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.optionId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                                 </td>

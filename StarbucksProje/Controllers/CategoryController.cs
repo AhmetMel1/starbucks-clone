@@ -2,6 +2,7 @@
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using StarbucksProje.Models;
 
 namespace StarbucksProje.Controllers
 {
@@ -16,8 +17,9 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddCategory()
         {
-            var categories = cm.categoryList();
-            return View(categories);
+            CategoryListModel model = new CategoryListModel();
+            model.categoryListModel = cm.categoryList();
+            return View(model);
         }
         [HttpPost]
         public IActionResult AddCategory(Category category)
@@ -35,9 +37,10 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult UpdateCategory(int id)
         {
-            ViewBag.id = id;
-            var categories = cm.categoryList();
-            return View(categories);
+            CategoryListModel model = new CategoryListModel();
+            model.categoryListModel = cm.categoryList();
+            model.categoryModel = cm.categoryGetById(id);
+            return View(model);
         }
         [HttpPost]
         public IActionResult UpdateCategory(Category category)

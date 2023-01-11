@@ -1,11 +1,11 @@
 ﻿@using StarbucksProje.Models
-@model OptionTypeModel
+@model OptionListAndTypeModel
 @{
     ViewData["Title"] = "AddOption";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @{
-    var options = Model.optionModel;
+    var options = Model.optionListModel;
     var optionTypes = Model.optionTypeModel;
 }
 <div class="col-11 grid-margin stretch-card">
@@ -39,7 +39,7 @@
                 <label>Parent Option Name</label>
                 <div class="form-group">
                     <select class="form-control" name="optionParentId">
-                        <option value="">NULL</option>
+                        <option value="null">Itself Parent</option>
                         @foreach (var item in options)
                         {
                                     <option value="@item.optionId">@item.optionName</option>
