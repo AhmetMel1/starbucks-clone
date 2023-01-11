@@ -13,6 +13,8 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Errors","?code={0}");	
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
