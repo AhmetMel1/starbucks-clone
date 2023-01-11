@@ -12,7 +12,7 @@ namespace StarbucksProje.Controllers
         StoreFavoriteManager sfm = new StoreFavoriteManager(new EfStoreFavoriteRepository());
         StoreManager sm=new StoreManager(new EfStoreRepository());
         UserManager um=new UserManager(new EfUserRepository());
-        public IActionResult Index()
+        public IActionResult ListStoreFavorite()
         {
             var storeFavorite = sfm.StoreFavoriteList();
             return View(storeFavorite);

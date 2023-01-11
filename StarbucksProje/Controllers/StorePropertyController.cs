@@ -12,7 +12,7 @@ namespace StarbucksProje.Controllers
         PropertyManager pm = new PropertyManager(new EfPropertyRepository());
         StoreManager sm = new StoreManager(new EfStoreRepository());
 
-        public IActionResult Index()
+        public IActionResult ListStoreProperty()
         {
             var StoreProperty = spm.StorePropertyList();
             return View(StoreProperty);

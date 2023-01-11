@@ -9,7 +9,7 @@ namespace StarbucksProje.Controllers
     {
         WorkTimeManager wm = new WorkTimeManager(new EfWorkTimeRepository());
 
-        public IActionResult Index()
+        public IActionResult ListWorkTime()
         {
             var WorkTime = wm.WorkTimeList();
             return View(WorkTime);

@@ -9,7 +9,7 @@ namespace StarbucksProje.Controllers
     {
         PropertyManager pm = new PropertyManager(new EfPropertyRepository());
 
-        public IActionResult Index()
+        public IActionResult ListProperty()
         {
             var property = pm.PropertyList();
             return View(property);

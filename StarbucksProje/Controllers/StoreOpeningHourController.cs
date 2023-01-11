@@ -11,7 +11,7 @@ namespace StarbucksProje.Controllers
         StoreOpeningHourManager shm = new StoreOpeningHourManager(new EfStoreOpeningHourRepository());
         WorkTimeManager wtm = new WorkTimeManager(new EfWorkTimeRepository());
         StoreManager sm = new StoreManager(new EfStoreRepository());
-        public IActionResult Index()
+        public IActionResult ListStoreOpeningHour()
         {
             var storeOpeningHour = shm.StoreOpeningHourList();
             return View(storeOpeningHour);
