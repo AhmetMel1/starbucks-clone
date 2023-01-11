@@ -18,8 +18,8 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddOption() 
         {
-            OptionTypeModel model = new OptionTypeModel();
-            model.optionModel= om.optionList();
+            OptionListAndTypeModel model = new OptionListAndTypeModel();
+            model.optionListModel= om.optionList();
             model.optionTypeModel=otm.optionTypeList();
             return View(model);
         }
@@ -39,10 +39,10 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult UpdateOption(int id)
         {
-            ViewBag.id = id;
-            OptionTypeModel model = new OptionTypeModel();
-            model.optionModel = om.optionList();
+            OptionListAndTypeModel model = new OptionListAndTypeModel();
+            model.optionListModel = om.optionList();
             model.optionTypeModel = otm.optionTypeList();
+            model.optionModel = om.optionGetById(id);
             return View(model);
         }
         [HttpPost]

@@ -21,21 +21,16 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    var sayac = 0;
                     <tr>
                         <td>@item.categoryName</td>
                         <td>@item.categoryLogoUrl</td>
-                        @foreach (var parent in Model)
+                        @if(@item.categoryParentId==null)
                         {
-                            @if (item.categoryParentId == parent.categoryId)
-                            {
-                                <td>@parent.categoryName</td>
-                                sayac++;
-                            }
+                        <td>Itself Parent</td>
                         }
-                        @if (sayac == 0)
+                        else
                         {
-                            <td>NULL</td>
+                        <td>@item.categoryParent.categoryName</td>
                         }
                         @if (@item.categoryDeleted)
                         {

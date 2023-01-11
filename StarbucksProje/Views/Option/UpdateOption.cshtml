@@ -1,13 +1,13 @@
 ﻿@using StarbucksProje.Models
-@model OptionTypeModel
+@model OptionListAndTypeModel
 @{
     ViewData["Title"] = "UpdateOption";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @{
-    var options = Model.optionModel;
+    var options = Model.optionListModel;
     var optionTypes = Model.optionTypeModel;
-    var index = ViewBag.id - 1;
+    var option = Model.optionModel;
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
@@ -17,15 +17,15 @@
                 Option Update
             </p>
             <form class="forms-sample" action="/Option/UpdateOption" method="post">
-                <input type="hidden" class="form-control" name="optionId" value="@options[index].optionId">
+                <input type="hidden" class="form-control" name="optionId" value="@option.optionId">
                 <div class="form-group">
                     <label>Option Name</label>
-                    <input type="text" class="form-control" placeholder="Option Name" name="optionName" value="@options[index].optionName">
+                    <input type="text" class="form-control" placeholder="Option Name" name="optionName" value="@option.optionName">
                 </div>
 
                 <div class="form-group">
                     <label>Option Unit Price</label>
-                    <input type="text" class="form-control" placeholder="Option Unit Price" name="optionUnitPrice" value="@options[index].optionUnitPrice">
+                    <input type="text" class="form-control" placeholder="Option Unit Price" name="optionUnitPrice" value="@option.optionUnitPrice">
                 </div>
 
                  <label>Option Type Name</label>
@@ -33,7 +33,7 @@
                     <select class="form-control" name="optionTypeId">
                         @foreach (var item in optionTypes)
                         {
-                            if (item.optionTypeId == options[index].optionTypeId)
+                            if (item.optionTypeId == option.optionTypeId)
                             {
                                 <option value="@item.optionTypeId" selected>@item.optionTypeName</option>
                             }
@@ -48,16 +48,19 @@
                 <label>Parent Option Name</label>
                 <div class="form-group">
                     <select class="form-control" name="optionParentId">
-                        <option value="">NULL</option>
+                        <option value="null">Itself Parent</option>
                         @foreach (var item in options)
                         {
-                            if (item.optionParentId == options[index].optionParentId)
+                            if (item.optionId != Model.optionModel.optionId)
                             {
-                                        <option value="@item.optionParentId" selected>@item.optionName</option>
-                            }
-                            else
-                            {
-                                        <option value="@item.optionParentId">@item.optionName</option>
+                                if (item.optionId == option.optionParentId)
+                                {
+                                    <option value="@item.optionId" selected>@item.optionName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.optionId">@item.optionName</option>
+                                }
                             }
                         }
                     </select>
@@ -65,7 +68,8 @@
                 <div class="form-group">
                     <label>Status</label>
                     <select class="form-control" name="optionDeleted">
-                        @if (options[index].optionDeleted)
+                        <option value="null">Itself Parent</option>
+                        @if (option.optionDeleted)
                         {
                             <option value="False">Active</option>
                             <option value="True" selected>Pasive</option>

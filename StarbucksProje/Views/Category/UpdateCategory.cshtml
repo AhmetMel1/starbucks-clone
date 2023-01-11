@@ -1,11 +1,8 @@
 ﻿@using EntityLayer
-@model List<Category>
+@model CategoryListModel
 @{
     ViewData["Title"] = "UpdateCategory";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
-@{
-    var index = ViewBag.id-1;
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
@@ -15,36 +12,40 @@
                 Category Update
             </p>
             <form class="forms-sample" action="/Category/UpdateCategory" method="post">
-                <input type="hidden" class="form-control" name="categoryId" value="@Model[index].categoryId">
+                <input type="hidden" class="form-control" name="categoryId" value="@Model.categoryModel.categoryId">
                 <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" class="form-control" placeholder="Category Name" name="categoryName" value="@Model[index].categoryName">
+                    <input type="text" class="form-control" placeholder="Category Name" name="categoryName" value="@Model.categoryModel.categoryName">
                 </div>
                 <div class="form-group">
                     <label>Category Logo</label>
-                    <input type="text" class="form-control" placeholder="Category Logo" name="categoryLogoUrl" value="@Model[index].categoryLogoUrl">
+                    <input type="text" class="form-control" placeholder="Category Logo" name="categoryLogoUrl" value="@Model.categoryModel.categoryLogoUrl">
                 </div>
                 <label>Parent Category Name</label>
                 <div class="form-group">
                     <select class="form-control" name="categoryParentId">
-                        <option></option>
-                        @foreach (var item in Model)
+                        <option value="null">Itself Parent</option>
+                        @foreach (var item in Model.categoryListModel)
                         {
-                            if (item.categoryId == Model[index].categoryId)
+                            if (item.categoryId != Model.categoryModel.categoryId)
                             {
-                                <option value="@item.categoryId" selected>@item.categoryName</option>
+                                @if (item.categoryId == @Model.categoryModel.categoryParentId)
+                                {
+                                    <option value="@item.categoryId" selected>@item.categoryName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.categoryId">@item.categoryName</option>
+                                }
                             }
-                            else
-                            {
-                                <option value="@item.categoryId">@item.categoryName</option>
-                            }
+                            
                         }
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Status</label>
                     <select class="form-control" name="categoryDeleted">
-                        @if (Model[index].categoryDeleted)
+                        @if (@Model.categoryModel.categoryDeleted)
                         {
                                     <option value="False">Active</option>
                                     <option value="True" selected>Pasive</option>
