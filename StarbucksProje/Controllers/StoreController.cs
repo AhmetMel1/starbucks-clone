@@ -8,7 +8,7 @@ namespace StarbucksProje.Controllers
     public class StoreController : Controller
     {
         StoreManager sm = new StoreManager(new EfStoreRepository());
-        public IActionResult Index()
+        public IActionResult ListStore()
         {
             var Stories = sm.storeList();
             return View(Stories);

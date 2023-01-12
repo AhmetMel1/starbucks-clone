@@ -10,6 +10,11 @@ namespace BusinessLayer.Validaitons
 {
    public class WorkTimeValidator:AbstractValidator<WorkTime>
     {
-        public WorkTimeValidator() { }
+        public WorkTimeValidator() {
+            // rulefor openingtime
+            RuleFor(workTime => workTime.openingTime).NotEmpty().WithMessage("Empty cannot be passed.");
+            //rulefor closing time
+            RuleFor(workTime => workTime.closingTime).NotEmpty().WithMessage("Empty cannot be passed.");
+        }
     }
 }

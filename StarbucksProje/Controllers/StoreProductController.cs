@@ -12,7 +12,7 @@ namespace StarbucksProje.Controllers
         StoreManager sm=new StoreManager(new EfStoreRepository());
         ProductManager pm=new ProductManager(new EfProductRepository());
 
-        public IActionResult Index()
+        public IActionResult ListStoreProduct()
         {
             var storeProduct = spm.StoreProductsList();
             return View(storeProduct);
