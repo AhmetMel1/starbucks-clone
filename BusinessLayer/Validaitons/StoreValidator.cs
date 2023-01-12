@@ -19,7 +19,7 @@ namespace BusinessLayer.Validaitons
             // rulefor store location
             RuleFor(store => store.StoreLocation).NotEmpty().WithMessage("Empty cannot be passed.");
             RuleFor(store => store.StoreLocation).NotEmpty().MaximumLength(50).WithMessage("A maximum of 50 characters must be entered.");
-            RuleFor(store => store.StoreLocation).NotEmpty().MinimumLength(5).WithMessage(("A minimum of 5 characters must be entered.");
+            RuleFor(store => store.StoreLocation).NotEmpty().MinimumLength(5).WithMessage("A minimum of 5 characters must be entered.");
 
         }
     }
