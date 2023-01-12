@@ -17,6 +17,7 @@
                 <div class="form-group">
                     <label>Size Name</label>
                     <input type="text" class="form-control" placeholder="Size Name" name="sizeName" value="@Model.sizeName">
+                    @Html.ValidationMessageFor(x => x.sizeName,"",new { @class ="text-danger" })
                 </div>
                 <div class="form-group">
                     <label>Status</label>

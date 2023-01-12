@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -22,8 +23,21 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult AddOptionType(OptionType optionType)
         {
-            otm.optionTypeInsert(optionType);
-            return RedirectToAction("ListOptionType");
+            OptionTypeValidator validations = new OptionTypeValidator();
+            var result = validations.Validate(optionType);
+            if (result.IsValid)
+            {
+                otm.optionTypeInsert(optionType);
+                return RedirectToAction("ListOptionType");
+            }
+            else 
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(optionType);
+            }
         }
         public IActionResult DeleteOptionType(int id)
         {
@@ -41,9 +55,22 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateOptionType(OptionType optionType)
         {
-
-            otm.optionTypeUpdate(optionType);
-            return RedirectToAction("ListOptionType");
+            OptionTypeValidator validations = new OptionTypeValidator();
+            var result = validations.Validate(optionType);
+            if (result.IsValid)
+            {
+                otm.optionTypeUpdate(optionType);
+                return RedirectToAction("ListOptionType");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(optionType);
+            }
+            
         }
     }
 }

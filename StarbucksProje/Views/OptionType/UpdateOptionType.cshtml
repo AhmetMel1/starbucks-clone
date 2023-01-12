@@ -17,6 +17,7 @@
                 <div class="form-group">
                     <label>Option Type Name</label>
                     <input type="text" class="form-control" placeholder="Option Type Name" name="optionTypeName" value="@Model.optionTypeName">
+                    @Html.ValidationMessageFor(x => x.optionTypeName,"",new { @class ="text-danger" })
                 </div>
                 <div class="form-group">
                     <label>Status</label>

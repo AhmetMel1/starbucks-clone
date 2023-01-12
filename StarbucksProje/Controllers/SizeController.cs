@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
+using BusinessLayer.Validaitons;
 
 namespace StarbucksProje.Controllers
 {
@@ -22,8 +23,21 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult AddSize(Size size)
         {
-            sm.sizeInsert(size);
-            return RedirectToAction("ListSize");
+            SizeValidator validations = new SizeValidator();
+            var result = validations.Validate(size);
+            if (result.IsValid)
+            {
+                sm.sizeInsert(size);
+                return RedirectToAction("ListSize");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(size);
+            }
         }
         public IActionResult DeleteSize(int id)
         {
@@ -41,9 +55,21 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateSize(Size size)
         {
-            
+            SizeValidator validations = new SizeValidator();
+            var result = validations.Validate(size);
+            if (result.IsValid)
+            {
                 sm.sizeUpdate(size);
-                return RedirectToAction("ListSize");           
+                return RedirectToAction("ListSize");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(size);
+            }           
         }
     }
 }

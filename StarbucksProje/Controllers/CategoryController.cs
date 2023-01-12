@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +25,24 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult AddCategory(Category category)
         {
-            cm.categoryInsert(category);
-            return RedirectToAction("ListCategory");
+            CategoryValidator validations = new CategoryValidator();
+            var result = validations.Validate(category);
+            if (result.IsValid)
+            {
+                cm.categoryInsert(category);
+                return RedirectToAction("ListCategory");
+            }
+            else
+            {
+                CategoryListModel model = new CategoryListModel();
+                model.categoryListModel = cm.categoryList();
+                model.categoryModel = category;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
         public IActionResult DeleteCategory(int id)
         {
@@ -45,8 +62,25 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateCategory(Category category)
         {
-            cm.categoryUpdate(category);
-            return RedirectToAction("ListCategory");
+            CategoryValidator validations = new CategoryValidator();
+            var result = validations.Validate(category);
+            if (result.IsValid)
+            {
+                cm.categoryUpdate(category);
+                return RedirectToAction("ListCategory");
+            }
+            else
+            {
+                CategoryListModel model = new CategoryListModel();
+                model.categoryListModel = cm.categoryList();
+                model.categoryModel = category;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
+ 
         }
     }
 }
