@@ -63,11 +63,12 @@
                         }
 
                         &:hover {
-                            .menu-icon {
-                                color: #2a1c5a; //$sidebar-dark-menu-hover-color;
+                          > .menu-icon {
+                               color: #2a1c5a; //$sidebar-dark-menu-hover-color;
                             }
-                        }
+                       }
                     }
+
 
                     &.menu-arrow {
                         display: inline-block;

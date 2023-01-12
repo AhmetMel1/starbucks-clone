@@ -22235,7 +22235,7 @@ dl li {
   vertical-align: middle;
 }
 
-.sidebar .nav .nav-item .nav-link i.menu-icon:hover .menu-icon {
+.sidebar .nav .nav-item .nav-link i.menu-icon:hover > .menu-icon {
   color: #2a1c5a;
 }
 
