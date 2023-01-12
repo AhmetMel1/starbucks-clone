@@ -13,9 +13,9 @@ namespace BusinessLayer.Validaitons
         public OptionTypeValidator() 
         {
             //Rule for OptionName
-            RuleFor(optionType => optionType.optionTypeName).NotEmpty().WithMessage("Boş geçilemez");
-            RuleFor(optionType => optionType.optionTypeName).MaximumLength(50).WithMessage("Maximum 50 karakter girilebilir.");
-            RuleFor(optionType => optionType.optionTypeName).MinimumLength(2).WithMessage("Minimum 2 karakter girilmedilir.");
+            RuleFor(optionType => optionType.optionTypeName).NotEmpty();
+            RuleFor(optionType => optionType.optionTypeName).MaximumLength(50).WithMessage("A maximum of 50 characters can be entered.");
+            RuleFor(optionType => optionType.optionTypeName).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
         }    
     }
 }

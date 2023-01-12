@@ -13,11 +13,11 @@ namespace BusinessLayer.Validaitons
         public OptionValidator() 
         {
             //Rule for OptionName
-            RuleFor(option => option.optionName).NotEmpty().WithMessage("Boş geçilemez");
-            RuleFor(option => option.optionName).MaximumLength(50).WithMessage("Maximum 50 karakter girilebilir.");
-            RuleFor(option => option.optionName).MinimumLength(2).WithMessage("Minimum 2 karakter girilmedilir.");
+            RuleFor(option => option.optionName).NotEmpty();
+            RuleFor(option => option.optionName).MaximumLength(50).WithMessage("A maximum of 50 characters can be entered.");
+            RuleFor(option => option.optionName).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
             //Rule for OptionUnitPrice
-            RuleFor(option => option.optionUnitPrice).NotEmpty().WithMessage("Boş geçilemez");
+            RuleFor(option => option.optionUnitPrice).NotEmpty();
         }
     }
 }
