@@ -20,6 +20,7 @@
                 <div class="form-group">
                     <label>Customization Name</label>
                     <input type="text" class="form-control" placeholder="Customization Name" name="customizationName" value="@customization.customizationName">
+                    @Html.ValidationMessage("customizationName","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Option Name</label>

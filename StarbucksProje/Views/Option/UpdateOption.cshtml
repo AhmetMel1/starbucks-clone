@@ -21,11 +21,13 @@
                 <div class="form-group">
                     <label>Option Name</label>
                     <input type="text" class="form-control" placeholder="Option Name" name="optionName" value="@option.optionName">
+                    @Html.ValidationMessage("optionName","",new{@class="text-danger"})
                 </div>
 
                 <div class="form-group">
                     <label>Option Unit Price</label>
                     <input type="text" class="form-control" placeholder="Option Unit Price" name="optionUnitPrice" value="@option.optionUnitPrice">
+                    @Html.ValidationMessage("optionUnitPrice","",new{@class="text-danger"})
                 </div>
 
                  <label>Option Type Name</label>

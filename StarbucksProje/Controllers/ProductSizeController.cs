@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
 
@@ -28,8 +30,24 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult AddProductSize(ProductSize productSize)
         {
-            psm.productSizeUpdate(productSize);
-            return RedirectToAction("ListProductSize");
+            ProductSizeValidator validations = new ProductSizeValidator();
+            var result = validations.Validate(productSize);
+            if (result.IsValid)
+            {
+                psm.productSizeUpdate(productSize);
+                return RedirectToAction("ListProductSize");
+            }
+            else
+            {
+                ProductSizeModel model = new ProductSizeModel();
+                model.productModel = pm.productList();
+                model.sizeModel = sm.sizeList();
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
         public IActionResult DeleteProductSize(int id)
         {
@@ -50,8 +68,25 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateProductSize(ProductSize productSize)
         {
-            psm.productSizeUpdate(productSize);
-            return RedirectToAction("ListProductSize");
+            ProductSizeValidator validations = new ProductSizeValidator();
+            var result = validations.Validate(productSize);
+            if (result.IsValid)
+            {
+                psm.productSizeUpdate(productSize);
+                return RedirectToAction("ListProductSize");
+            }
+            else
+            {
+                ProductSizeModel model = new ProductSizeModel();
+                model.productModel = pm.productList();
+                model.sizeModel = sm.sizeList();
+                model.productSizeModel = productSize;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
     }
 }
