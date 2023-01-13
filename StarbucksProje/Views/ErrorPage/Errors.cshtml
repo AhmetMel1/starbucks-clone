@@ -11,60 +11,49 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Errors</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            font-family: sans-serif;
-            background-color: #E7FFFF;
-        }
-
-        h1, a {
-            margin: 0;
-            padding: 0;
-            text-decoration: none;
-        }
-
-        .section {
-            padding: 4rem 2rem;
-        }
-
-            .section .error {
-                font-size: 150px;
-                color: #008B62;
-                text-shadow: 1px 1px 1px #00593E, 2px 2px 1px #00593E, 3px 3px 1px #00593E, 4px 4px 1px #00593E, 5px 5px 1px #00593E, 6px 6px 1px #00593E, 7px 7px 1px #00593E, 8px 8px 1px #00593E, 25px 25px 8px rgba(0,0,0, 0.2);
-            }
-
-        .page {
-            margin: 2rem 0;
-            font-size: 20px;
-            font-weight: 600;
-            color: #444;
-        }
-
-        .back-home {
-            display: inline-block;
-            border: 2px solid #222;
-            color: #222;
-            text-transform: uppercase;
-            font-weight: 600;
-            padding: 0.75rem 1rem 0.6rem;
-            transition: all 0.2s linear;
-            box-shadow: 0 3px 8px rgba(0,0,0, 0.3);
-        }
-
-            .back-home:hover {
-                background: #222;
-                color: #ddd;
-            }
-    </style>
+	<link href="~/css/errrorpage.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="section">
-  <h1 class="error">@errorCode</h1>
-  <div class="page">Ooops!!! The page you are looking for is not found</div>
-  <a class="back-home" href="/Admin">Back to home</a>
-</div>
+
+    <body style="background-image:url(https://www.salehriaz.com/404Page/img/bg_purple.png)">
+
+        <div class="stars">
+            <div class="custom-navbar">
+                <div class="brand-logo">
+                    <!--Logo-->
+                </div>
+                <div class="navbar-links">
+                    <ul>
+                        <!--Menü-->
+                    </ul>
+                </div>
+            </div>
+            <div class="central-body">
+                <div class="errorCode">@errorCode</div>
+                <div class="errorText">Looks like you are lost in space</div>
+                <a href="~/Home/Index" class="btn-go-home">GO BACK HOME</a>
+            </div>
+            <div class="objects">
+                <img class="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" style= "width:40px">
+                <div class="earth-moon">
+                    <img class="object_earth" src="http://salehriaz.com/404Page/img/earth.svg" style= "width:100px">
+                    <img class="object_moon" src="http://salehriaz.com/404Page/img/moon.svg" style= "width:80px">
+                </div>
+                <div class="box_astronaut">
+                    <img class="object_astronaut" src="http://salehriaz.com/404Page/img/astronaut.svg" style= "width:140px">
+                </div>
+            </div>
+            <div class="glowing_stars">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+
+            </div>
+
+        </div>
+
+    </body>
 </body>
 </html>
