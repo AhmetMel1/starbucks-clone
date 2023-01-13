@@ -16,6 +16,7 @@
                 <div class="form-group">
                     <label>Store Name</label>
                     <input type="text" class="form-control" placeholder="Store Name" name="StoreName">
+                    @Html.ValidationMessageFor(x=>x.StoreName,"",new{@class="text-danger"});
                 </div>
                 <div class="form-group">
                     <label>Store Location</label>
