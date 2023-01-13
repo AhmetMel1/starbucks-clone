@@ -2,12 +2,15 @@
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using StarbucksProje.Models;
 
 namespace StarbucksProje.Controllers
 {
     public class FavoriteController : Controller
     {
         FavoriteManager fm = new FavoriteManager(new EfFavoriteRepository());
+        UserManager um= new UserManager(new EfUserRepository());
+        ProductManager pm= new ProductManager(new EfProductRepository());
         public IActionResult Index()
         {
             var Favorite = fm.favoriteList();
@@ -16,7 +19,10 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddFavorite()
         {
-            return View();
+            FavoriteUserProductModel model = new FavoriteUserProductModel();
+            model.productModel=pm.productList();
+            model.userModel=um.userList();
+            return View(model);
         }
         [HttpPost]
         public IActionResult AddFavorite(Favorite favorite)
@@ -34,8 +40,11 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult UpdateFavorite(int id)
         {
-            var favorite = fm.FavoriteGetById(id);
-            return View(favorite);
+            FavoriteUserProductModel model = new FavoriteUserProductModel();
+            model.productModel = pm.productList();
+            model.userModel = um.userList();
+            model.favoriteModel = fm.FavoriteGetById(id);
+            return View(model);
         }
         [HttpPost]
         public IActionResult UpdateFavorite(Favorite favorite)

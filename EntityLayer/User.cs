@@ -27,9 +27,6 @@ namespace EntityLayer
         //Relationship with Address
         public  int addressId { get; set; }
         public virtual Address address { get; set; }
-        //Relationship with userType
-        public  int userTypeId { get; set; }
-        public virtual Admin userType { get; set; }
         //Relationship with order
         public virtual ICollection<Order> orders { get; set; }
 
