@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th>Cargo Status</th>
+                    <th>Tracking Number</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
@@ -21,6 +22,7 @@
                 {
                     <tr>
                         <td>@item.cargoStatus</td>
+                        <td>@item.trackingNumber</td>
                         @if (@item.cargoProcessDeleted)
                         {
                             <td>Pasive</td>
