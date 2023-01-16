@@ -2,12 +2,17 @@
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using StarbucksProje.Models;
 
 namespace StarbucksProje.Controllers
 {
     public class OrderController : Controller
     {
+
         OrderManager om = new OrderManager(new EfOrderRepository());
+        UserManager um = new UserManager(new EfUserRepository());
+        ProductSizeManager psm = new ProductSizeManager(new EfProductSizeRepository());
+        CargoProccessManager cpm = new CargoProccessManager(new EfCargoProccessRepository());
         public IActionResult Index()
         {
             var Order = om.orderList();
@@ -16,7 +21,11 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddOrder()
         {
-            return View();
+            OrderProductSizeCargoProccessIdUserIdModel model = new OrderProductSizeCargoProccessIdUserIdModel();
+            model.productSizeModel = psm.productSizeList();
+            model.userModel = um.userList();
+            model.cargoProcessesModel = cpm.cargoProccessList();
+            return View(model);
         }
         [HttpPost]
         public IActionResult AddOrder(Order order)
@@ -34,8 +43,12 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult UpdateOrder(int id)
         {
-            var order = om.OrderGetById(id);
-            return View(order);
+            OrderProductSizeCargoProccessIdUserIdModel model = new OrderProductSizeCargoProccessIdUserIdModel();
+            model.productSizeModel = psm.productSizeList();
+            model.userModel = um.userList();
+            model.cargoProcessesModel = cpm.cargoProccessList();
+            model.orderModel = om.OrderGetById(id);
+            return View(model);
         }
         [HttpPost]
         public IActionResult UpdateOrder(Order order)

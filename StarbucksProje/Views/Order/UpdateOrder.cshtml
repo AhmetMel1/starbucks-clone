@@ -1,5 +1,5 @@
-﻿@using EntityLayer
-@model Order
+﻿@using StarbucksProje.Models
+@model OrderProductSizeCargoProccessIdUserIdModel
 @{
     ViewData["Title"] = "UpdateOrder";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -13,31 +13,79 @@
                 Order Update
             </p>
             <form class="forms-sample" action="/Order/UpdateOrder" method="post">
-                <input type="hidden" class="form-control" name="orderId" value="@Model.orderId">
+                <input type="hidden" class="form-control" name="orderId" value="@Model.orderModel.orderId">
                 <div class="form-group">
                     <label>Payment Type</label>
-                    <input type="text" class="form-control" placeholder="Payment Type" name="paymentType" value="@Model.paymentType">
+                    <input type="text" class="form-control" placeholder="Payment Type" name="paymentType" value="@Model.orderModel.paymentType">
                 </div>
                 <div class="form-group">
                     <label>Order Date</label>
-                    <input type="text" class="form-control" placeholder="Order Date" name="orderDate" value="@Model.orderDate">
+                    <input type="text" class="form-control" placeholder="Order Date" name="orderDate" value="@Model.orderModel.orderDate">
                 </div>
                 <div class="form-group">
                     <label>Order Quantity</label>
-                    <input type="text" class="form-control" placeholder="Order Quantity" name="orderQuantity" value="@Model.orderQuantity">
+                    <input type="text" class="form-control" placeholder="Order Quantity" name="orderQuantity" value="@Model.orderModel.orderQuantity">
                 </div>
                 <div class="form-group">
                     <label>Card Added Date</label>
-                    <input type="text" class="form-control" placeholder="Card Added Date" name="cardAddedDate" value="@Model.cardAddedDate">
+                    <input type="text" class="form-control" placeholder="Card Added Date" name="cardAddedDate" value="@Model.orderModel.cardAddedDate">
                 </div>
                 <div class="form-group">
                     <label>orderDeleted</label>
-                    <input type="text" class="form-control" placeholder="Order Deletede" name="orderDeletede" value="@Model.orderDeleted">
+                    <input type="text" class="form-control" placeholder="Order Deletede" name="orderDeletede" value="@Model.orderModel.orderDeleted">
+                </div>
+                <div class="form-group">
+                    <label>User Name</label>
+                    <select class="form-control" name="userId">
+                        @foreach (var item in Model.userModel)
+                        {
+                            @if (item.userId == Model.orderModel.userId)
+                            {
+                                <option value="@item.userId" selected>@item.name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.userId">@item.name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <select class="form-control" name="productId">
+                        @foreach (var item in Model.productSizeModel)
+                        {
+                            @if (item.productSizeId == Model.orderModel.productSizeId)
+                            {
+                                <option value="@item.productSizeId" selected>@item.productSizeId</option>
+                            }
+                            else
+                            {
+                                <option value="@item.productSizeId">@item.productSizeId</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cargo Proccess</label>
+                    <select class="form-control" name="cargoProccessId">
+                        @foreach (var item in Model.cargoProcessesModel)
+                        {
+                            @if (item.cargoProccessId == Model.orderModel.cargoProccessId)
+                            {
+                                <option value="@item.cargoProccessId" selected>@item.cargoProccessId</option>
+                            }
+                            else
+                            {
+                                <option value="@item.cargoProccessId">@item.cargoProccessId</option>
+                            }
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleSelectGender">Status</label>
                     <select class="form-control" name="orderDeleted">
-                        @if (Model.orderDeleted)
+                        @if (Model.orderModel.orderDeleted)
                         {
                             <option value="False">Active</option>
                             <option value="True" selected>Pasive</option>

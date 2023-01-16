@@ -1,5 +1,5 @@
-﻿@using EntityLayer
-@model Order
+﻿@using StarbucksProje.Models
+@model OrderProductSizeCargoProccessIdUserIdModel
 @{
     ViewData["Title"] = "AddOrder";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -28,7 +28,35 @@
                  <div class="form-group">
                     <label>Card Added Date</label>
                     <input type="date" class="form-control" placeholder="Card Added Date" name="cardAddedDate">
-                </div>  
+                </div>
+                <div class="form-group">
+                    <label>User Name</label>
+                    <select class="form-control" name="userId">
+                        @foreach (var item in Model.userModel)
+                        {
+                            <option value="@item.userId">@item.name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <select class="form-control" name="productId">
+                        @foreach (var item in Model.productSizeModel)
+                        {
+                            <option value="@item.productSizeId">@item.productSizeId</option>
+                        }
+                    </select>
+                </div>
+                    <div class="form-group">
+                    <label>Cargo Proccess</label>
+                    <select class="form-control" name="cargoProccessId">
+                        @foreach (var item in Model.cargoProcessesModel)
+                        {
+                            <option value="@item.cargoProccessId">@item.cargoProccessId</option>
+                        }
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label>Status</label>
                     <select class="form-control" name="orderDeleted">
