@@ -16,7 +16,7 @@ namespace EntityLayer
         public string menuName { get; set; }
         public bool menuDeleted { get; set; }
 
-        //
+       
         [ForeignKey("menuParent")]
 
         public int? menuParentId { get; set; }

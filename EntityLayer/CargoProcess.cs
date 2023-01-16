@@ -10,9 +10,11 @@ namespace EntityLayer
     public class CargoProcess
     {
         [Key]
-        public int cargoId { get; set; }
+        public int cargoProccessId { get; set; }
         [StringLength(50)] 
         public string cargoStatus { get; set; }
+        [StringLength(50)]
+        public string trackingNumber { get; set; }
         public bool cargoProcessDeleted { get; set; }
         //Relationship with Order 
         public virtual ICollection<Order> orders{ get; set; }

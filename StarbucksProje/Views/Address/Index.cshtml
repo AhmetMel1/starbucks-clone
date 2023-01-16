@@ -10,19 +10,19 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>province</th>
-                    <th>district</th>
-                    <th>neighbourhood</th>
-                    <th>street</th>
-                    <th>apartmentNumber</th>
-                    <th>addressDeleted</th>
+                    <th>City</th>
+                    <th>District</th>
+                    <th>Neighbourhood</th>
+                    <th>Street</th>
+                    <th>ApartmentNumber</th>
+                    <th>AddressDeleted</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.province</td>
+                        <td>@item.city</td>
                         <td>@item.district</td>
                         <td>@item.neighbourhood</td>
                         <td>@item.street</td>

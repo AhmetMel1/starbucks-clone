@@ -23,7 +23,7 @@ namespace BusinessLayer.Concrete
 
         public CargoProcess CargoProccessGetById(int id)
         {
-            return cargoProccessDal.get(x => x.cargoId == id);
+            return cargoProccessDal.get(x => x.cargoProccessId == id);
         }
 
         public void cargoProccessInsert(CargoProcess cargoProcess)

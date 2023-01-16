@@ -11,10 +11,10 @@ namespace EntityLayer
     {
         [Key]
         public int orderId { get; set; }
-        public byte paymentType { get; set; }       
+        public bool paymentType { get; set; }       
         public DateTime orderDate { get; set; }
         public int orderQuantity { get; set; }
-        public byte orderStatus { get; set; } 
+        public bool orderStatus { get; set; } 
         public DateTime cardAddedDate { get; set; }
         public bool orderDeleted { get; set; }
 
@@ -22,7 +22,7 @@ namespace EntityLayer
         public  int productSizeId  { get; set; }
         public virtual ProductSize productSize { get; set; }
         //Relationship with CargoProcces 
-        public  int cargoId { get; set; }
+        public  int cargoProccessId { get; set; }
         public virtual CargoProcess cargoProcess { get; set; }
         //Relationship with user  
         public  int userId { get; set; }
