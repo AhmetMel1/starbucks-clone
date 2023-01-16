@@ -7,6 +7,7 @@
 @{
     var options = Model.optionListModel;
     var optionTypes = Model.optionTypeModel;
+    var option = Model.optionModel;
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
@@ -18,13 +19,13 @@
             <form class="forms-sample" action="/Option/AddOption" method="post">
                 <div class="form-group">
                     <label>Option Name</label>
-                    <input type="text" class="form-control" placeholder="Option Name" name="optionName">
+                    <input type="text" class="form-control" placeholder="Option Name" name="optionName" value="@option.optionName">
                     @Html.ValidationMessage("optionName","",new{@class="text-danger"})
                 </div>
 
                 <div class="form-group">
                     <label>Option Unit Price</label>
-                    <input type="text" class="form-control" placeholder="Option Unit Price" name="optionUnitPrice">
+                    <input type="text" class="form-control" placeholder="Option Unit Price" name="optionUnitPrice" value="@option.optionUnitPrice">
                     @Html.ValidationMessage("optionUnitPrice","",new{@class="text-danger"})
                 </div>
 
@@ -59,7 +60,7 @@
                     <i class="mdi mdi-file-check btn-icon-prepend"></i>
                     Submit
                 </button>
-                <a class="btn btn-inverse-secondary" type="reset" href="/Option/ListOption">Cancel</a>
+                <a class="btn btn-inverse-secondary" type="reset" href="/Option/Index">Cancel</a>
             </form>
         </div>
     </div>

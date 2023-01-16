@@ -3,6 +3,7 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -11,9 +12,9 @@ namespace StarbucksProje.Controllers
         ProductCustomizationManager pcm = new ProductCustomizationManager(new EfProductCustomizationRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
         CustomizationManager cm = new CustomizationManager(new EfCustomizationRepository());
-        public IActionResult ListProductCustomization()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var productCustomizations=pcm.productCustomizationList();
+            var productCustomizations=pcm.productCustomizationList().ToPagedList(page, pageSize);
             return View(productCustomizations);
         }
         [HttpGet]
@@ -28,14 +29,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddProductCustomization(ProductCustomization productCustomization)
         {
             pcm.productCustomizationInsert(productCustomization);
-            return RedirectToAction("ListProductCustomization");
+            return RedirectToAction("Index");
         }
         public IActionResult DeleteProductCustomization(int id)
         {
             var productCustomization = pcm.productCustomizationGetById(id);
             productCustomization.productCustomizationDeleted = true;
             pcm.productCustomizationUpdate(productCustomization);
-            return RedirectToAction("ListProductCustomization");
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult UpdateProductCustomization(int id)
@@ -50,7 +51,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateProductCustomization(ProductCustomization productCustomization)
         {
             pcm.productCustomizationUpdate(productCustomization);
-            return RedirectToAction("ListProductCustomization");
+            return RedirectToAction("Index");
         }
     }
 }

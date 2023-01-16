@@ -1,0 +1,11 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page})
+,new PagedListRenderOptions {
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            UlElementClasses = new String[] {"pagination" },
+            ContainerDivClasses = new String[]{"pagination-container"}
+})

@@ -3,21 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using BusinessLayer.Validaitons;
+using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
 	public class SizeController : Controller
 	{
 		SizeManager sm = new SizeManager(new EfSizeRepository());
-		public IActionResult ListSize()
+		public IActionResult Index(int page = 1, int pageSize = 5)
 		{
-			var sizes = sm.sizeList();
+			var sizes = sm.sizeList().ToPagedList(page, pageSize);
 			return View(sizes);
 		}
         [HttpGet]
         public IActionResult AddSize()
         {
-            return View();
+            var size = new Size();
+            return View(size);
         }
 
         [HttpPost]
@@ -28,7 +30,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 sm.sizeInsert(size);
-                return RedirectToAction("ListSize");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -44,7 +46,7 @@ namespace StarbucksProje.Controllers
             Size size = sm.sizeGetById(id);
             size.sizeDeleted = true;
             sm.sizeUpdate(size);
-            return RedirectToAction("ListSize");
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult UpdateSize(int id)
@@ -60,7 +62,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 sm.sizeUpdate(size);
-                return RedirectToAction("ListSize");
+                return RedirectToAction("Index");
             }
             else
             {

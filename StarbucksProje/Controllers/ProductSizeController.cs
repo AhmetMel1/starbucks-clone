@@ -5,6 +5,7 @@ using EntityLayer;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -13,9 +14,9 @@ namespace StarbucksProje.Controllers
         ProductSizeManager psm=new ProductSizeManager(new EfProductSizeRepository());
         ProductManager pm=new ProductManager(new EfProductRepository());
         SizeManager sm=new SizeManager(new EfSizeRepository());
-        public IActionResult ListProductSize()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var pruductSizes=psm.productSizeList();
+            var pruductSizes=psm.productSizeList().ToPagedList(page, pageSize);
             return View(pruductSizes);
         }
         [HttpGet]
@@ -24,6 +25,7 @@ namespace StarbucksProje.Controllers
             ProductSizeModel model=new ProductSizeModel();
             model.productModel=pm.productList();
             model.sizeModel = sm.sizeList();
+            model.productSizeModel = new ProductSize();
             return View(model);
         }
 
@@ -35,7 +37,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 psm.productSizeUpdate(productSize);
-                return RedirectToAction("ListProductSize");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -54,7 +56,7 @@ namespace StarbucksProje.Controllers
             ProductSize productSize = psm.productSizeGetById(id);
             productSize.productSizeDeleted = true;
             psm.productSizeUpdate(productSize);
-            return RedirectToAction("ListProductSize");
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult UpdateProductSize(int id)
@@ -73,7 +75,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 psm.productSizeUpdate(productSize);
-                return RedirectToAction("ListProductSize");
+                return RedirectToAction("Index");
             }
             else
             {

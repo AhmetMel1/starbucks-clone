@@ -5,6 +5,7 @@ using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using StarbucksProje.Models;
+using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -12,9 +13,9 @@ namespace StarbucksProje.Controllers
     {
         CustomizationManager cm = new CustomizationManager(new EfCustomizationRepository());
         OptionManager om= new OptionManager(new EfOptionRepository());
-        public IActionResult ListCustomization()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var customizations = cm.customizationList();
+            var customizations = cm.customizationList().ToPagedList(page,pageSize);
             return View(customizations);
         }
         [HttpGet]
@@ -22,6 +23,7 @@ namespace StarbucksProje.Controllers
         {
             CustomizationOptionModel model=new CustomizationOptionModel();
             model.optionModel=om.optionList();
+            model.customizationModel = new Customization();
             return View(model);
         }
         [HttpPost]
@@ -32,7 +34,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 cm.customizationInsert(customization);
-                return RedirectToAction("ListCustomization");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -50,7 +52,7 @@ namespace StarbucksProje.Controllers
             var customization=cm.customizationGetById(id);
             customization.customizationDeleted = true;
             cm.customizationUpdate(customization);
-            return RedirectToAction("ListCustomization");
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult UpdateCustomization(int id)
@@ -68,7 +70,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 cm.customizationUpdate(customization);
-                return RedirectToAction("ListCustomization");
+                return RedirectToAction("Index");
             }
             else
             {

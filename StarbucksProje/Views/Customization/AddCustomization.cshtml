@@ -18,7 +18,7 @@
             <form class="forms-sample" action="/Customization/AddCustomization" method="post">
                 <div class="form-group">
                     <label>Customization Name</label>
-                    <input type="text" class="form-control" placeholder="Customization Name" name="customizationName">
+                    <input type="text" class="form-control" placeholder="Customization Name" name="customizationName" value="@Model.customizationModel.customizationName">
                     @Html.ValidationMessage("customizationName","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
@@ -41,7 +41,7 @@
                         <i class="mdi mdi-file-check btn-icon-prepend"></i>
                         Submit
                     </button>
-                    <a class="btn btn-inverse-secondary" type="reset" href="/Customization/ListCustomization">Cancel</a>
+                <a class="btn btn-inverse-secondary" type="reset" href="/Customization/Index">Cancel</a>
             </form>
         </div>
     </div>

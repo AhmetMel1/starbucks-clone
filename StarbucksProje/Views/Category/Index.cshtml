@@ -1,18 +1,19 @@
 ﻿@using EntityLayer
-@model List<Product>
+@using X.PagedList;
+@model PagedList<Category>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="col-11 grid-margin stretch-card">
-    <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+
+    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Product Name</th>
-                    <th>Product Logo</th>
-                    <th>Product Description</th>
                     <th>Category Name</th>
+                    <th>Category Logo</th>
+                    <th>Parent Category Name</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
@@ -22,11 +23,17 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.productName</td>
-                        <td>@item.productLogoUrl</td>
-                        <td>@item.productDescription</td>
-                        <td>@item.category.categoryName</td>
-                        @if (@item.productDeleted)
+                        <td>@item.categoryName</td>
+                        <td>@item.categoryLogoUrl</td>
+                        @if(@item.categoryParentId==null)
+                        {
+                        <td>Itself Parent</td>
+                        }
+                        else
+                        {
+                        <td>@item.categoryParent.categoryName</td>
+                        }
+                        @if (@item.categoryDeleted)
                         {
                             <td>Pasive</td>
                         }
@@ -35,23 +42,26 @@
                             <td>Active</td>
                         }
                         <td>
-                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.productId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
-                        </td>
-                        <td><a href="/Product/UpdateProduct/@item.productId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
 
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.categoryId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                        </td>
+                        <td><a href="/Category/UpdateCategory/@item.categoryId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
                     </tr>
                 }
 
             </tbody>
         </table>
-            <div class="text-center d-flex justify-content-start">
-                <a href="/Product/AddProduct" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
-            </div>
+        <div class="text-center d-flex justify-content-start">
+            <a href="/Category/AddCategory" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
 </div>
-</div>
 
+<div style="position:relative;">
+    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PagingPartialView" model="@Model" />
+    </div>
+</div>
 <!-- Modal -->
 @*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
@@ -76,10 +86,9 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var productId = button.attr('data-bs-whatever');
+            var categoryId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/Product/DeleteProduct/" + productId;
+            a.href = "/Category/DeleteCategory/" + categoryId;
         });
     });
 </script>
-

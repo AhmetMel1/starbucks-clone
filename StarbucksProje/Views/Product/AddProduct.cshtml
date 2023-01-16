@@ -14,7 +14,7 @@
             <form class="forms-sample" action="/Product/AddProduct" method="post">
                 <div class="form-group">
                     <label>Product Name</label>
-                    <input type="text" class="form-control" placeholder="Product Name" name="productName">
+                    <input type="text" class="form-control" placeholder="Product Name" name="productName" value="@Model.productModel.productName">
                     @Html.ValidationMessage("productName","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label>Product Description</label>
-                    <input type="text" class="form-control" placeholder="Product Description" name="productDescription">
+                    <input type="text" class="form-control" placeholder="Product Description" name="productDescription" value="@Model.productModel.productDescription">
                     @Html.ValidationMessage("productDescription","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
@@ -45,7 +45,7 @@
                         <i class="mdi mdi-file-check btn-icon-prepend"></i>
                         Submit
                     </button>
-                    <a class="btn btn-inverse-secondary" type="reset" href="/Product/ListProduct">Cancel</a>
+                    <a class="btn btn-inverse-secondary" type="reset" href="/Product/Index">Cancel</a>
             </form>
         </div>
     </div>

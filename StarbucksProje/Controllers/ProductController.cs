@@ -5,6 +5,7 @@ using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using StarbucksProje.Models;
+using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -12,9 +13,9 @@ namespace StarbucksProje.Controllers
     {
         ProductManager pm = new ProductManager(new EfProductRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult ListProduct()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var products=pm.productList();
+            var products=pm.productList().ToPagedList(page, pageSize);
             return View(products);
         }
         [HttpGet]
@@ -22,6 +23,7 @@ namespace StarbucksProje.Controllers
         {
             CategoryProductModel model= new CategoryProductModel();
             model.categoryModel=cm.categoryList();
+            model.productModel = new Product();
             return View(model);
         }
         [HttpPost]
@@ -32,7 +34,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 pm.productInsert(product);
-                return RedirectToAction("ListProduct");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -50,7 +52,7 @@ namespace StarbucksProje.Controllers
             var product = pm.productGetById(id);
             product.productDeleted = true;
             pm.productUpdate(product);
-            return RedirectToAction("ListProduct");
+            return RedirectToAction("Index");
         }
         public IActionResult UpdateProduct(int id)
         {
@@ -67,7 +69,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 pm.productUpdate(product);
-                return RedirectToAction("ListProduct");
+                return RedirectToAction("Index");
             }
             else
             {

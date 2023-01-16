@@ -15,7 +15,7 @@
             <form class="forms-sample" action="/Size/AddSize" method="post">
                 <div class="form-group">
                     <label>Size Name</label>
-                    <input type="text" class="form-control" placeholder="Size Name" name="sizeName">
+                    <input type="text" class="form-control" placeholder="Size Name" name="sizeName" value="@Model.sizeName">
                     @Html.ValidationMessageFor(x => x.sizeName,"",new { @class ="text-danger" })
                 </div>
                 <div class="form-group">
@@ -29,7 +29,7 @@
                     <i class="mdi mdi-file-check btn-icon-prepend"></i>
                     Submit
                 </button>
-                <a class="btn btn-inverse-secondary" type="reset" href="/Size/ListSize">Cancel</a>
+                <a class="btn btn-inverse-secondary" type="reset" href="/Size/Index">Cancel</a>
             </form>
         </div>
     </div>
