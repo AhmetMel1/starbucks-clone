@@ -30,9 +30,9 @@
                             <td>Active</td>
                         }
                         <td>
-                                    <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.cargoProccessId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.cargoProcessId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                         </td>
-                        <td><a href="/CargoProcess/UpdateCargoProcess/@item.cargoProccessId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+                        <td><a href="/CargoProcess/UpdateCargoProcess/@item.cargoProcessId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
                     </tr>
                 }
 
@@ -68,9 +68,9 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var cargoProccessId = button.attr('data-bs-whatever');
+            var cargoProcessId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/CargoProcess/DeleteCargoProcess/" + cargoProccessId;
+            a.href = "/CargoProcess/DeleteCargoProcess/" + cargoProcessId;
         });
     });
 </script>

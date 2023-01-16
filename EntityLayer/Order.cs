@@ -22,7 +22,7 @@ namespace EntityLayer
         public  int productSizeId  { get; set; }
         public virtual ProductSize productSize { get; set; }
         //Relationship with CargoProcces 
-        public  int cargoProccessId { get; set; }
+        public int cargoProcessId { get; set; }
         public virtual CargoProcess cargoProcess { get; set; }
         //Relationship with user  
         public  int userId { get; set; }
