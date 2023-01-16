@@ -55,6 +55,6 @@ app.MapControllerRoute(
                 );
 
 app.MapControllerRoute(
-                name: "Size", pattern: "Size/size-type-list", defaults: new { controller = "Size", action = "Index" }
+                name: "Size", pattern: "Size/size-list", defaults: new { controller = "Size", action = "Index" }
                 );
 app.Run();
