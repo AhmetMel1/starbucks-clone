@@ -4,6 +4,7 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -11,9 +12,9 @@ namespace StarbucksProje.Controllers
     {
         OptionManager om = new OptionManager(new EfOptionRepository());
         OptionTypeManager otm = new OptionTypeManager(new EfOptionTypeRepository());
-        public IActionResult ListOption()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var options=om.optionList();
+            var options=om.optionList().ToPagedList(page,pageSize);
             return View(options);
         }
         [HttpGet]
@@ -32,7 +33,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 om.optionInsert(option);
-                return RedirectToAction("ListOption");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -52,7 +53,7 @@ namespace StarbucksProje.Controllers
             var option = om.optionGetById(id);
             option.optionDeleted = true;
             om.optionUpdate(option);
-            return RedirectToAction("ListOption");
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult UpdateOption(int id)
@@ -71,7 +72,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 om.optionUpdate(option);
-                return RedirectToAction("ListOption");
+                return RedirectToAction("Index");
             }
             else
             {

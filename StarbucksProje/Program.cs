@@ -26,4 +26,35 @@ app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+                name: "Category", pattern: "Category/category-list", defaults: new { controller = "Category", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "Customization", pattern: "Customization/customization-list", defaults: new { controller = "Customization", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "Option", pattern: "Option/option-list", defaults: new { controller = "Option", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "OptionType", pattern: "OptionType/option-type-list", defaults: new { controller = "OptionType", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "Product", pattern: "Product/product-list", defaults: new { controller = "Product", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "ProductCustomization", pattern: "ProductCustomization/product-customization-list", defaults: new { controller = "ProductCustomization", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "ProductSize", pattern: "ProductSize/product-size-list", defaults: new { controller = "ProductSize", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "Size", pattern: "Size/size-type-list", defaults: new { controller = "Size", action = "Index" }
+                );
 app.Run();

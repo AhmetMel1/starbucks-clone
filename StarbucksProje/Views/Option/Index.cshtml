@@ -1,5 +1,6 @@
 ﻿@using EntityLayer
-@model List<Option>
+@using X.PagedList;
+@model PagedList<Option>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -55,6 +56,12 @@
         </div>
     </div>
 </div>
+<div style="position:relative;">
+    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PagingPartialView" model="@Model" />
+    </div>
+</div>
+
 
 <!-- Modal -->
 @*#decisionPopup Model*@

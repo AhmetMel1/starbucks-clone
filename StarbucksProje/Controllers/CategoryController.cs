@@ -4,15 +4,16 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult ListCategory()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var categories=cm.categoryList();
+            var categories=cm.categoryList().ToPagedList(page,pageSize);
             return View(categories);
         }
         [HttpGet]
@@ -30,7 +31,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 cm.categoryInsert(category);
-                return RedirectToAction("ListCategory");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -49,7 +50,7 @@ namespace StarbucksProje.Controllers
             var category=cm.categoryGetById(id);
             category.categoryDeleted = true;
             cm.categoryUpdate(category);
-            return RedirectToAction("ListCategory");
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult UpdateCategory(int id)
@@ -67,7 +68,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 cm.categoryUpdate(category);
-                return RedirectToAction("ListCategory");
+                return RedirectToAction("Index");
             }
             else
             {

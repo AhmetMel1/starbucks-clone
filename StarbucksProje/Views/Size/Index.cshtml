@@ -1,16 +1,17 @@
 ﻿@using EntityLayer
-@model List<Customization>
+@using X.PagedList;
+@model PagedList<Size>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <div class="col-11 grid-margin stretch-card">
     <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Customization Name</th>
-                    <th>Option Name</th>
+                    <th>Size Name</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
@@ -19,33 +20,35 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                        <tr>
-                            <td>@item.customizationName</td>
-                            <td>@item.option.optionName</td>
-                        @if (@item.customizationDeleted)
+                    <tr>
+                        <td>@item.sizeName</td>
+                        @if (@item.sizeDeleted)
                         {
-                                    <td>Pasive</td>
+                            <td>Pasive</td>
                         }
                         else
                         {
-                                    <td>Active</td>
+                            <td>Active</td>
                         }
-                            <td>
-                                <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.customizationId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
-                            </td>
-                            <td><a href="/Customization/UpdateCustomization/@item.customizationId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
-
-                        </tr>
+                        <td>
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.sizeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                        </td>
+                        <td><a href="/Size/UpdateSize/@item.sizeId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+                    </tr>
                 }
 
             </tbody>
         </table>
-            <div class="text-center d-flex justify-content-start">
-                <a href="/Customization/AddCustomization" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
-            </div>
+        <div class="text-center d-flex justify-content-start">
+            <a href="/Size/AddSize" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
 </div>
+
+<div style="position:relative;">
+    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PagingPartialView" model="@Model" />
+    </div>
 </div>
 <!-- Modal -->
 @*#decisionPopup Model*@
@@ -71,9 +74,10 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var customizationId = button.attr('data-bs-whatever');
+            var sizeId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/Customization/DeleteCustomization/" + customizationId;
+            a.href = "/Size/DeleteSize/" + sizeId;
         });
     });
 </script>
+
