@@ -16,7 +16,18 @@
                 <input type="hidden" class="form-control" name="orderId" value="@Model.orderModel.orderId">
                 <div class="form-group">
                     <label>Payment Type</label>
-                    <input type="text" class="form-control" placeholder="Payment Type" name="paymentType" value="@Model.orderModel.paymentType">
+                    <select class="form-control" name="paymentType">
+                        @if (Model.orderModel.paymentType)
+                        {
+                            <option value="False">Cash</option>
+                            <option value="True" selected>Card</option>
+                        }
+                        else
+                        {
+                            <option value="False" selected>Cash</option>
+                            <option value="True">Card</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Order Date</label>
@@ -29,10 +40,6 @@
                 <div class="form-group">
                     <label>Card Added Date</label>
                     <input type="text" class="form-control" placeholder="Card Added Date" name="cardAddedDate" value="@Model.orderModel.cardAddedDate">
-                </div>
-                <div class="form-group">
-                    <label>orderDeleted</label>
-                    <input type="text" class="form-control" placeholder="Order Deletede" name="orderDeletede" value="@Model.orderModel.orderDeleted">
                 </div>
                 <div class="form-group">
                     <label>User Name</label>
@@ -52,32 +59,32 @@
                 </div>
                 <div class="form-group">
                     <label>Product Name</label>
-                    <select class="form-control" name="productId">
+                    <select class="form-control" name="productSizeId">
                         @foreach (var item in Model.productSizeModel)
                         {
                             @if (item.productSizeId == Model.orderModel.productSizeId)
                             {
-                                <option value="@item.productSizeId" selected>@item.productSizeId</option>
+                                <option value="@item.productSizeId" selected>@item.unitPrice</option>
                             }
                             else
                             {
-                                <option value="@item.productSizeId">@item.productSizeId</option>
+                                <option value="@item.productSizeId">@item.unitPrice</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Cargo Proccess</label>
-                    <select class="form-control" name="cargoProccessId">
+                    <select class="form-control" name="cargoProcessId">
                         @foreach (var item in Model.cargoProcessesModel)
                         {
                             @if (item.cargoProcessId == Model.orderModel.cargoProcessId)
                             {
-                                <option value="@item.cargoProcessId" selected>@item.cargoProcessId</option>
+                                <option value="@item.cargoProcessId" selected>@item.cargoStatus</option>
                             }
                             else
                             {
-                                <option value="@item.cargoProcessId">@item.cargoProcessId</option>
+                                <option value="@item.cargoProcessId">@item.cargoStatus</option>
                             }
                         }
                     </select>

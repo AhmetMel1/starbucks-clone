@@ -11,11 +11,11 @@
             <thead>
                 <tr>
                    
-                    <th>paymentType</th>
                     <th>orderDate</th>
                     <th>orderQuantity</th>
                     <th>orderStatus</th>
                     <th>cardAddedDate</th>
+                    <th>paymentType</th>
                     <th>orderDeleted</th>
                 </tr>
             </thead>
@@ -23,12 +23,18 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        
-                        <td>@item.paymentType</td>
                         <td>@item.orderDate.ToString().Split(" ")[0]</td>
                         <td>@item.orderQuantity</td>
                         <td>@item.orderStatus</td>
-                        <td>@item.cardAddedDate</td>
+                        <td>@item.cardAddedDate.ToString().Split(" ")[0]</td>
+                        @if (item.paymentType)
+                        {
+                            <td>Card</td>
+                        }
+                        else
+                        {
+                            <td>Cash</td>
+                        }
                         @if (@item.orderDeleted)
                         {
                             <td>Pasive</td>

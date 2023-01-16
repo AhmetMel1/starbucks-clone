@@ -15,7 +15,10 @@
             <form class="forms-sample" action="/Order/AddOrder" method="post">
                 <div class="form-group">
                     <label>Payment Type</label>
-                    <input type="text" class="form-control" placeholder="Payment Type" name="paymentType">
+                    <select class="form-control" name="paymentType">
+                        <option value="False">Cash</option>
+                        <option value="True">Card</option>
+                    </select>
                 </div>
                   <div class="form-group">
                     <label>Order Date</label>
@@ -40,19 +43,19 @@
                 </div>
                 <div class="form-group">
                     <label>Product Name</label>
-                    <select class="form-control" name="productId">
+                    <select class="form-control" name="productSizeId">
                         @foreach (var item in Model.productSizeModel)
                         {
-                            <option value="@item.productSizeId">@item.productSizeId</option>
+                            <option value="@item.productSizeId">@item.unitPrice</option>
                         }
                     </select>
                 </div>
                     <div class="form-group">
                     <label>Cargo Proccess</label>
-                    <select class="form-control" name="cargoProccessId">
+                    <select class="form-control" name="cargoProcessId">
                         @foreach (var item in Model.cargoProcessesModel)
                         {
-                            <option value="@item.cargoProcessId">@item.cargoProcessId</option>
+                            <option value="@item.cargoProcessId">@item.cargoStatus</option>
                         }
                     </select>
                 </div>
