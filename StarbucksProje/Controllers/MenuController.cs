@@ -2,11 +2,13 @@
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using StarbucksProje.Models;
 
 namespace StarbucksProje.Controllers
 {
     public class MenuController : Controller
     {
+       
         MenuManager menum = new MenuManager(new EfMenuRepository());
         public IActionResult Index()
         {
@@ -16,7 +18,9 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddMenu()
         {
-            return View();
+            MenuParentMenuIdModel model = new MenuParentMenuIdModel();
+            model.menuParentModel = menum.menuList();
+            return View(model);
         }
         [HttpPost]
         public IActionResult AddMenu(Menu menu)
@@ -34,8 +38,10 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult UpdateMenu(int id)
         {
-            var menu = menum.MenuGetById(id);
-            return View(menu);
+            MenuParentMenuIdModel model = new MenuParentMenuIdModel();
+            model.menuParentModel = menum.menuList();
+            model.menuModel = menum.MenuGetById(id);
+            return View(model);
         }
         [HttpPost]
         public IActionResult UpdateMenu(Menu menu)

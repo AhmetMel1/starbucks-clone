@@ -2,12 +2,14 @@
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using StarbucksProje.Models;
 using System;
 
 namespace StarbucksProje.Controllers
 {
     public class UserController : Controller
     {
+        AddressManager adrsm = new AddressManager(new EfAddressRepository());
         UserManager um= new UserManager(new EfUserRepository());
         public IActionResult Index()
         {
@@ -17,7 +19,9 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddUser()
         {
-            return View();
+            UseraddressIdModel model = new UseraddressIdModel();
+            model.addressModel = adrsm.addresslist();
+            return View(model);
         }
         [HttpPost]
         public IActionResult AddUser(User user)
@@ -35,8 +39,10 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult UpdateUser(int id)
         {
-            var user = um.UserGetById(id);
-            return View(user);
+            UseraddressIdModel model = new UseraddressIdModel();
+            model.addressModel = adrsm.addresslist();
+            model.userModel = um.UserGetById(id);
+            return View(model);
         }
         [HttpPost]
         public IActionResult UpdateUser(User user)

@@ -1,33 +1,36 @@
 ﻿@using EntityLayer
-@model List<Admin>
+@model List<User>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="col-11 grid-margin stretch-card">
-    <div class="card m-5" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;">
-        <table class="table">
+    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>adminId</th>
+
+                    
+                    <th>User Name</th>
+                    <th>User Surname</th>
+                    <th>Password</th>
+                    <th>PhoneNumber</th>
+                    <th>Birthday</th>
                     <th>Status</th>
-                    <th>adminEmail</th>
-                    <th>adminType</th>
-                    <th>adminDeleted</th>
+                   
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.adminId</td>
-                        <td>@item.adminName</td>
-                        <td>@item.adminEmail</td>
-                        <td>@item.adminType</td>
-                        <td>@item.adminDeleted</td>
-
-                        @if (@item.adminDeleted)
+                        <td>@item.name</td>
+                        <td>@item.surname</td>
+                        <td>@item.password</td>
+                        <td>@item.phoneNumber</td>
+                        <td>@item.birthday</td>
+                        @if (@item.userDeleted)
                         {
                             <td>Pasive</td>
                         }
@@ -36,16 +39,16 @@
                             <td>Active</td>
                         }
                         <td>
-                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.adminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash"></ion-icon></button>
+                            <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.userId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
                         </td>
-                        <td><a href="/Admin/UpdateAdmin/@item.adminId" type="button" class="btn btn-outline-primary ">Update</a></td>
+                        <td><a href="/User/UpdateUser/@item.userId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
                     </tr>
                 }
 
             </tbody>
         </table>
-        <div class="text-center d-flex justify-content-center">
-            <a href="/Admin/AddAdmin" class="btn btn-success m-2"><ion-icon name="add"></ion-icon></a>
+        <div class="text-center d-flex justify-content-start">
+            <a href="/User/AddUser" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
 </div>
@@ -63,8 +66,8 @@
                 Are you sure you want to delete?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+                <button type="button" class="btn btn-inverse-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-inverse-success">Yes</a>
             </div>
         </div>
     </div>
@@ -74,11 +77,10 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var adminId = button.attr('data-bs-whatever');
+            var userId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/Admin/DeleteAdmin/" + adminId
+            a.href = "/User/DeleteUser/" + userId
         });
     });
 </script>
-
 

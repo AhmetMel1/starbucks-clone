@@ -1,0 +1,48 @@
+﻿@using StarbucksProje.Models
+@model MenuParentMenuIdModel
+@{
+    ViewData["Title"] = "AddMenu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Menu</h4>
+            <p class="card-description">
+                Menu Add
+            </p>
+            <form class="forms-sample" action="/Menu/AddMenu" method="post">
+                <div class="form-group">
+                    <label>Menu Name</label>
+                    <input type="text" class="form-control" placeholder="Menu Name" name="menuName">
+                </div>
+                <div class="form-group">
+                    <label>Parent Menu Name</label>
+                    <select class="form-control" name="menuParentId">
+                        <option value="null">Itself Parent</option>
+                        @foreach (var item in Model.menuParentModel)
+                        {
+                            <option value="@item.menuId">@item.menuName</option>
+                        }
+                    </select>
+                </div>
+              
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" name="menuDeleted">
+                        <option value="False">Active</option>
+                        <option value="True">Pasive</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-inverse-info me-2">
+                    <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                    Submit
+                </button>
+                <a class="btn btn-inverse-secondary" type="reset" href="/Menu/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,78 @@
+﻿@using StarbucksProje.Models
+@model UseraddressIdModel
+@{
+    ViewData["Title"] = "UpdateUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">User</h4>
+            <p class="card-description">
+                User Update
+            </p>
+            <form class="forms-sample" action="/User/UpdateUser" method="post">
+                <input type="hidden" class="form-control" name="orderId" value="@Model.userModel.userId">
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" class="form-control" placeholder="User Name" name="userName" value="@Model.userModel.name">
+                </div>
+                <div class="form-group">
+                    <label>Surname</label>
+                    <input type="text" class="form-control" placeholder="Surname" name="surname" value="@Model.userModel.surname">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" class="form-control" placeholder="Password" name="password" value="@Model.userModel.password">
+                </div>
+                <div class="form-group">
+                    <label>PhoneNumber</label>
+                    <input type="text" class="form-control" placeholder="PhoneNumber" name="phoneNumber" value="@Model.userModel.phoneNumber">
+                </div>
+                <div class="form-group">
+                    <label>Birthday</label>
+                    <input type="text" class="form-control" placeholder="Birthday" name="birthday" value="@Model.userModel.birthday">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <select class="form-control" name="addressId">
+                        @foreach (var item in Model.addressModel)
+                        {
+                            @if (item.addressId == Model.userModel.addressId)
+                            {
+                                <option value="@item.addressId" selected>@item.city/@item.district</option>
+                            }
+                            else
+                            {
+                                <option value="@item.addressId">@item.city/@item.district</option>
+                            }
+                        }
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleSelectGender">Status</label>
+                    <select class="form-control" name="userDeleted">
+                        @if (Model.userModel.userDeleted)
+                        {
+                            <option value="False">Active</option>
+                            <option value="True" selected>Pasive</option>
+                        }
+                        else
+                        {
+                            <option value="False" selected>Active</option>
+                            <option value="True">Pasive</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-inverse-info me-2">
+                    <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                    Submit
+                </button>
+                <a class="btn btn-inverse-secondary" type="reset" href="/User/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
