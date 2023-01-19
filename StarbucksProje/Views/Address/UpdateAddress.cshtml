@@ -36,7 +36,8 @@
                 <div class="form-group">
                     <label>Apartment Number</label>
                     <input type="text" class="form-control" placeholder="Apartment Number" name="apartmentNumber" value="@Model.apartmentNumber">
-                    Html.ValidationMessage("apartment Number","",new{@class="text-danger"})
+                    @Html.ValidationMessage("apartment number","",new{@class="text-danger"})
+                    
                 </div>
                 <div class="form-group">
                     <label for="exampleSelectGender">Status</label>

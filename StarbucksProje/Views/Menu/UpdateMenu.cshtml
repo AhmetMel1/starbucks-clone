@@ -17,6 +17,7 @@
                 <div class="form-group">
                     <label>Menu Name</label>
                     <input type="text" class="form-control" placeholder="Menu Name" name="menuName" value="@Model.menuModel.menuName">
+                    @Html.ValidationMessage("menuName","",new{@class="text-danger"})
                 </div>
            <div class="form-group">
                 <label>Parent Menu Name</label>
