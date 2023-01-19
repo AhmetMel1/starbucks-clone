@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace StarbucksProje.Controllers
 {
@@ -21,8 +23,21 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult AddCargoProcess(CargoProcess cargoProcess)
         {
-            cpm.cargoProccessInsert(cargoProcess);
-            return RedirectToAction("Index");
+            CargoProccessValidator validations = new CargoProccessValidator();
+            var result = validations.Validate(cargoProcess);
+            if (result.IsValid)
+            {
+                cpm.cargoProccessInsert(cargoProcess);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(cargoProcess);
+            }
         }
         public IActionResult DeleteCargoProcess(int id)
         {
@@ -40,8 +55,22 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateCargoProcess(CargoProcess cargoProcess)
         {
-            cpm.cargoProccessUpdate(cargoProcess);
-            return RedirectToAction("Index");
+            CargoProccessValidator validations = new CargoProccessValidator();
+            var result = validations.Validate(cargoProcess);
+            if (result.IsValid)
+            {
+                cpm.cargoProccessUpdate(cargoProcess);
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(cargoProcess);
+            }
         }
 
     }

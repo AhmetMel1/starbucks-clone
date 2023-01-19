@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -26,8 +27,21 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult AddUser(User user)
         {
-            um.userInsert(user);
-            return RedirectToAction("Index");
+            UserValidator validations = new UserValidator();
+            var result = validations.Validate(user);
+            if (result.IsValid)
+            {
+                um.userInsert(user);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(user);
+            }
         }
         public IActionResult DeleteUser(int id)
         {
@@ -47,8 +61,24 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateUser(User user)
         {
-            um.userUpdate(user);
-            return RedirectToAction("Index");
+            UserValidator validations = new UserValidator();
+            var result = validations.Validate(user);
+            if (result.IsValid)
+            {
+                um.userUpdate(user);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                UseraddressIdModel model = new UseraddressIdModel();
+                model.addressModel = adrsm.addresslist();
+                model.userModel = user;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
     }
 }

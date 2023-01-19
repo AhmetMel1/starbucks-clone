@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using System;
 
 namespace StarbucksProje.Controllers
 {
@@ -25,13 +27,32 @@ namespace StarbucksProje.Controllers
             model.productSizeModel = psm.productSizeList();
             model.userModel = um.userList();
             model.cargoProcessesModel = cpm.cargoProccessList();
+            model.orderModel = new Order();
             return View(model);
         }
         [HttpPost]
         public IActionResult AddOrder(Order order)
         {
-            om.orderInsert(order);
-            return RedirectToAction("Index");
+            OrderValidator validations = new OrderValidator();
+            var result = validations.Validate(order);
+            if (result.IsValid)
+            {
+                om.orderInsert(order);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                OrderProductSizeCargoProccessIdUserIdModel model = new OrderProductSizeCargoProccessIdUserIdModel();
+                model.productSizeModel = psm.productSizeList();
+                model.userModel = um.userList();
+                model.cargoProcessesModel = cpm.cargoProccessList();
+                model.orderModel = order;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
         public IActionResult DeleteOrder(int id)
         {
@@ -53,8 +74,26 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateOrder(Order order)
         {
-            om.orderUpdate(order);
-            return RedirectToAction("Index");
+            OrderValidator validations = new OrderValidator();
+            var result = validations.Validate(order);
+            if (result.IsValid)
+            {
+                om.orderUpdate(order);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                OrderProductSizeCargoProccessIdUserIdModel model = new OrderProductSizeCargoProccessIdUserIdModel();
+                model.productSizeModel = psm.productSizeList();
+                model.userModel = um.userList();
+                model.cargoProcessesModel = cpm.cargoProccessList();
+                model.orderModel = order;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
     }
 }

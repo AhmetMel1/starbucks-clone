@@ -16,10 +16,12 @@
                 <div class="form-group">
                     <label>Cargo Status</label>
                     <input type="text" class="form-control" placeholder="Cargo Status" name="cargoStatus">
+                    @Html.ValidationMessage("Cargo Status","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Tracking Number</label>
                     <input type="text" class="form-control" placeholder="Tracking Number" name="trackingNumber">
+                    @Html.ValidationMessage("Tracking Number","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Status</label>

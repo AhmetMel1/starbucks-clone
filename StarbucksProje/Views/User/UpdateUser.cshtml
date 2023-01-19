@@ -18,18 +18,22 @@
                 <div class="form-group">
                     <label>User Name</label>
                     <input type="text" class="form-control" placeholder="User Name" name="userName" value="@Model.userModel.name">
+                    @Html.ValidationMessage("User Name","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Surname</label>
                     <input type="text" class="form-control" placeholder="Surname" name="surname" value="@Model.userModel.surname">
+                    @Html.ValidationMessage("User Surname","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Password</label>
                     <input type="text" class="form-control" placeholder="Password" name="password" value="@Model.userModel.password">
+                    @Html.ValidationMessage("Password","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>PhoneNumber</label>
                     <input type="text" class="form-control" placeholder="PhoneNumber" name="phoneNumber" value="@Model.userModel.phoneNumber">
+                    @Html.ValidationMessage("PhoneNumber","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Birthday</label>

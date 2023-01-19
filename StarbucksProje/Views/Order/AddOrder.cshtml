@@ -27,6 +27,7 @@
                 <div class="form-group">
                     <label>Order Quantity</label>
                     <input type="text" class="form-control" placeholder="Order Quantity" name="orderQuantity">
+                    @Html.ValidationMessage("Order Quantity","",new{@class="text-danger"})
                 </div>
                  <div class="form-group">
                     <label>Card Added Date</label>

@@ -10,6 +10,11 @@ namespace BusinessLayer.Validaitons
 {
     public class OrderValidator : AbstractValidator<Order>
     {
-        public OrderValidator() { } 
+        public OrderValidator() 
+        {
+            //Rule for orderQuantity
+            RuleFor(order => order.orderQuantity).NotEmpty();
+            
+        } 
     }
 }
