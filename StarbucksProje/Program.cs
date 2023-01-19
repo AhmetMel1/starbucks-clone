@@ -39,11 +39,15 @@ app.MapControllerRoute(
                 );
 
 app.MapControllerRoute(
-                name: "Customization", pattern: "Customization/customization-list", defaults: new { controller = "Customization", action = "Index" }
+                name: "Customization", pattern: "Customization/customizations-list", defaults: new { controller = "Customization", action = "Index" }
                 );
 
 app.MapControllerRoute(
-                name: "Favorite", pattern: "Favorite/favorite-list", defaults: new { controller = "Favorite", action = "Index" }
+                name: "Favorite", pattern: "Favorite/favorites-list", defaults: new { controller = "Favorite", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "Menu", pattern: "Menu/menu-list", defaults: new { controller = "Menu", action = "Index" }
                 );
 
 app.MapControllerRoute(
@@ -59,7 +63,7 @@ app.MapControllerRoute(
                 );
 
 app.MapControllerRoute(
-                name: "Product", pattern: "Product/product-list", defaults: new { controller = "Product", action = "Index" }
+                name: "Product", pattern: "Product/products-list", defaults: new { controller = "Product", action = "Index" }
                 );
 
 app.MapControllerRoute(
@@ -70,11 +74,11 @@ app.MapControllerRoute(
                 name: "ProductSize", pattern: "ProductSize/product-size-list", defaults: new { controller = "ProductSize", action = "Index" }
                 );
 app.MapControllerRoute(
-                name: "Property", pattern: "Property/property-list", defaults: new { controller = "Property", action = "ListProperty" }
+                name: "Property", pattern: "Property/propertys-list", defaults: new { controller = "Property", action = "ListProperty" }
                 );
 
 app.MapControllerRoute(
-                name: "Size", pattern: "Size/size-list", defaults: new { controller = "Size", action = "Index" }
+                name: "Size", pattern: "Size/sizes-list", defaults: new { controller = "Size", action = "Index" }
                 );
 
 app.MapControllerRoute(
@@ -95,6 +99,10 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
                 name: "StoreProperty", pattern: "StoreProperty/store-property-list", defaults: new { controller = "StoreProperty", action = "ListStoreProperty" }
+                );
+
+app.MapControllerRoute(
+                name: "User", pattern: "User/user-list", defaults: new { controller = "User", action = "Index" }
                 );
 
 app.MapControllerRoute(

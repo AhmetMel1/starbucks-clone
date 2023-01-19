@@ -7,7 +7,11 @@
 }
 
 <div class="col-11 grid-margin stretch-card">
-    <div class="table-responsive card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+
+    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
+        <div class="card-head text-white bg-info col-5 justify-content-center text-center m-auto rounded p-3" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;">
+            <h2>Product Customization</h2>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -52,6 +56,7 @@
     <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
         <partial name="PagingPartialView" model="@Model" />
     </div>
+</div>
 </div>
 <!-- Modal -->
 @*#decisionPopup Model*@

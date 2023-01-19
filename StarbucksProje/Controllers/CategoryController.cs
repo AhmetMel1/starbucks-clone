@@ -1,20 +1,30 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validaitons;
+using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
-using X.PagedList;
+using StarbucksProje.PagedList;
 
 namespace StarbucksProje.Controllers
 {
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1)
         {
-            var categories=cm.categoryList().ToPagedList(page,pageSize);
-            return View(categories);
+            int pageSize = 2;
+            Context c = new Context();
+            Pager pager;
+
+            var itemCounts = c.Categories.ToList().Count;
+            pager = new Pager(pageSize, itemCounts, page);
+            var data = c.Categories.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            ViewBag.pager = pager;
+            ViewBag.actionName = "Index";
+            ViewBag.contrName = "Category";
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddCategory()

@@ -4,9 +4,12 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 <div class="col-11 grid-margin stretch-card">
-    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+
+    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
+        <div class="card-head text-white bg-info col-5 justify-content-center text-center m-auto rounded p-3" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;">
+            <h2>Menu</h2>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -50,6 +53,7 @@
             <a href="/Menu/AddMenu" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Modal -->
