@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using System.Net;
 
 namespace StarbucksProje.Controllers
 {
@@ -20,13 +22,30 @@ namespace StarbucksProje.Controllers
         {
             MenuParentMenuIdModel model = new MenuParentMenuIdModel();
             model.menuParentModel = menum.menuList();
+            model.menuModel = new Menu();
             return View(model);
         }
         [HttpPost]
         public IActionResult AddMenu(Menu menu)
         {
-            menum.menuInsert(menu);
-            return RedirectToAction("Index");
+            MenuValidator validations = new MenuValidator();
+            var result = validations.Validate(menu);
+            if (result.IsValid)
+            {
+                menum.menuInsert(menu);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                MenuParentMenuIdModel model = new MenuParentMenuIdModel();
+                model.menuParentModel = menum.menuList();
+                model.menuModel = menu;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
         public IActionResult DeleteMenu(int id)
         {
@@ -46,8 +65,24 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateMenu(Menu menu)
         {
-            menum.menuUpdate(menu);
-            return RedirectToAction("Index");
+            MenuValidator validations = new MenuValidator();
+            var result = validations.Validate(menu);
+            if (result.IsValid)
+            {
+                menum.menuUpdate(menu);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                MenuParentMenuIdModel model = new MenuParentMenuIdModel();
+                model.menuParentModel = menum.menuList();
+                model.menuModel = menu;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
 
     }

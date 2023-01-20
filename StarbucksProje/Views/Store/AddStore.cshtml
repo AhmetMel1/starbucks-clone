@@ -15,12 +15,13 @@
             <form class="forms-sample" action="/Store/AddStore" method="post">
                 <div class="form-group">
                     <label>Store Name</label>
-                    <input type="text" class="form-control" placeholder="Store Name" name="StoreName">
-                    @Html.ValidationMessageFor(x=>x.StoreName,"",new{@class="text-danger"});
+                    <input type="text" class="form-control" placeholder="Store Name" name="StoreName" value="@Model.StoreName">
+                    @Html.ValidationMessage("StoreName","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Store Location</label>
-                    <input type="text" class="form-control" placeholder="Store Location" name="StoreLocation">
+                    <input type="text" class="form-control" placeholder="Store Location" name="StoreLocation" value="@Model.StoreLocation">
+                    @Html.ValidationMessage("StoreLocation","",new{@class="text-danger"})
                 </div>
                     <div class="form-group">
                         <label>Status</label>
