@@ -15,23 +15,23 @@
             <form class="forms-sample" action="/User/AddUser" method="post">
                 <div class="form-group">
                     <label>User Name</label>
-                    <input type="text" class="form-control" placeholder="User Name" name="name">
-                    @Html.ValidationMessage("User Name","",new{@class="text-danger"})
+                    <input type="text" class="form-control" placeholder="User Name" name="name" value="@Model.userModel.name">
+                    @Html.ValidationMessage("name","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>User Surname</label>
-                    <input type="text" class="form-control" placeholder="User Surname" name="surname">
-                    @Html.ValidationMessage("User Surname","",new{@class="text-danger"})
+                    <input type="text" class="form-control" placeholder="User Surname" name="surname" value="@Model.userModel.surname">
+                    @Html.ValidationMessage("surname","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="text" class="form-control" placeholder="Password" name="password">
-                    @Html.ValidationMessage("Password","",new{@class="text-danger"})
+                    <input type="text" class="form-control" placeholder="Password" name="password" value="@Model.userModel.password">
+                    @Html.ValidationMessage("password","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>PhoneNumber</label>
-                    <input type="text" class="form-control" placeholder="PhoneNumber" name="phoneNumber">
-                    @Html.ValidationMessage("PhoneNumber","",new{@class="text-danger"})
+                    <input type="text" class="form-control" placeholder="PhoneNumber" name="phoneNumber" value="@Model.userModel.phoneNumber">
+                    @Html.ValidationMessage("phoneNumber","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Birthday</label>

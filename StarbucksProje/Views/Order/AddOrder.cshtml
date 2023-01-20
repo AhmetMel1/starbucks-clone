@@ -26,12 +26,13 @@
                 </div>
                 <div class="form-group">
                     <label>Order Quantity</label>
-                    <input type="text" class="form-control" placeholder="Order Quantity" name="orderQuantity">
-                    @Html.ValidationMessage("Order Quantity","",new{@class="text-danger"})
+                    <input type="text" class="form-control" placeholder="Order Quantity" name="orderQuantity" value="@Model.orderModel.orderQuantity">
+                    @Html.ValidationMessage("OrderQuantity","",new{@class="text-danger"})
                 </div>
                  <div class="form-group">
                     <label>Card Added Date</label>
-                    <input type="date" class="form-control" placeholder="Card Added Date" name="cardAddedDate">
+                    <input type="date" class="form-control" placeholder="Card Added Date" name="cardAddedDate" value="@Model.orderModel.cardAddedDate">
+                    @Html.ValidationMessage("CardAddedDate","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>User Name</label>

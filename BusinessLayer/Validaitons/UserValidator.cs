@@ -26,7 +26,7 @@ namespace BusinessLayer.Validaitons
             RuleFor(user => user.password).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
             //Rule for PhoneNumber
             RuleFor(user => user.phoneNumber).NotEmpty();
-            RuleFor(user => user.phoneNumber).MaximumLength(50).WithMessage("A maximum of 11 characters can be entered.");
+            RuleFor(user => user.phoneNumber).MaximumLength(11).WithMessage("A maximum of 11 characters can be entered.");
             RuleFor(user => user.phoneNumber).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
         }  
     }

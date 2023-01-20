@@ -22,6 +22,7 @@ namespace StarbucksProje.Controllers
         {
             UseraddressIdModel model = new UseraddressIdModel();
             model.addressModel = adrsm.addresslist();
+            model.userModel = new User();
             return View(model);
         }
         [HttpPost]
@@ -36,11 +37,14 @@ namespace StarbucksProje.Controllers
             }
             else
             {
+                UseraddressIdModel model = new UseraddressIdModel();
+                model.addressModel = adrsm.addresslist();
+                model.userModel = user;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View(user);
+                return View(model);
             }
         }
         public IActionResult DeleteUser(int id)

@@ -1,7 +1,10 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace StarbucksProje.Controllers
 {
@@ -16,13 +19,28 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddStore()
         {
-            return View();
+            var store=new Store();
+            return View(store);
         }
         [HttpPost]
         public IActionResult AddStore(Store store)
         {
-           sm.StoreInsert(store);
-            return RedirectToAction("Index"); 
+            StoreValidator validations = new StoreValidator();
+            var result = validations.Validate(store);
+            if (result.IsValid)
+            {
+                sm.StoreInsert(store);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(store);
+            }
+
         }
         public IActionResult DeleteStore(int id )
         {
@@ -41,8 +59,22 @@ namespace StarbucksProje.Controllers
         public IActionResult StoreUpdate(Store store)
         {
 
-            sm.StoreUpdate(store);
-            return RedirectToAction("Index");
+            StoreValidator validations = new StoreValidator();
+            var result = validations.Validate(store);
+            if (result.IsValid)
+            {
+                sm.StoreUpdate(store);
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(store);
+            }
         }
     }
 }
