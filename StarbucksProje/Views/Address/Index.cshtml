@@ -4,25 +4,23 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@*<div class="card-header rounded col-5 text-center bg-dark ms-auto text-white p-5">Address</div>*@
 <div class="col-11 grid-margin stretch-card">
-
     <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
-        <div class="card-head text-white bg-info col-5 justify-content-center text-center m-auto rounded p-3" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;">
-            <h2>Address</h2>
+        <div class="card-head text-white bg-info col-5 justify-content-center text-center m-auto p-3" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+            <h2>Addresses</h2>
         </div>
         <div class="card-body">
-<div class="col-11 grid-margin stretch-card">
-    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
         <table class="table table-hover">
             <thead>
-                <tr>
+                <tr class="bg-info text-white rounded">
                     <th>City</th>
                     <th>District</th>
                     <th>Neighbourhood</th>
                     <th>Street</th>
                     <th>ApartmentNumber</th>
-                    <th>AddressDeleted</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,14 +32,13 @@
                         <td>@item.neighbourhood</td>
                         <td>@item.street</td>
                         <td>@item.apartmentNumber</td>
-                        <td>@item.addressDeleted</td>
                         @if (@item.addressDeleted)
                         {
-                            <td>Pasive</td>
+                            <td class="text-danger">Pasive</td>
                         }
                         else
                         {
-                            <td>Active</td>
+                            <td class="text-success">Active</td>
                         }
                         <td>
                                     <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.addressId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
@@ -57,7 +54,7 @@
         </div>
     </div>
 </div>
-< div/>
+</div>
 
 <!-- Modal -->
 @*#decisionPopup Model*@

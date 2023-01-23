@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -22,15 +23,28 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult AddProperty(Property property)
         {
-            pm.PropertyInsert(property);
-            return RedirectToAction("Index");
+            PropertyValidator validations = new PropertyValidator();
+            var result = validations.Validate(property);
+            if (result.IsValid)
+            {
+                pm.PropertyInsert(property);
+                return RedirectToAction("ListProperty");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(property);
+            }
         }
         public IActionResult DeleteProperty(int id)
         {
             Property property = pm.PropertyGetById(id);
             property.PropertyDeleted= true;
             pm.PropertyUpdate(property);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListProperty");
         }
         [HttpGet]
         public IActionResult UpdateProperty(int id)
@@ -42,8 +56,21 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateProperty(Property property)
         {
-            pm.PropertyDelete(property);
-            return RedirectToAction("Index");
+            PropertyValidator validations = new PropertyValidator();
+            var result = validations.Validate(property);
+            if (result.IsValid)
+            {
+                pm.PropertyUpdate(property);
+                return RedirectToAction("ListProperty");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(property);
+            }
         }
 
     }

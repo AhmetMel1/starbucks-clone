@@ -30,7 +30,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 sm.StoreInsert(store);
-                return RedirectToAction("Index");
+                return RedirectToAction("ListStore");
             }
             else
             {
@@ -47,7 +47,7 @@ namespace StarbucksProje.Controllers
             Store store = sm.StorestoreGetById(id);
             store.StoreDeleted=true;
             sm.StoreUpdate(store);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStore");
         }
         [HttpGet]
         public IActionResult UpdateStore(int id)
@@ -56,7 +56,7 @@ namespace StarbucksProje.Controllers
             return View(store);
         }
         [HttpPost]
-        public IActionResult StoreUpdate(Store store)
+        public IActionResult UpdateStore(Store store)
         {
 
             StoreValidator validations = new StoreValidator();
@@ -64,7 +64,7 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 sm.StoreUpdate(store);
-                return RedirectToAction("Index");
+                return RedirectToAction("ListStore");
 
             }
             else

@@ -14,7 +14,7 @@
                 User Update
             </p>
             <form class="forms-sample" action="/User/UpdateUser" method="post">
-                <input type="hidden" class="form-control" name="orderId" value="@Model.userModel.userId">
+                <input type="hidden" class="form-control" name="userId" value="@Model.userModel.userId">
                 <div class="form-group">
                     <label>User Name</label>
                     <input type="text" class="form-control" placeholder="User Name" name="name" value="@Model.userModel.name">
@@ -37,7 +37,8 @@
                 </div>
                 <div class="form-group">
                     <label>Birthday</label>
-                    <input type="date" class="form-control" placeholder="Birthday" name="birthday">
+                    <input type="date" class="form-control" placeholder="Birthday" name="birthday" value="@Model.userModel.birthday.Date.ToString("yyyy-MM-dd")">
+                    @Html.ValidationMessage("birthday","",new{@class="text-danger"})
                    
                 </div>
                 <div class="form-group">

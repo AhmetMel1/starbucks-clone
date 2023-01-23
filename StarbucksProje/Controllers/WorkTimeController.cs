@@ -2,6 +2,8 @@
 using DataAccessLayer.ConCreate.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using EntityLayer;
+using BusinessLayer.Validaitons;
+using System.Drawing;
 
 namespace StarbucksProje.Controllers
 {
@@ -17,20 +19,34 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddWorkTime()
         {
-            return View();
+            var workTime = new WorkTime();
+            return View(workTime);
         }
         [HttpPost]
         public IActionResult AddWorkTime(WorkTime workTime)
         {
-            wm.WorkTimeInsert(workTime);
-                return RedirectToAction("Index");
+            WorkTimeValidator validations = new WorkTimeValidator();
+            var result = validations.Validate(workTime);
+            if (result.IsValid)
+            {
+                wm.WorkTimeInsert(workTime);
+                return RedirectToAction("ListWorkTime");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(workTime);
+            }
         }
         public IActionResult DeleteWorkTime(int id)
         {
             WorkTime workTime = wm.WorkTimeGetById(id);
             workTime.WorkTimeDeleted = true;
             wm.WorkTimeUpdate(workTime);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListWorkTime");
         }
         [HttpGet]
         public IActionResult UpdateWorkTime(int id)
@@ -42,8 +58,21 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateWorkTime(WorkTime workTime)
         {
-            wm.WorkTimeUpdate(workTime);
-            return RedirectToAction("Index");
+            WorkTimeValidator validations = new WorkTimeValidator();
+            var result = validations.Validate(workTime);
+            if (result.IsValid)
+            {
+                wm.WorkTimeUpdate(workTime);
+                return RedirectToAction("ListWorkTime");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(workTime);
+            }
         }
 
     }

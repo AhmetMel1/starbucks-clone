@@ -29,7 +29,7 @@
                     <select class="form-control" name="workTimeId">
                         @foreach (var item in workTime)
                         {
-                                <option value="@item.workTimeId">@item.openingTime</option>
+                                <option value="@item.workTimeId">@item.openingTime.ToShortTimeString() - @item.closingTime.ToShortTimeString()</option>
                         }
                     </select>
                     </div>

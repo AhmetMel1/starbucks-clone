@@ -29,14 +29,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddStoreProperty(StoreProperty storeProperty)
         {
             spm.StorePropertyUpdate(storeProperty);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreProperty");
         }
         public IActionResult DeleteStoreProperty(int id)
         {
             StoreProperty storeProperty = spm.StorePropertyGetById(id);
             storeProperty.StorePropertyDeleted=true;
             spm.StorePropertyUpdate(storeProperty);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreProperty");
         }
         [HttpGet]
         public IActionResult UpdateStoreProperty(int id)
@@ -51,7 +51,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateStoreProperty(StoreProperty storeProperty)
         {
             spm.StorePropertyUpdate(storeProperty);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreProperty");
         }
     }
 }

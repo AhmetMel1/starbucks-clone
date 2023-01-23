@@ -3,16 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using BusinessLayer.Validaitons;
-using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
 	public class SizeController : Controller
 	{
 		SizeManager sm = new SizeManager(new EfSizeRepository());
-		public IActionResult Index(int page = 1, int pageSize = 5)
+		public IActionResult Index()
 		{
-			var sizes = sm.sizeList().ToPagedList(page, pageSize);
+			var sizes = sm.sizeList();
 			return View(sizes);
 		}
         [HttpGet]

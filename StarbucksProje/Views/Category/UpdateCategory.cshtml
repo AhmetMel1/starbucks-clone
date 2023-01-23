@@ -21,6 +21,7 @@
                 <div class="form-group">
                     <label>Category Logo</label>
                     <input type="file" class="form-control" name="categoryLogoUrl" value="@Model.categoryModel.categoryLogoUrl">
+                    @Html.ValidationMessage("categoryLogoUrl","",new{@class="text-danger"})
                 </div>
                 <label>Parent Category Name</label>
                 <div class="form-group">

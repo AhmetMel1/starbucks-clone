@@ -18,7 +18,8 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddCargoProcess() 
         {
-            return View();
+            var cargoProcess=new CargoProcess();
+            return View(cargoProcess);
         }
         [HttpPost]
         public IActionResult AddCargoProcess(CargoProcess cargoProcess)

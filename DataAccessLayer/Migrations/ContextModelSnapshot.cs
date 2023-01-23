@@ -66,47 +66,6 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("EntityLayer.Admin", b =>
-                {
-                    b.Property<int>("adminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("adminId"));
-
-                    b.Property<bool>("adminDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("adminEmail")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("adminName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("adminPassword")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("adminProfilPhoto")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("adminType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("adminId");
-
-                    b.ToTable("Admins");
-                });
-
             modelBuilder.Entity("EntityLayer.CargoProcess", b =>
                 {
                     b.Property<int>("cargoProcessId")
@@ -125,8 +84,8 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("trackingNumber")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.HasKey("cargoProcessId");
 
@@ -454,9 +413,8 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("PropertyDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PropertyMode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("PropertyMode")
+                        .HasColumnType("bit");
 
                     b.Property<string>("PropertyName")
                         .IsRequired()
@@ -529,9 +487,14 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("StoreId")
                         .HasColumnType("int");
 
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
                     b.HasKey("StoreFavoriteId");
 
                     b.HasIndex("StoreId");
+
+                    b.HasIndex("userId");
 
                     b.ToTable("StoreFavorites");
                 });
@@ -832,7 +795,15 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("EntityLayer.User", "User")
+                        .WithMany("storeFavorites")
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Store");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("EntityLayer.StoreOpeningHour", b =>
@@ -984,6 +955,8 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("favorites");
 
                     b.Navigation("orders");
+
+                    b.Navigation("storeFavorites");
                 });
 
             modelBuilder.Entity("EntityLayer.WorkTime", b =>

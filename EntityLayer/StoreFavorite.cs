@@ -16,6 +16,7 @@ namespace EntityLayer
         public int StoreId { get; set; }
         public virtual Store Store { get; set; }
         // relationship with user
-
+        public int userId { get; set; }
+        public virtual User User { get; set; }
     }
 }

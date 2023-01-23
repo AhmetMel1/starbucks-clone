@@ -5,7 +5,6 @@ using EntityLayer;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
-using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -14,9 +13,9 @@ namespace StarbucksProje.Controllers
         ProductSizeManager psm=new ProductSizeManager(new EfProductSizeRepository());
         ProductManager pm=new ProductManager(new EfProductRepository());
         SizeManager sm=new SizeManager(new EfSizeRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index()
         {
-            var pruductSizes=psm.productSizeList().ToPagedList(page, pageSize);
+            var pruductSizes=psm.productSizeList();
             return View(pruductSizes);
         }
         [HttpGet]
@@ -44,6 +43,7 @@ namespace StarbucksProje.Controllers
                 ProductSizeModel model = new ProductSizeModel();
                 model.productModel = pm.productList();
                 model.sizeModel = sm.sizeList();
+                model.productSizeModel = productSize;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);

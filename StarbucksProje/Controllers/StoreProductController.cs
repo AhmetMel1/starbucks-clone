@@ -29,14 +29,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddStoreProduct(StoreProduct storeProduct)
         {
             spm.StoreProductUpdate(storeProduct);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreProduct");
         }
         public IActionResult DeleteStoreProduct(int id)
         {
             StoreProduct storeProduct=spm.StoreProductGetById(id);
             storeProduct.StoreProductDeleted=true;
             spm.StoreProductUpdate(storeProduct);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreProduct");
         }
         [HttpGet]
         public IActionResult UpdateStoreProduct(int id)
@@ -51,7 +51,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateStoreProduct(StoreProduct storeProduct)
         {
             spm.StoreProductUpdate(storeProduct);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreProduct");
         }
     }
 }

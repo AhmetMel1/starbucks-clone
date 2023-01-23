@@ -40,6 +40,7 @@ namespace StarbucksProje.Controllers
             {
                 CustomizationOptionModel model = new CustomizationOptionModel();
                 model.optionModel = om.optionList();
+                model.customizationModel = customization;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);

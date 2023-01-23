@@ -30,31 +30,13 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Admins",
-                columns: table => new
-                {
-                    adminId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    adminName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    adminEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    adminPassword = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    adminProfilPhoto = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    adminType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    adminDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admins", x => x.adminId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CargoProcesses",
                 columns: table => new
                 {
                     cargoProcessId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     cargoStatus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    trackingNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    trackingNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     cargoProcessDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -124,7 +106,7 @@ namespace DataAccessLayer.Migrations
                     PropertyId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PropertyName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PropertyMode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PropertyMode = table.Column<bool>(type: "bit", nullable: false),
                     PropertyDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -253,26 +235,6 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StoreFavorites",
-                columns: table => new
-                {
-                    StoreFavoriteId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StoreFavoriteDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    StoreId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StoreFavorites", x => x.StoreFavoriteId);
-                    table.ForeignKey(
-                        name: "FK_StoreFavorites_Stores_StoreId",
-                        column: x => x.StoreId,
-                        principalTable: "Stores",
-                        principalColumn: "StoreId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "StoreProperties",
                 columns: table => new
                 {
@@ -323,6 +285,33 @@ namespace DataAccessLayer.Migrations
                         column: x => x.workTimeId,
                         principalTable: "WorkTimes",
                         principalColumn: "workTimeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StoreFavorites",
+                columns: table => new
+                {
+                    StoreFavoriteId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StoreFavoriteDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    StoreId = table.Column<int>(type: "int", nullable: false),
+                    userId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StoreFavorites", x => x.StoreFavoriteId);
+                    table.ForeignKey(
+                        name: "FK_StoreFavorites_Stores_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Stores",
+                        principalColumn: "StoreId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StoreFavorites_Users_userId",
+                        column: x => x.userId,
+                        principalTable: "Users",
+                        principalColumn: "userId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -580,6 +569,11 @@ namespace DataAccessLayer.Migrations
                 column: "StoreId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StoreFavorites_userId",
+                table: "StoreFavorites",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StoreOpeningHours_StoreId",
                 table: "StoreOpeningHours",
                 column: "StoreId");
@@ -619,9 +613,6 @@ namespace DataAccessLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Admins");
-
-            migrationBuilder.DropTable(
                 name: "Favorites");
 
             migrationBuilder.DropTable(
@@ -652,10 +643,10 @@ namespace DataAccessLayer.Migrations
                 name: "ProductSizes");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Customizations");
 
             migrationBuilder.DropTable(
-                name: "Customizations");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "WorkTimes");
@@ -673,10 +664,10 @@ namespace DataAccessLayer.Migrations
                 name: "Sizes");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Options");
 
             migrationBuilder.DropTable(
-                name: "Options");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Categories");

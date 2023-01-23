@@ -4,7 +4,6 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
-using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -12,9 +11,9 @@ namespace StarbucksProje.Controllers
     {
         OptionManager om = new OptionManager(new EfOptionRepository());
         OptionTypeManager otm = new OptionTypeManager(new EfOptionTypeRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index()
         {
-            var options=om.optionList().ToPagedList(page,pageSize);
+            var options=om.optionList();
             return View(options);
         }
         [HttpGet]
@@ -41,6 +40,7 @@ namespace StarbucksProje.Controllers
                 OptionListAndTypeModel model = new OptionListAndTypeModel();
                 model.optionListModel = om.optionList();
                 model.optionTypeModel = otm.optionTypeList();
+                model.optionModel = option;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);

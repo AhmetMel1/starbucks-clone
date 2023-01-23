@@ -9,8 +9,6 @@ namespace EntityLayer
 {
     public class User
     {
-        public string userName;
-
         [Key]
         public int userId { get; set; }
         [StringLength(50)]
@@ -31,7 +29,9 @@ namespace EntityLayer
 
         //Relationship with favorite 
         public virtual ICollection<Favorite> favorites { get; set; }
+        //Relationship with StoreFavorite 
+        public virtual ICollection<StoreFavorite> storeFavorites { get; set; }
 
-       
+
     }
 }

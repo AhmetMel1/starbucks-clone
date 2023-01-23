@@ -13,7 +13,7 @@ namespace EntityLayer
         public int cargoProcessId { get; set; }
         [StringLength(50)] 
         public string cargoStatus { get; set; }
-        [StringLength(50)]
+        [StringLength(13)]
         public string trackingNumber { get; set; }
         public bool cargoProcessDeleted { get; set; }
         //Relationship with Order 

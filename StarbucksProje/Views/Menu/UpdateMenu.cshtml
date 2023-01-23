@@ -25,13 +25,16 @@
                         <option value="null">Itself Parent</option>
                         @foreach (var item in Model.menuParentModel)
                         {
-                            @if(item.menuId==Model.menuModel.menuParentId)
+                            if (item.menuId != Model.menuModel.menuId)
                             {
-                                <option value="@item.menuId" selected>@item.menuName</option>
-                            }
-                            else
-                            {
-                                <option value="@item.menuId">@item.menuName</option>   
+                                @if (item.menuId == Model.menuModel.menuParentId)
+                                {
+                                    <option value="@item.menuId" selected>@item.menuName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.menuId">@item.menuName</option>
+                                }
                             }
                         }
                     </select>

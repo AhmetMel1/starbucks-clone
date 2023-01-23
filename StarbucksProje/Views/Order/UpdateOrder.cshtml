@@ -31,7 +31,8 @@
                 </div>
                 <div class="form-group">
                     <label>Order Date</label>
-                    <input type="text" class="form-control" placeholder="Order Date" name="orderDate" value="@Model.orderModel.orderDate">
+                    <input type="date" class="form-control" placeholder="Order Date" name="orderDate" value="@Model.orderModel.orderDate.Date.ToString("yyyy-MM-dd")">
+                    @Html.ValidationMessage("cardAddedDate","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Order Quantity</label>
@@ -40,8 +41,8 @@
                 </div>
                 <div class="form-group">
                     <label>Card Added Date</label>
-                    <input type="text" class="form-control" placeholder="Card Added Date" name="cardAddedDate" value="@Model.orderModel.cardAddedDate">
-                    @Html.ValidationMessage("CardAddedDate","",new{@class="text-danger"})
+                    <input type="date" class="form-control" placeholder="Card Added Date" name="cardAddedDate" value="@Model.orderModel.cardAddedDate.Date.ToString("yyyy-MM-dd")">
+                    @Html.ValidationMessage("cardAddedDate","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>User Name</label>
@@ -50,11 +51,11 @@
                         {
                             @if (item.userId == Model.orderModel.userId)
                             {
-                                <option value="@item.userId" selected>@item.name</option>
+                                <option value="@item.userId" selected>@item.name @item.surname</option>
                             }
                             else
                             {
-                                <option value="@item.userId">@item.name</option>
+                                <option value="@item.userId">@item.name @item.surname</option>
                             }
                         }
                     </select>

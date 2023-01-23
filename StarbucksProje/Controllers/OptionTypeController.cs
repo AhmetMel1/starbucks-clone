@@ -1,18 +1,41 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validaitons;
+using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
-using X.PagedList;
+using StarbucksProje.PagedList;
 
 namespace StarbucksProje.Controllers
 {
     public class OptionTypeController : Controller
     {
         OptionTypeManager otm = new OptionTypeManager(new EfOptionTypeRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page=1,string searchText="")
         {
-            var optionTypes = otm.optionTypeList().ToPagedList(page,pageSize);
+            int pageSize = 2;
+            Context c = new Context();
+            Pager pager;
+            List<OptionType> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.OptionTypes.Where(optionType => optionType.optionTypeName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.OptionTypes.Where(optionType => optionType.optionTypeName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.OptionTypes.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.OptionTypes.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "Index";
+            ViewBag.contrName = "OptionType";
+            ViewBag.searchText = searchText;
+            var optionTypes = otm.optionTypeList();
             return View(optionTypes);
         }
         [HttpGet]

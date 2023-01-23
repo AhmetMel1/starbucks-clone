@@ -28,6 +28,12 @@ namespace BusinessLayer.Validaitons
             RuleFor(user => user.phoneNumber).NotEmpty();
             RuleFor(user => user.phoneNumber).MaximumLength(11).WithMessage("A maximum of 11 characters can be entered.");
             RuleFor(user => user.phoneNumber).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
+            //Rule for Birthday
+            RuleFor(user => user.birthday).Must(BeAValidDate).NotEmpty();
+            bool BeAValidDate(DateTime date)
+            {
+                return !date.Equals(default(DateTime));
+            }
         }  
     }
 }

@@ -43,11 +43,11 @@
                         {
                             if (item.userId == storeFavorite.StoreId)
                             {
-                                        <option value="@item.userId" selected>@item.userName</option>
+                                <option value="@item.userId" selected>@item.name @item.surname</option>
                             }
                             else
                             {
-                                        <option value="@item.userId">@item.userName</option>
+                                        <option value="@item.userId">@item.name @item.surname</option>
                             }
                         }
                     </select>

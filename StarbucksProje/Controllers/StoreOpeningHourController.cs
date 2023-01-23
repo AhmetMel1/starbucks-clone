@@ -22,20 +22,21 @@ namespace StarbucksProje.Controllers
             StoreOpeningHourModel model = new StoreOpeningHourModel();
             model.workTimeModel = wtm.WorkTimeList();
             model.storeModel = sm.storeList();
+            model.storeOpeningHourModel = new StoreOpeningHour();
             return View(model);
         }
         [HttpPost]
         public IActionResult AddStoreOpeningHour(StoreOpeningHour storeOpeningHour)
         {
             shm.StoreOpeningHourInsert(storeOpeningHour);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreOpeningHour");
         }
-        public IActionResult DeletetoreOpeningHour(int id)
+        public IActionResult DeleteStoreOpeningHour(int id)
         {
             var storeOpeningHour = shm.StoreOpeningHourGetById(id);
             storeOpeningHour.StoreOpeningHourDeleted = true;
             shm.StoreOpeningHourUpdate(storeOpeningHour);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreOpeningHour");
         }
         [HttpGet]
         public IActionResult UpdateStoreOpeningHour(int id)
@@ -50,7 +51,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateStoreOpeningHour(StoreOpeningHour storeOpeningHour)
         {
             shm.StoreOpeningHourUpdate(storeOpeningHour);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreOpeningHour");
         }
     }
 }
