@@ -13,7 +13,7 @@ namespace StarbucksProje.Controllers
         OptionTypeManager otm = new OptionTypeManager(new EfOptionTypeRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
-            int pageSize = 2;
+            int pageSize = 3;
             Context c = new Context();
             Pager pager;
             List<OptionType> data;
@@ -28,13 +28,12 @@ namespace StarbucksProje.Controllers
                 data = c.OptionTypes.Skip((page - 1) * pageSize).Take(pageSize).ToList();
                 itemCounts = c.OptionTypes.ToList().Count;
             }
-            //var firmalar = fm.firmaListele().ToPagedList(page, pageSize);
 
             pager = new Pager(pageSize, itemCounts, page);
 
             ViewBag.pager = pager;
-            ViewBag.actionName = "Index";
-            ViewBag.contrName = "Firma";
+            ViewBag.actionName = "option-type-list";
+            ViewBag.contrName = "OptionType";
             ViewBag.searchText = searchText;
             return View(data);
         }

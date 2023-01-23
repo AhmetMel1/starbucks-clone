@@ -3,17 +3,40 @@ using Microsoft.AspNetCore.Mvc;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using BusinessLayer.Validaitons;
+using DataAccessLayer.ConCreate;
+using StarbucksProje.PagedList;
 
 namespace StarbucksProje.Controllers
 {
 	public class SizeController : Controller
 	{
 		SizeManager sm = new SizeManager(new EfSizeRepository());
-		public IActionResult Index()
-		{
-			var sizes = sm.sizeList();
-			return View(sizes);
-		}
+        public IActionResult Index(int page = 1, string searchText = "")
+        {
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<Size> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Sizes.Where(size => size.sizeName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Sizes.Where(size => size.sizeName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Sizes.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Sizes.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "sizes-list";
+            ViewBag.contrName = "Size";
+            ViewBag.searchText = searchText;
+            return View(data);
+        }
         [HttpGet]
         public IActionResult AddSize()
         {

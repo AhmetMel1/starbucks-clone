@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using StarbucksProje.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -11,10 +13,31 @@ namespace StarbucksProje.Controllers
         ProductCustomizationManager pcm = new ProductCustomizationManager(new EfProductCustomizationRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
         CustomizationManager cm = new CustomizationManager(new EfCustomizationRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var productCustomizations=pcm.productCustomizationList();
-            return View(productCustomizations);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<ProductCustomization> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.ProductCustomizations.Where(productCustomization => productCustomization.product.productName.Contains(searchText) ||productCustomization.customization.customizationName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.ProductCustomizations.Where(productCustomization => productCustomization.product.productName.Contains(searchText) || productCustomization.customization.customizationName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.ProductCustomizations.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.ProductCustomizations.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "product-customization-list";
+            ViewBag.contrName = "ProductCustomization";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddProductCustomization()

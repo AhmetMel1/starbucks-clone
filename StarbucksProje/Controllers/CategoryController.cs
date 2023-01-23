@@ -12,18 +12,30 @@ namespace StarbucksProje.Controllers
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int page = 1,string searchText="")
         {
-            int pageSize = 2;
+            int pageSize = 3;
             Context c = new Context();
             Pager pager;
+            List<Category> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Categories.Where(category => category.categoryName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Categories.Where(category => category.categoryName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Categories.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Categories.ToList().Count;
+            }
 
-            var itemCounts = c.Categories.ToList().Count;
             pager = new Pager(pageSize, itemCounts, page);
-            var data = c.Categories.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
             ViewBag.pager = pager;
-            ViewBag.actionName = "Index";
+            ViewBag.actionName = "category-list";
             ViewBag.contrName = "Category";
+            ViewBag.searchText = searchText;
             return View(data);
         }
         [HttpGet]

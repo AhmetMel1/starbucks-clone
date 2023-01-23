@@ -51,8 +51,8 @@
 </div>
 </div>
 <!--Pager-->
-<div id="ListContainer" style="color:white;display:inline-block;position:relative;top:50%;left:50%;transform:translate(-50%,-50%);">
-    <partial name="partialcustompager" model="@pager" />
+<div id="Pager"class=" d-flex justify-content-center">
+    <partial name="PartialCustomPager" model="@pager" />
 </div>
 
 <!-- Modal -->
@@ -90,8 +90,8 @@
     <!-- Topbar Search -->
     <li class="nav-item nav-search d-none d-lg-block">
         <div class="input-group">
-            <form asp-controller="OptionType" asp-action="Index">
-            <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
+            <form asp-controller="OptionType" asp-action="option-type-list">
+            <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search" name="searchText" value="@searchText">
             </form>
         </div>
     </li>

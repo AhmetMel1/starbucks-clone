@@ -5,6 +5,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var pager = (Pager)ViewBag.pager;
+        var searchText = ViewBag.searchText;
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
@@ -62,8 +63,9 @@
 </div>
 </div>
 
-<div id="ListContainer" style="color:white;display:inline-block;position:relative;top:50%;left:50%;transform:translate(-50%,-50%);">
-    <partial name="partialcustompager" model="@pager" />
+<!--Pager-->
+<div id="Pager" class=" d-flex justify-content-center">
+    <partial name="PartialCustomPager" model="@pager" />
 </div>
 <!-- Modal -->
 @*#decisionPopup Model*@
@@ -100,8 +102,8 @@
     <!-- Topbar Search -->
     <li class="nav-item nav-search d-none d-lg-block">
         <div class="input-group">
-            <form asp-controller="OptionType" asp-action="Index">
-                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
+            <form asp-controller="OptionType" asp-action="category-list">
+                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search" name="searchText" value="@searchText">
             </form>
         </div>
     </li>

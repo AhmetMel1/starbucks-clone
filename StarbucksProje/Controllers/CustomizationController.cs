@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validaitons;
+using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using StarbucksProje.Models;
+using StarbucksProje.PagedList;
 using X.PagedList;
 
 namespace StarbucksProje.Controllers
@@ -13,10 +15,31 @@ namespace StarbucksProje.Controllers
     {
         CustomizationManager cm = new CustomizationManager(new EfCustomizationRepository());
         OptionManager om= new OptionManager(new EfOptionRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var customizations = cm.customizationList().ToPagedList(page,pageSize);
-            return View(customizations);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<Customization> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Customizations.Where(customization => customization.customizationName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Customizations.Where(customization => customization.customizationName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Customizations.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Customizations.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "customizations-list";
+            ViewBag.contrName = "Customization";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddCustomization() 
