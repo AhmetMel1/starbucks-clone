@@ -18,7 +18,8 @@ namespace StarbucksProje.Controllers
         [HttpGet]
         public IActionResult AddAddress()
         {
-            return View();
+            var address=new Address();
+            return View(address);
         }
         [HttpPost]
         public IActionResult AddAddress(Address address)

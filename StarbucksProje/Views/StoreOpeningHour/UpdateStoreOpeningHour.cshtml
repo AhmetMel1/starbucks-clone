@@ -42,11 +42,11 @@
                         {
                             if (item.workTimeId == storeOpeningHour.workTimeId)
                             {
-                                <option value="@item.workTimeId" selected>@item.openingTime</option>
+                                <option value="@item.workTimeId" selected>@item.openingTime.ToShortTimeString() - @item.closingTime.ToShortTimeString()</option>
                             }
                             else
                             {
-                                <option value="@item.workTimeId">@item.openingTime</option>
+                                <option value="@item.workTimeId">@item.openingTime.ToShortTimeString() - @item.closingTime.ToShortTimeString()</option>
                             }
                         }
                     </select>

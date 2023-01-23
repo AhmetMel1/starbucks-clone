@@ -15,11 +15,7 @@ namespace BusinessLayer.Validaitons
             // rulefor property name
             RuleFor(property => property.PropertyName).NotEmpty().WithMessage("Empty cannot be passed");
             RuleFor(property => property.PropertyName).MaximumLength(50).WithMessage("A maximum of 50 characters must be entered");
-            RuleFor(property => property.PropertyName).MinimumLength(5).WithMessage("A minimum of 5 characters must be entered");
-
-            //rulefor property mode
-            RuleFor(property => property.PropertyMode).NotEmpty().WithMessage("Property mode Empty cannot be passed ");
-
+            RuleFor(property => property.PropertyName).MinimumLength(3).WithMessage("A minimum of 3 characters must be entered");
         }
     }
 }

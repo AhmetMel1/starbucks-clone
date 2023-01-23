@@ -29,14 +29,14 @@ namespace StarbucksProje.Controllers
         public IActionResult AddStoreFavorite(StoreFavorite storeFavorite)
         {
             sfm.StoreFavoriteInsert(storeFavorite);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreFavorite");
         }
         public IActionResult DeleteStoreFavorite(int id)
         {
             var storeFavorite=sfm.StoreFavoriteGetById(id);
             storeFavorite.StoreFavoriteDeleted=true;
             sfm.StoreFavoriteUpdate(storeFavorite);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreFavorite");
 
         }
         [HttpGet]
@@ -52,7 +52,7 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateStoreFavorite(StoreFavorite storeFavorite)
         {
             sfm.StoreFavoriteUpdate(storeFavorite);
-            return RedirectToAction("Index");
+            return RedirectToAction("ListStoreFavorite");
         }
     }
 }

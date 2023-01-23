@@ -14,7 +14,14 @@ namespace BusinessLayer.Validaitons
         {
             //Rule for orderQuantity
             RuleFor(order => order.orderQuantity).NotEmpty();
-            
+            //Rule for OrderDate
+            RuleFor(order => order.orderDate).Must(BeAValidDate).NotEmpty();
+            //Rule for CardAddedDate
+            RuleFor(order => order.cardAddedDate).Must(BeAValidDate).NotEmpty();
+            bool BeAValidDate(DateTime date)
+            {
+                return !date.Equals(default(DateTime));
+            }
         } 
     }
 }

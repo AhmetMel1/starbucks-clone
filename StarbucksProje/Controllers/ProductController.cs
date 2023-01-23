@@ -5,7 +5,6 @@ using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using StarbucksProje.Models;
-using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -13,9 +12,9 @@ namespace StarbucksProje.Controllers
     {
         ProductManager pm = new ProductManager(new EfProductRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index()
         {
-            var products=pm.productList().ToPagedList(page, pageSize);
+            var products=pm.productList();
             return View(products);
         }
         [HttpGet]
@@ -40,6 +39,7 @@ namespace StarbucksProje.Controllers
             {
                 CategoryProductModel model = new CategoryProductModel();
                 model.categoryModel = cm.categoryList();
+                model.productModel = product;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);

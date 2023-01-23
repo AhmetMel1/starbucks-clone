@@ -3,7 +3,6 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
-using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -12,9 +11,9 @@ namespace StarbucksProje.Controllers
         ProductCustomizationManager pcm = new ProductCustomizationManager(new EfProductCustomizationRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
         CustomizationManager cm = new CustomizationManager(new EfCustomizationRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index()
         {
-            var productCustomizations=pcm.productCustomizationList().ToPagedList(page, pageSize);
+            var productCustomizations=pcm.productCustomizationList();
             return View(productCustomizations);
         }
         [HttpGet]

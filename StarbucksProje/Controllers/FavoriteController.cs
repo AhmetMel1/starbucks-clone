@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -22,13 +23,31 @@ namespace StarbucksProje.Controllers
             FavoriteUserProductModel model = new FavoriteUserProductModel();
             model.productModel=pm.productList();
             model.userModel=um.userList();
+            model.favoriteModel = new Favorite();
             return View(model);
         }
         [HttpPost]
         public IActionResult AddFavorite(Favorite favorite)
         {
-            fm.favoriteInsert(favorite);
-            return RedirectToAction("Index");
+            FavoriteValidator validations = new FavoriteValidator();
+            var result = validations.Validate(favorite);
+            if (result.IsValid)
+            {
+                fm.favoriteInsert(favorite);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                FavoriteUserProductModel model = new FavoriteUserProductModel();
+                model.productModel = pm.productList();
+                model.userModel = um.userList();
+                model.favoriteModel = favorite;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
         public IActionResult DeleteFavorite(int id)
         {
@@ -49,8 +68,25 @@ namespace StarbucksProje.Controllers
         [HttpPost]
         public IActionResult UpdateFavorite(Favorite favorite)
         {
-            fm.favoriteUpdate(favorite);
-            return RedirectToAction("Index");
+            FavoriteValidator validations = new FavoriteValidator();
+            var result = validations.Validate(favorite);
+            if (result.IsValid)
+            {
+                fm.favoriteUpdate(favorite);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                FavoriteUserProductModel model = new FavoriteUserProductModel();
+                model.productModel = pm.productList();
+                model.userModel = um.userList();
+                model.favoriteModel = favorite;
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
         }
     }
 }

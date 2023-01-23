@@ -28,7 +28,7 @@ namespace BusinessLayer.Concrete
 
         public User UserGetByName(string name)
         {
-            return userDal.get(x => x.userName == name);
+            return userDal.get(x => x.name == name);
         }
 
         public void userInsert(User user)

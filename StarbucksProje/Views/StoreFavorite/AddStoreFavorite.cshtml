@@ -31,7 +31,7 @@
                     <select class="form-control" name="userId">
                         @foreach (var item in user)
                         {
-                            <option value="@item.userId">@item.userName</option>
+                            <option value="@item.userId">@item.name @item.surname</option>
                         }
                     </select>
                 </div>
