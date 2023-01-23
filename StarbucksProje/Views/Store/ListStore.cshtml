@@ -82,4 +82,14 @@
     });
 </script>
 
+@section searchbar{
+    <!-- Topbar Search -->
+    <li class="nav-item nav-search d-none d-lg-block">
+        <div class="input-group">
+            <form asp-controller="OptionType" asp-action="Index">
+                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
+            </form>
+        </div>
+    </li>
+}
 
