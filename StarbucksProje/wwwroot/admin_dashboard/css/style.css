@@ -20381,6 +20381,11 @@ code {
   min-width: 100%;
 }
 
+.form_color {
+  background-color: #1e3932;
+  opacity: 1;
+}
+
 @media (min-width: 576px) {
   .border-right-sm {
     border-right: 1px solid #f3f3f3;
@@ -22161,7 +22166,7 @@ dl li {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 65px);
-  background: linear-gradient(#2a1c5a, #4b3a6e);
+  background: #1e3932;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
   padding: 0;
@@ -22308,8 +22313,8 @@ dl li {
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link {
-  background: #f3eaf6;
-  color: #2a1c5a;
+  background: #d4e9e2;
+  color: #00754a;
 }
 
 .sidebar .nav.sub-menu {
@@ -22381,7 +22386,7 @@ dl li {
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;
   -ms-transition: background 0.25s ease;
-  background: url("../images/other/coffe-nav.jpg") center center no-repeat;
+  background: url("../images/other/sb.jpg") center center no-repeat;
   background-size: cover;
   height: 262px;
   width: auto;
@@ -22790,4 +22795,5 @@ dl li {
     padding-left: 20px;
   }
 }
+
 /*# sourceMappingURL=maps/style.css.map */

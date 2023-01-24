@@ -2,7 +2,7 @@
 
 .sidebar {
     min-height: calc(100vh - #{$navbar-height});
-    background: linear-gradient(#2a1c5a, #4b3a6e);
+    background: #1e3932;
     font-family: $type1;
     font-weight: 600;
     padding: 0;
@@ -63,10 +63,10 @@
                         }
 
                         &:hover {
-                          > .menu-icon {
-                               color: #2a1c5a; //$sidebar-dark-menu-hover-color;
+                            > .menu-icon {
+                                color: #2a1c5a; //$sidebar-dark-menu-hover-color;
                             }
-                       }
+                        }
                     }
 
 
@@ -147,8 +147,8 @@
 
                 &:hover {
                     > .nav-link {
-                        background: #f3eaf6; //$sidebar-dark-menu-hover-bg;
-                        color: #2a1c5a; //$sidebar-dark-menu-hover-color;
+                        background: #d4e9e2; //$sidebar-dark-menu-hover-bg;
+                        color: #00754a; //$sidebar-dark-menu-hover-color;
                     }
                 }
             }
