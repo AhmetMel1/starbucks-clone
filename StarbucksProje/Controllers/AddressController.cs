@@ -4,16 +4,38 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using StarbucksProje.PagedList;
 
 namespace StarbucksProje.Controllers
 {
     public class AddressController : Controller
     {
         AddressManager addrsm = new AddressManager(new EfAddressRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var Address = addrsm.addresslist();
-            return View(Address);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<Address> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Address.Where(address => address.addressName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Address.Where(address => address.addressName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Address.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Address.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "address-list";
+            ViewBag.contrName = "Address";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddAddress()

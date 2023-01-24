@@ -4,6 +4,7 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using StarbucksProje.PagedList;
 using System;
 
 namespace StarbucksProje.Controllers
@@ -15,10 +16,31 @@ namespace StarbucksProje.Controllers
         UserManager um = new UserManager(new EfUserRepository());
         ProductSizeManager psm = new ProductSizeManager(new EfProductSizeRepository());
         CargoProccessManager cpm = new CargoProccessManager(new EfCargoProccessRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var Order = om.orderList();
-            return View(Order);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<Order> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Order.Where(order => order.orderName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Order.Where(order => order.orderName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Order.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Order.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "order-list";
+            ViewBag.contrName = "Order";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddOrder()

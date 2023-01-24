@@ -1,8 +1,11 @@
 ﻿@using EntityLayer
+@using StarbucksProje.PagedList;
 @model List<Order>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
 }
 
 <div class="col-11 grid-margin stretch-card">
@@ -67,6 +70,10 @@
     </div>
 </div>
 </div>
+<!--Pager-->
+<div id="Pager" class=" d-flex justify-content-center">
+    <partial name="PartialCustomPager" model="@pager" />
+</div>
 <!-- Modal -->
 @*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
@@ -103,8 +110,8 @@
     <!-- Topbar Search -->
     <li class="nav-item nav-search d-none d-lg-block">
         <div class="input-group">
-            <form asp-controller="OptionType" asp-action="Index">
-                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
+            <form asp-controller="Order" asp-action="order-list">
+                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search" name="searchText" value="@searchText">
             </form>
         </div>
     </li>

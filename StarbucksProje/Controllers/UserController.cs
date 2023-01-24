@@ -4,6 +4,7 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using StarbucksProje.PagedList;
 using System;
 
 namespace StarbucksProje.Controllers
@@ -12,10 +13,31 @@ namespace StarbucksProje.Controllers
     {
         AddressManager adrsm = new AddressManager(new EfAddressRepository());
         UserManager um= new UserManager(new EfUserRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var users = um.userList();
-            return View(users);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<User> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.User.Where(user => user.userName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.User.Where(user => user.userName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.User.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.User.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "user-list";
+            ViewBag.contrName = "User";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddUser()

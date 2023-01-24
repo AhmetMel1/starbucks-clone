@@ -4,6 +4,7 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
+using StarbucksProje.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -12,10 +13,31 @@ namespace StarbucksProje.Controllers
         FavoriteManager fm = new FavoriteManager(new EfFavoriteRepository());
         UserManager um= new UserManager(new EfUserRepository());
         ProductManager pm= new ProductManager(new EfProductRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var Favorite = fm.favoriteList();
-            return View(Favorite);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<Favorite> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Favorite.Where(favorite => favorite.favoriteName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Favorite.Where(favorite => favorite.favoriteName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Favorite.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Favorite.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "favorite-list";
+            ViewBag.contrName = "Favorite";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddFavorite()

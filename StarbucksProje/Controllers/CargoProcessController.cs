@@ -3,6 +3,7 @@ using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using StarbucksProje.PagedList;
 using System.Net;
 
 namespace StarbucksProje.Controllers
@@ -10,10 +11,31 @@ namespace StarbucksProje.Controllers
     public class CargoProcessController : Controller
     {
         CargoProccessManager cpm = new CargoProccessManager(new EfCargoProccessRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var cargoProceceses=cpm.cargoProccessList();
-            return View(cargoProceceses);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<CargoProcess> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.CargoProcess.Where(cargoProcess => cargoProcess.cargoProcessName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.CargoProcess.Where(cargoProcess => cargoProcess.cargoProcessName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.CargoProcess.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.CargoProcess.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "cargoProcess-list";
+            ViewBag.contrName = "CargoProcess";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddCargoProcess() 
