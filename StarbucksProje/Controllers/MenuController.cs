@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validaitons;
+using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -22,13 +23,13 @@ namespace StarbucksProje.Controllers
             var itemCounts = 0;
             if (searchText != "" && searchText != null)
             {
-                data = c.Menu.Where(menu => menu.menuName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                itemCounts = c.Menu.Where(menu => menu.menuName.Contains(searchText)).ToList().Count;
+                data = c.Menus.Where(menu => menu.menuName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Menus.Where(menu => menu.menuName.Contains(searchText)).ToList().Count;
             }
             else
             {
-                data = c.Menu.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                itemCounts = c.Menu.ToList().Count;
+                data = c.Menus.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Menus.ToList().Count;
             }
 
             pager = new Pager(pageSize, itemCounts, page);
