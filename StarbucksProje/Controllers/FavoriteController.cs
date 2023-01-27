@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validaitons;
+using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -22,19 +23,19 @@ namespace StarbucksProje.Controllers
             var itemCounts = 0;
             if (searchText != "" && searchText != null)
             {
-                data = c.Favorite.Where(favorite => favorite.favoriteName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                itemCounts = c.Favorite.Where(favorite => favorite.favoriteName.Contains(searchText)).ToList().Count;
+                data = c.Favorites.Where(favorite => favorite.user.name.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Favorites.Where(favorite => favorite.user.name.Contains(searchText)).ToList().Count;
             }
             else
             {
-                data = c.Favorite.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                itemCounts = c.Favorite.ToList().Count;
+                data = c.Favorites.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Favorites.ToList().Count;
             }
 
             pager = new Pager(pageSize, itemCounts, page);
 
             ViewBag.pager = pager;
-            ViewBag.actionName = "favorite-list";
+            ViewBag.actionName = "favorites-list";
             ViewBag.contrName = "Favorite";
             ViewBag.searchText = searchText;
             return View(data);
