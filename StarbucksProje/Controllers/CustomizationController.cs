@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using StarbucksProje.Models;
 using StarbucksProje.PagedList;
-using X.PagedList;
+
 
 namespace StarbucksProje.Controllers
 {
