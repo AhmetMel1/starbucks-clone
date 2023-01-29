@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validaitons;
+using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using StarbucksProje.PagedList;
 using System.Net;
 
 namespace StarbucksProje.Controllers
@@ -11,10 +13,31 @@ namespace StarbucksProje.Controllers
     public class StoreController : Controller
     {
         StoreManager sm = new StoreManager(new EfStoreRepository());
-        public IActionResult ListStore()
+        public IActionResult ListStore(int page = 1, string searchText = "")
         {
-            var Stories = sm.storeList();
-            return View(Stories);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<Store> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Stores.Where(store => store.StoreName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Stores.Where(store => store.StoreName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Stores.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Stores.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "store-list";
+            ViewBag.contrName = "Store";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddStore()

@@ -3,6 +3,8 @@ using DataAccessLayer.ConCreate.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
 using EntityLayer;
+using DataAccessLayer.ConCreate;
+using StarbucksProje.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -12,10 +14,31 @@ namespace StarbucksProje.Controllers
         PropertyManager pm = new PropertyManager(new EfPropertyRepository());
         StoreManager sm = new StoreManager(new EfStoreRepository());
 
-        public IActionResult ListStoreProperty()
+        public IActionResult ListStoreProperty(int page = 1, string searchText = "")
         {
-            var StoreProperty = spm.StorePropertyList();
-            return View(StoreProperty);
+            int pageSize = 3;
+            Context c = new Context();
+            Pager pager;
+            List<StoreProperty> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.StoreProperties.Where(storeProperty => storeProperty.Store.StoreName.Contains(searchText) || storeProperty.Property.PropertyName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.StoreProperties.Where(storeProperty => storeProperty.Store.StoreName.Contains(searchText) || storeProperty.Property.PropertyName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.StoreProperties.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.StoreProperties.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "user-list";
+            ViewBag.contrName = "User";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         [HttpGet]
         public IActionResult AddStoreProperty()
