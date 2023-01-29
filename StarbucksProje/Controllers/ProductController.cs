@@ -3,6 +3,7 @@ using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using EntityLayer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using StarbucksProje.Models;
@@ -12,6 +13,12 @@ namespace StarbucksProje.Controllers
 {
     public class ProductController : Controller
     {
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public ProductController(IWebHostEnvironment webHostEnvironment)
+        {
+            this.webHostEnvironment = webHostEnvironment;
+        }
         ProductManager pm = new ProductManager(new EfProductRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index(int page = 1, string searchText = "")
@@ -56,6 +63,7 @@ namespace StarbucksProje.Controllers
             var result = validations.Validate(product);
             if (result.IsValid)
             {
+                product.productLogoUrl = FileUpload(product);
                 pm.productInsert(product);
                 int page = (int)TempData["page"];
                 return RedirectToAction("products-list", new { page, searchText = "" });
@@ -94,6 +102,7 @@ namespace StarbucksProje.Controllers
             var result = validations.Validate(product);
             if (result.IsValid)
             {
+                product.productLogoUrl = FileUpload(product);
                 pm.productUpdate(product);
                 int page = (int)TempData["page"];
                 return RedirectToAction("products-list", new { page, searchText = "" });
@@ -109,6 +118,23 @@ namespace StarbucksProje.Controllers
                 }
                 return View(model);
             }
+        }
+        private string FileUpload(Product product)
+        {
+            string uniquefileName = "";
+            if (product.imgFile != null)
+            {
+                uniquefileName = Guid.NewGuid().ToString() + "_" + product.imgFile.FileName;
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "product_images");
+                string filePath = Path.Combine(uploadfolder, uniquefileName);
+
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    product.imgFile.CopyTo(stream);
+                }
+            }
+            return uniquefileName;
         }
     }
 }

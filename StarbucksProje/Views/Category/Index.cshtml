@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var pager = (Pager)ViewBag.pager;
-        var searchText = ViewBag.searchText;
+    var searchText = ViewBag.searchText;
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
@@ -29,7 +29,7 @@
                 {
                     <tr>
                         <td>@item.categoryName</td>
-                        <td>@item.categoryLogoUrl</td>
+                        <td><img src="~/category_images/@item.categoryLogoUrl" style="width:100%;border-radius:5px;" /></td>
                         @if(@item.categoryParentId==null)
                         {
                         <td>Itself Parent</td>

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +32,7 @@ namespace EntityLayer
         public virtual ICollection<Favorite>favorites{ get; set; }
         // Relationship with StoreProduct
         public virtual ICollection<StoreProduct> storeProducts { get; set; }
-
+        [NotMapped]
+        public IFormFile imgFile { get; set; }
     }
 }

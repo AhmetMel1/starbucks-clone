@@ -21,7 +21,7 @@ namespace BusinessLayer.Validaitons
             RuleFor(product => product.productDescription).MaximumLength(200).WithMessage("A maximum of 200 characters can be entered.");
             RuleFor(product => product.productDescription).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
             //Rule for ProductLogoUrl
-            RuleFor(product => product.productLogoUrl).NotEmpty();
+            RuleFor(product => product.imgFile).NotEmpty();
         }
     }
 }

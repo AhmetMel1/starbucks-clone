@@ -11,7 +11,7 @@
             <p class="card-description">
                 Category Update
             </p>
-            <form class="forms-sample" action="/Category/UpdateCategory" method="post">
+            <form class="forms-sample" action="/Category/UpdateCategory" method="post"enctype="multipart/form-data">
                 <input type="hidden" class="form-control" name="categoryId" value="@Model.categoryModel.categoryId">
                 <div class="form-group">
                     <label>Category Name</label>
@@ -20,8 +20,8 @@
                 </div>
                 <div class="form-group">
                     <label>Category Logo</label>
-                    <input type="file" class="form-control" name="categoryLogoUrl" value="@Model.categoryModel.categoryLogoUrl">
-                    @Html.ValidationMessage("categoryLogoUrl","",new{@class="text-danger"})
+                    <input type="file" class="form-control" name="imgFile">
+                    @Html.ValidationMessage("imgFile","",new{@class="text-danger"})
                 </div>
                 <label>Parent Category Name</label>
                 <div class="form-group">

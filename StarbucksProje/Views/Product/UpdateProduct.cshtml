@@ -14,7 +14,7 @@
             <p class="card-description">
                 Product Update
             </p>
-            <form class="forms-sample" action="/Product/UpdateProduct" method="post">
+            <form class="forms-sample" action="/Product/UpdateProduct" method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" placeholder="Product Name" name="productId" value="@product.productId">
                 <div class="form-group">
                     <label>Product Name</label>
@@ -23,8 +23,8 @@
                 </div>
                 <div class="form-group">
                     <label>Product Logo</label>
-                    <input type="file" class="form-control" name="productLogoUrl" value="@product.productLogoUrl">
-                        @Html.ValidationMessage("productLogoUrl","",new{@class="text-danger"})
+                    <input type="file" class="form-control" name="imgFile">
+                    @Html.ValidationMessage("imgFile","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Product Description</label>

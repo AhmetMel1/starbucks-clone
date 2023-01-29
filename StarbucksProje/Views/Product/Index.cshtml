@@ -30,7 +30,7 @@
                 {
                     <tr>
                         <td>@item.productName</td>
-                        <td>@item.productLogoUrl</td>
+                        <td><img src="~/product_images/@item.productLogoUrl" style="width:100%;border-radius:5px;" /></td>
                         <td>@item.productDescription</td>
                         <td>@item.category.categoryName</td>
                         @if (@item.productDeleted)

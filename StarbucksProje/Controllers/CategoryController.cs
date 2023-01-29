@@ -11,6 +11,13 @@ namespace StarbucksProje.Controllers
 {
     public class CategoryController : Controller
     {
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public CategoryController(IWebHostEnvironment webHostEnvironment)
+        {
+            this.webHostEnvironment = webHostEnvironment;
+        }
+
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index(int page = 1,string searchText="")
         {
@@ -54,6 +61,7 @@ namespace StarbucksProje.Controllers
             var result = validations.Validate(category);
             if (result.IsValid)
             {
+                category.categoryLogoUrl = FileUpload(category);
                 cm.categoryInsert(category);
                 int page = (int)TempData["page"];
                 return RedirectToAction("category-list", new { page, searchText = "" });
@@ -93,6 +101,7 @@ namespace StarbucksProje.Controllers
             var result = validations.Validate(category);
             if (result.IsValid)
             {
+                category.categoryLogoUrl = FileUpload(category);
                 cm.categoryUpdate(category);
                 int page = (int)TempData["page"];
                 return RedirectToAction("category-list", new { page, searchText = "" });
@@ -108,7 +117,23 @@ namespace StarbucksProje.Controllers
                 }
                 return View(model);
             }
- 
+        }
+        private string FileUpload(Category category)
+        {
+            string uniquefileName = "";
+            if (category.imgFile != null)
+            {
+                uniquefileName = Guid.NewGuid().ToString() + "_" + category.imgFile.FileName;
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "category_images");
+                string filePath = Path.Combine(uploadfolder, uniquefileName);
+
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    category.imgFile.CopyTo(stream);
+                }
+            }
+            return uniquefileName;
         }
     }
 }

@@ -11,7 +11,7 @@
             <p class="card-description">
                 Product Add
             </p>
-            <form class="forms-sample" action="/Product/AddProduct" method="post">
+            <form class="forms-sample" action="/Product/AddProduct" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Product Name</label>
                     <input type="text" class="form-control" placeholder="Product Name" name="productName" value="@Model.productModel.productName">
@@ -19,8 +19,8 @@
                 </div>
                 <div class="form-group">
                     <label>Product Logo</label>
-                    <input type="file" class="form-control" name="productLogoUrl">
-                    @Html.ValidationMessage("productLogoUrl","",new{@class="text-danger"})
+                    <input type="file" class="form-control" name="imgFile">
+                    @Html.ValidationMessage("imgFile","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Product Description</label>
