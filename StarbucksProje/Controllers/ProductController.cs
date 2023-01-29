@@ -16,6 +16,7 @@ namespace StarbucksProje.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -56,7 +57,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 pm.productInsert(product);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("products-list", new { page, searchText = "" });
             }
             else
             {
@@ -75,7 +77,8 @@ namespace StarbucksProje.Controllers
             var product = pm.productGetById(id);
             product.productDeleted = true;
             pm.productUpdate(product);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("products-list", new { page, searchText = "" });
         }
         public IActionResult UpdateProduct(int id)
         {
@@ -92,7 +95,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 pm.productUpdate(product);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("products-list", new { page, searchText = "" });
             }
             else
             {

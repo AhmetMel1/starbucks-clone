@@ -15,6 +15,7 @@ namespace StarbucksProje.Controllers
         CustomizationManager cm = new CustomizationManager(new EfCustomizationRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;    
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -51,14 +52,16 @@ namespace StarbucksProje.Controllers
         public IActionResult AddProductCustomization(ProductCustomization productCustomization)
         {
             pcm.productCustomizationInsert(productCustomization);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("product-customization-list", new { page, searchText = "" });
         }
         public IActionResult DeleteProductCustomization(int id)
         {
             var productCustomization = pcm.productCustomizationGetById(id);
             productCustomization.productCustomizationDeleted = true;
             pcm.productCustomizationUpdate(productCustomization);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("product-customization-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateProductCustomization(int id)
@@ -73,7 +76,8 @@ namespace StarbucksProje.Controllers
         public IActionResult UpdateProductCustomization(ProductCustomization productCustomization)
         {
             pcm.productCustomizationUpdate(productCustomization);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("product-customization-list", new { page, searchText = "" });
         }
     }
 }

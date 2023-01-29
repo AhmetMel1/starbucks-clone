@@ -14,6 +14,7 @@ namespace StarbucksProje.Controllers
         AddressManager addrsm = new AddressManager(new EfAddressRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -52,7 +53,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 addrsm.addressInsert(address);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("address-list", new { page, searchText = "" });
             }
             else
             {
@@ -68,7 +70,8 @@ namespace StarbucksProje.Controllers
             var address = addrsm.AddressGetById(id);
             address.addressDeleted = true;
             addrsm.addressUpdate(address);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("address-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateAddress(int id)
@@ -84,7 +87,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 addrsm.addressUpdate(address);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("address-list", new { page, searchText = "" });
 
             }
             else

@@ -14,6 +14,7 @@ namespace StarbucksProje.Controllers
         CargoProccessManager cpm = new CargoProccessManager(new EfCargoProccessRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -33,7 +34,7 @@ namespace StarbucksProje.Controllers
             pager = new Pager(pageSize, itemCounts, page);
 
             ViewBag.pager = pager;
-            ViewBag.actionName = "cargoProcess-list";
+            ViewBag.actionName = "cargo-process-list";
             ViewBag.contrName = "CargoProcess";
             ViewBag.searchText = searchText;
             return View(data);
@@ -52,7 +53,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 cpm.cargoProccessInsert(cargoProcess);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("cargo-process-list", new { page, searchText = "" });
             }
             else
             {
@@ -68,7 +70,8 @@ namespace StarbucksProje.Controllers
             var cargoProcess=cpm.CargoProccessGetById(id);
             cargoProcess.cargoProcessDeleted=true;
             cpm.cargoProccessUpdate(cargoProcess);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("cargo-process-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateCargoProcess(int id)
@@ -84,7 +87,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 cpm.cargoProccessUpdate(cargoProcess);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("cargo-process-list", new { page, searchText = "" });
 
             }
             else

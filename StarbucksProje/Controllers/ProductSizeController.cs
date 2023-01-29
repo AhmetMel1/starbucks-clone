@@ -17,6 +17,7 @@ namespace StarbucksProje.Controllers
         SizeManager sm=new SizeManager(new EfSizeRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -59,7 +60,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 psm.productSizeUpdate(productSize);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("product-size-list", new { page, searchText = "" });
             }
             else
             {
@@ -79,7 +81,8 @@ namespace StarbucksProje.Controllers
             ProductSize productSize = psm.productSizeGetById(id);
             productSize.productSizeDeleted = true;
             psm.productSizeUpdate(productSize);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("product-size-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateProductSize(int id)
@@ -98,7 +101,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 psm.productSizeUpdate(productSize);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("product-size-list", new { page, searchText = "" });
             }
             else
             {

@@ -16,6 +16,7 @@ namespace StarbucksProje.Controllers
         MenuManager menum = new MenuManager(new EfMenuRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -56,7 +57,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 menum.menuInsert(menu);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("menu-list", new { page, searchText = "" });
             }
             else
             {
@@ -75,7 +77,8 @@ namespace StarbucksProje.Controllers
             var menu = menum.MenuGetById(id);
             menu.menuDeleted = true;
             menum.menuUpdate(menu);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("menu-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateMenu(int id)
@@ -93,7 +96,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 menum.menuUpdate(menu);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("menu-list", new { page, searchText = "" });
             }
             else
             {

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using StarbucksProje.Models;
 using StarbucksProje.PagedList;
-using X.PagedList;
 
 namespace StarbucksProje.Controllers
 {
@@ -17,6 +16,7 @@ namespace StarbucksProje.Controllers
         OptionManager om= new OptionManager(new EfOptionRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -57,7 +57,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 cm.customizationInsert(customization);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("customizations-list", new { page, searchText = "" });
             }
             else
             {
@@ -76,7 +77,8 @@ namespace StarbucksProje.Controllers
             var customization=cm.customizationGetById(id);
             customization.customizationDeleted = true;
             cm.customizationUpdate(customization);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("customizations-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateCustomization(int id)
@@ -94,7 +96,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 cm.customizationUpdate(customization);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("customizations-list", new { page, searchText = "" });
             }
             else
             {

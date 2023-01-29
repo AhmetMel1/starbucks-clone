@@ -15,6 +15,7 @@ namespace StarbucksProje.Controllers
         OptionTypeManager otm = new OptionTypeManager(new EfOptionTypeRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -56,7 +57,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 om.optionInsert(option);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("option-list", new { page, searchText = "" });
             }
             else
             {
@@ -77,7 +79,8 @@ namespace StarbucksProje.Controllers
             var option = om.optionGetById(id);
             option.optionDeleted = true;
             om.optionUpdate(option);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("option-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateOption(int id)
@@ -96,7 +99,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 om.optionUpdate(option);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("option-list", new { page, searchText = "" });
             }
             else
             {

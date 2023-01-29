@@ -16,6 +16,7 @@ namespace StarbucksProje.Controllers
         ProductManager pm= new ProductManager(new EfProductRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -57,7 +58,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 fm.favoriteInsert(favorite);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("favorites-list", new { page, searchText = "" });
             }
             else
             {
@@ -77,7 +79,8 @@ namespace StarbucksProje.Controllers
             var favorite = fm.FavoriteGetById(id);
             favorite.favoriteDeleted = true;
             fm.favoriteUpdate(favorite);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("favorites-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateFavorite(int id)
@@ -96,7 +99,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 fm.favoriteUpdate(favorite);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("favorites-list", new { page, searchText = "" });
             }
             else
             {
