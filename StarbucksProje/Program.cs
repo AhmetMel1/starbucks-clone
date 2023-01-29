@@ -1,8 +1,25 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using NToastNotify;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { options.LoginPath = "/Admin/Login"; });
+builder.Services.AddControllers(config =>
+{
+	var policy = new AuthorizationPolicyBuilder()
+					 .RequireAuthenticatedUser()
+					 .Build();
+	config.Filters.Add(new AuthorizeFilter(policy));
+});
+builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+{
+	ProgressBar = true,
+	Timeout = 5000
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +37,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -28,6 +47,10 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
                 name: "Address", pattern: "Address/address-list", defaults: new { controller = "Address", action = "Index" }
+                );
+
+app.MapControllerRoute(
+                name: "Admin", pattern: "Admin/admin-list", defaults: new { controller = "Admin", action = "Index" }
                 );
 
 app.MapControllerRoute(

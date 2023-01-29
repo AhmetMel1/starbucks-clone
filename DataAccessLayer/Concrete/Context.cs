@@ -19,6 +19,7 @@ namespace DataAccessLayer.ConCreate
          // optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=405-14; database=Starbucks ;Encrypt=False; User ID=sa;Password=1234");
         }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<CargoProcess> CargoProcesses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customization> Customizations { get; set; }

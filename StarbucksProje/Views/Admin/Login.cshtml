@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    var data = TempData["init"];
 }
 
 <!DOCTYPE html>
@@ -10,7 +11,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Spica Admin</title>
+    <title>Admin Login</title>
     <!-- base:css -->
     <link rel="stylesheet" href="~/admin_dashboard/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/admin_dashboard/vendors/css/vendor.bundle.base.css">
@@ -20,51 +21,55 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="~/admin_dashboard/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="~/admin_dashboard/images/favicon.png" />
+    <link rel="shortcut icon" href="~/admin_dashboard/images/sb-logo.png" />
 </head>
 
 <body>
+     @if (@data!=null&&(int)@data==1)
+    {
+        TempData["init"] = 0;
+        @await Component.InvokeAsync("NToastNotify")
+    }
     <div class="container-scroller d-flex">
         <div class="container-fluid page-body-wrapper full-page-wrapper d-flex">
             <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
                 <div class="row flex-grow">
-                    <div class="col-lg-6 d-flex align-items-center justify-content-center" style="background-color:#fffaee">
+                    <div class="col-lg-6 d-flex align-items-center justify-content-center" style="background-color:#fbfcf4">
                         <div class="auth-form-transparent text-left p-3">
-                            <div class="brand-logo ">
-                                <img src="~/admin_dashboard/images/other/starbucks_logo.png" alt="logo">
+                            <div class="brand-logo ps-5">
+                                <img src="~/admin_dashboard/images/other/starbucks_logo.png" class="ms-5" alt="logo">
                             </div>
-@*                            <h4>New here?</h4>
-                            <h6 class="font-weight-light">Join us today! It takes only few steps</h6>*@
-                            <form class="pt-3">
+                            <form class="pt-3" action="/Admin/Entry" method="post">
                                 <div class="form-group">
-                                    <label class="text-secondary fw-bold">Email</label>
+                                    <label class="fw-bold" style="color:#0f5b3b">Email</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-email-outline text-secondary"></i>
+                                                <i class="mdi mdi-email-outline" style="color:#0f5b3b"></i>
                                             </span>
                                         </div>
-                                        <input type="email" class="form-control form-control-lg border-left-0" placeholder="Email">
+                                        <input type="email" class="form-control form-control-lg border-left-0" placeholder="Email" name="adminMail">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-secondary fw-bold">Password</label>
+                                    <label class="fw-bold" style="color:#0f5b3b">Password</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-lock-outline text-secondary"></i>
+                                                <i class="mdi mdi-lock-outline" style="color:#0f5b3b"></i>
                                             </span>
                                         </div>
-                                        <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password">
+                                        <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password" name="adminPassword">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <a class="btn btn-block btn-secondary text-light font-weight-medium auth-form-btn col-12" href="../../index.html">LOGIN</a>
+                                    <input class="btn btn-block text-light font-weight-medium auth-form-btn col-12" type="submit" style="background-color:#0f5b3b" value="Login">
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-6 register-half-bg d-none d-lg-flex flex-row">
+                    <div class="col-lg-6  d-none d-lg-flex flex-row">
+						<img src="~/admin_dashboard/images/auth/coffee.jpg" width="100%" height="100%" />
                         <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2023  All rights reserved.</p>
                     </div>
                 </div>

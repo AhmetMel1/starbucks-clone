@@ -1,0 +1,117 @@
+﻿@using EntityLayer
+@using StarbucksProje.PagedList;
+@model List<Admin>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
+}
+<div class="col-11 grid-margin stretch-card">
+    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
+        <div class="card-head text-white form_color col-5 justify-content-center text-center m-auto p-3" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+            <h2>Admins</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="form_color text-white rounded">
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Mail</th>
+                        <th>Password</th>
+                        <th>Gender</th>
+                        <th>Birthday</th>
+                        <th>Position</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.adminFirstName</td>
+                            <td>@item.adminLastName</td>
+                            <td>@item.adminMail</td>
+                            <td>********</td>
+                            @if (@item.adminGender)
+                            {
+                                <td>Men</td>
+                            }
+                            else
+                            {
+                                <td>Women</td>
+                            }
+                            <td>@item.adminBirthday.Date.ToShortDateString()</td>
+                            <td>@item.adminType</td>
+                            @if (@item.adminDeleted)
+                            {
+                                <td class="text-danger">Pasive</td>
+                            }
+                            else
+                            {
+                                <td class="text-success">Active</td>
+                            }
+                                <td>
+                                    <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.adminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                                </td>
+                                <td><a href="/Admin/UpdateAdmin/@item.adminId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="text-center d-flex justify-content-start">
+                <a href="/Admin/AddAdmin" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Pager-->
+<div id="Pager" class=" d-flex justify-content-center">
+    <partial name="PartialCustomPager" model="@pager" />
+</div>
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="deleteLabel">Warning!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-inverse-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-inverse-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var adminId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Admin/DeleteAdmin/" + adminId
+        });
+    });
+</script>
+
+@section searchbar{
+    <!-- Topbar Search -->
+    <li class="nav-item nav-search d-none d-lg-block">
+        <div class="input-group">
+            <form asp-controller="Admin" asp-action="admin-list">
+                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search" name="searchText" value="@searchText">
+            </form>
+        </div>
+    </li>
+}
+

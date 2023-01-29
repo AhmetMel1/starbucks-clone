@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="NToastNotify" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
     <PackageReference Include="XAct.Core.PCL" Version="0.0.5014" />
   </ItemGroup>
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\category_images\" />
+    <Folder Include="wwwroot\admin_images\" />
     <Folder Include="wwwroot\product_images\" />
   </ItemGroup>
 
