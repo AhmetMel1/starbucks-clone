@@ -16,6 +16,7 @@ namespace StarbucksProje.Controllers
         UserManager um= new UserManager(new EfUserRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
+            TempData["page"] = page;
             int pageSize = 3;
             Context c = new Context();
             Pager pager;
@@ -56,7 +57,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 um.userInsert(user);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("user-list", new { page, searchText = "" });
             }
             else
             {
@@ -75,7 +77,8 @@ namespace StarbucksProje.Controllers
             var user = um.UserGetById(id);
             user.userDeleted = true;
             um.userUpdate(user);
-            return RedirectToAction("Index");
+            int page = (int)TempData["page"];
+            return RedirectToAction("user-list", new { page, searchText = "" });
         }
         [HttpGet]
         public IActionResult UpdateUser(int id)
@@ -93,7 +96,8 @@ namespace StarbucksProje.Controllers
             if (result.IsValid)
             {
                 um.userUpdate(user);
-                return RedirectToAction("Index");
+                int page = (int)TempData["page"];
+                return RedirectToAction("user-list", new { page, searchText = "" });
             }
             else
             {

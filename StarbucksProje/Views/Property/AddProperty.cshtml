@@ -15,7 +15,7 @@
             <form class="forms-sample" action="/Property/AddProperty" method="post">
                 <div class="form-group">
                     <label>Property Name</label>
-                    <input type="text" class="form-control" placeholder="Property Name" name="PropertyName">
+                    <input type="text" class="form-control" placeholder="Property Name" name="PropertyName" value="@Model.PropertyName">
                     @Html.ValidationMessage("PropertyName","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
