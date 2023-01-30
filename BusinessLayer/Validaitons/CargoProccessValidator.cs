@@ -19,8 +19,8 @@ namespace BusinessLayer.Validaitons
 
             //Rule for TrackingNumber
             RuleFor(cargoProcess => cargoProcess.trackingNumber).NotEmpty();
-            RuleFor(cargoProcess => cargoProcess.trackingNumber).MaximumLength(50).WithMessage("A maximum of 13 characters can be entered.");
-            RuleFor(cargoProcess => cargoProcess.trackingNumber).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
+            RuleFor(cargoProcess => cargoProcess.trackingNumber).MaximumLength(11).WithMessage("A maximum of 11 characters can be entered.");
+            RuleFor(cargoProcess => cargoProcess.trackingNumber).MinimumLength(11).WithMessage("A minimum of 11 characters must be entered.");
         }
     }
 }

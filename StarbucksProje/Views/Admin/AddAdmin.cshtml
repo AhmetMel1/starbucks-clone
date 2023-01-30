@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "AddAdmin";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    string[] adminTypes = { "Admin", "CEO", "Manager", "Assistant Manager", "Secretary" };
 }
 
 
@@ -13,47 +14,51 @@
         <p class="card-description">
             Admin Add
         </p>
-        <form class="forms-sample" action="/Admin/AddAdmin" method="post">
+        <form class="forms-sample" action="/Admin/AddAdmin" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                    <label>Admin First Name</label>
-                    <input type="text" class="form-control" placeholder="Admin First Name" name="adminFirstName" value="@Model.adminFirstName">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" placeholder="First Name" name="adminFirstName" value="@Model.adminFirstName">
                     @Html.ValidationMessage("adminFirstName","",new{@class="text-danger"})
             </div>
             <div class="form-group">
-                    <label>Admin Last Name</label>
-                    <input type="text" class="form-control" placeholder="Admin Last Name" name="adminLastName" value="@Model.adminLastName">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last Name" name="adminLastName" value="@Model.adminLastName">
                     @Html.ValidationMessage("adminLastName","",new{@class="text-danger"})
             </div>
             <div class="form-group">
-                    <label>Admin Mail</label>
-                    <input type="text" class="form-control" placeholder="Admin Mail" name="adminMail" value="@Model.adminMail">
+                    <label>Mail</label>
+                    <input type="text" class="form-control" placeholder="Mail" name="adminMail" value="@Model.adminMail">
                     @Html.ValidationMessage("adminMail","",new{@class="text-danger"})
             </div>
             <div class="form-group">
-                    <label>Admin Password</label>
-                    <input type="text" class="form-control" placeholder="Admin Password" name="adminPassword" value="@Model.adminPassword">
+                    <label>Password</label>
+                    <input type="text" class="form-control" placeholder="Password" name="adminPassword" value="@Model.adminPassword">
                     @Html.ValidationMessage("adminPassword","",new{@class="text-danger"})
             </div>
             <div class="form-group">
-                    <label>Admin Type</label>
-                    <input type="text" class="form-control" placeholder="Admin Type" name="adminType" value="@Model.adminType">
-                    @Html.ValidationMessage("adminType","",new{@class="text-danger"})
+                    <label>Position</label>
+                    <select class="form-control" name="adminType">
+                        @for (int i = 0; i < adminTypes.Length; i++)
+                        {
+                            <option>@adminTypes[i]</option>
+                        }
+                    </select>
             </div>
                 <div class="form-group">
-                    <label>Admin Birthday</label>
-                    <input type="text" class="form-control" placeholder="Admin Birthday" name="adminBirthday" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+                    <label>Birthday</label>
+                    <input type="date" class="form-control" placeholder="Birthday" name="adminBirthday" value="@DateTime.Today.ToString("yyyy-MM-dd")">
                     @Html.ValidationMessage("adminBirthday","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
-                    <label>Admin Img Url</label>
-                    <input type="file" class="form-control" name="adminImgUrl">
-                    @Html.ValidationMessage("adminImgUrl","",new{@class="text-danger"})
+                    <label>Image</label>
+                    <input type="file" class="form-control" name="imgFile">
+                    @Html.ValidationMessage("imgFile","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
-                    <label>Admin Gender</label>
+                    <label>Gender</label>
                     <select class="form-control" name="adminGender">
-                        <option value="False">Woman</option>
-                        <option value="True">Man</option>
+                        <option value="False">Women</option>
+                        <option value="True">Men</option>
                     </select>
                 </div>
             <div class="form-group">
