@@ -23,7 +23,7 @@ namespace StarbucksProje.Controllers
 			_toastNotification = toastNotification;
 			this.webHostEnvironment = webHostEnvironment;
 		}
-		[AllowAnonymous]
+        [AllowAnonymous]
 		[HttpGet]
 		public IActionResult Login()
         {
@@ -101,6 +101,7 @@ namespace StarbucksProje.Controllers
             var result = validations.Validate(admin);
             if (result.IsValid)
             {
+                admin.adminImgUrl = FileUpload(admin);
                 adminManager.adminInsert(admin);
                 int page = (int)TempData["page"];
                 return RedirectToAction("admin-list", new { page, searchText = "" });
@@ -135,6 +136,7 @@ namespace StarbucksProje.Controllers
             var result = validations.Validate(admin);
             if (result.IsValid)
             {
+                admin.adminImgUrl = FileUpload(admin);
                 adminManager.adminUpdate(admin);
                 int page = (int)TempData["page"];
                 return RedirectToAction("admin-list", new { page, searchText = "" });
@@ -148,6 +150,23 @@ namespace StarbucksProje.Controllers
                 }
                 return View(admin);
             }
+        }
+        private string FileUpload(Admin admin)
+        {
+            string uniquefileName = "";
+            if (admin.imgFile != null)
+            {
+                uniquefileName = Guid.NewGuid().ToString() + "_" + admin.imgFile.FileName;
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "admin_images");
+                string filePath = Path.Combine(uploadfolder, uniquefileName);
+
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    admin.imgFile.CopyTo(stream);
+                }
+            }
+            return uniquefileName;
         }
     }
 }

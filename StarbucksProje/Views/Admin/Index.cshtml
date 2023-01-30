@@ -20,6 +20,7 @@
                         <th>Last Name</th>
                         <th>Mail</th>
                         <th>Password</th>
+                        <th>Photo</th>
                         <th>Gender</th>
                         <th>Birthday</th>
                         <th>Position</th>
@@ -36,6 +37,7 @@
                             <td>@item.adminLastName</td>
                             <td>@item.adminMail</td>
                             <td>********</td>
+                            <td><img src="~/admin_images/@item.adminImgUrl" style="width:100%;border-radius:5px;" /></td>
                             @if (@item.adminGender)
                             {
                                 <td>Men</td>
