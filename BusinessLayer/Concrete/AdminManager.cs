@@ -26,7 +26,12 @@ namespace BusinessLayer.Concrete
 			return adminDal.get(x => x.adminId == id);
 		}
 
-		public void adminInsert(Admin admin)
+        public Admin adminGetByMail(string mail)
+        {
+            return adminDal.get(x => x.adminMail == mail);
+        }
+
+        public void adminInsert(Admin admin)
 		{
 			adminDal.insert(admin);
 		}

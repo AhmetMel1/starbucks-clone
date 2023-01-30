@@ -48,7 +48,7 @@ namespace StarbucksProje.Controllers
 				principal,
 				new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(20) });
 
-				return RedirectToAction("address-list", "Address");
+				return RedirectToAction("Profile", "Admin");
 			}
 			_toastNotification.AddErrorToastMessage("Mail or password incorrect! Please try again.");
 			TempData["init"] = 1;
@@ -58,6 +58,14 @@ namespace StarbucksProje.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
+        }
+        [HttpGet]
+        public IActionResult Profile()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserMail = currentUser.FindFirst(ClaimTypes.Email).Value;
+            Admin admin = adminManager.adminGetByMail(currentUserMail);
+            return View(admin);
         }
         public IActionResult Index(int page = 1, string searchText = "")
         {
