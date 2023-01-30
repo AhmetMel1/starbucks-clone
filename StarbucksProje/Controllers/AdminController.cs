@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validaitons;
 using DataAccessLayer.ConCreate;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
@@ -86,6 +87,67 @@ namespace StarbucksProje.Controllers
             ViewBag.contrName = "Admin";
             ViewBag.actionName = "admin-list";
             return View(data);
+        }
+        [HttpGet]
+        public IActionResult AddAdmin()
+        {
+            var admin = new Admin();
+            return View(admin);
+        }
+        [HttpPost]
+        public IActionResult AddAdmin(Admin admin)
+        {
+            AdminValidator validations = new AdminValidator();
+            var result = validations.Validate(admin);
+            if (result.IsValid)
+            {
+                adminManager.adminInsert(admin);
+                int page = (int)TempData["page"];
+                return RedirectToAction("admin-list", new { page, searchText = "" });
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(admin);
+            }
+        }
+        public IActionResult DeleteAdmin(int id)
+        {
+            var admin = adminManager.adminGetById(id);
+            admin.adminDeleted = true;
+            adminManager.adminUpdate(admin);
+            int page = (int)TempData["page"];
+            return RedirectToAction("admin-list", new { page, searchText = "" });
+        }
+        [HttpGet]
+        public IActionResult UpdateAdmin(int id)
+        {
+            var admin = adminManager.adminGetById(id);
+            return View(admin);
+        }
+        [HttpPost]
+        public IActionResult UpdateAdmin(Admin admin)
+        {
+            AdminValidator validations = new AdminValidator();
+            var result = validations.Validate(admin);
+            if (result.IsValid)
+            {
+                adminManager.adminUpdate(admin);
+                int page = (int)TempData["page"];
+                return RedirectToAction("admin-list", new { page, searchText = "" });
+
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(admin);
+            }
         }
     }
 }

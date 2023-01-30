@@ -1,0 +1,75 @@
+﻿@using EntityLayer
+@model Admin
+@{
+    ViewData["Title"] = "AddAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+        <h4 class="card-title">Admin</h4>
+        <p class="card-description">
+            Admin Add
+        </p>
+        <form class="forms-sample" action="/Admin/AddAdmin" method="post">
+            <div class="form-group">
+                    <label>Admin First Name</label>
+                    <input type="text" class="form-control" placeholder="Admin First Name" name="adminFirstName" value="@Model.adminFirstName">
+                    @Html.ValidationMessage("adminFirstName","",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                    <label>Admin Last Name</label>
+                    <input type="text" class="form-control" placeholder="Admin Last Name" name="adminLastName" value="@Model.adminLastName">
+                    @Html.ValidationMessage("adminLastName","",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                    <label>Admin Mail</label>
+                    <input type="text" class="form-control" placeholder="Admin Mail" name="adminMail" value="@Model.adminMail">
+                    @Html.ValidationMessage("adminMail","",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                    <label>Admin Password</label>
+                    <input type="text" class="form-control" placeholder="Admin Password" name="adminPassword" value="@Model.adminPassword">
+                    @Html.ValidationMessage("adminPassword","",new{@class="text-danger"})
+            </div>
+            <div class="form-group">
+                    <label>Admin Type</label>
+                    <input type="text" class="form-control" placeholder="Admin Type" name="adminType" value="@Model.adminType">
+                    @Html.ValidationMessage("adminType","",new{@class="text-danger"})
+            </div>
+                <div class="form-group">
+                    <label>Admin Birthday</label>
+                    <input type="text" class="form-control" placeholder="Admin Birthday" name="adminBirthday" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+                    @Html.ValidationMessage("adminBirthday","",new{@class="text-danger"})
+                </div>
+                <div class="form-group">
+                    <label>Admin Img Url</label>
+                    <input type="file" class="form-control" name="adminImgUrl">
+                    @Html.ValidationMessage("adminImgUrl","",new{@class="text-danger"})
+                </div>
+                <div class="form-group">
+                    <label>Admin Gender</label>
+                    <select class="form-control" name="adminGender">
+                        <option value="False">Woman</option>
+                        <option value="True">Man</option>
+                    </select>
+                </div>
+            <div class="form-group">
+                <label for="exampleSelectGender">Status</label>
+                <select class="form-control" name="adminDeleted">
+                    <option value="False">Active</option>
+                    <option value="True">Pasive</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-inverse-info me-2">
+                <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                Submit
+            </button>
+                <a class="btn btn-inverse-secondary" type="reset" href="/Admin/admin-list">Cancel</a>
+        </form>
+    </div>
+</div>
+</div>
+
