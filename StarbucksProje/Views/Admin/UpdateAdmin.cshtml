@@ -15,6 +15,7 @@
             </p>
             <form class="forms-sample" action="/Admin/UpdateAdmin" method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" name="adminId" value="@Model.adminId">
+                <input type="hidden" class="form-control" name="adminId" value="@Model.lastEntryTime">
                 <div class="form-group">
                     <label>First Name</label>
                     <input type="text" class="form-control" placeholder="First Name" name="adminFirstName" value="@Model.adminFirstName">

@@ -1,0 +1,106 @@
+﻿@using StarbucksProje.Models
+@model DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-11 grid-margin stretch-card">
+        <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
+            <div class="card-head text-white form_color col-5 justify-content-center text-center m-auto p-3" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+                <h2>Admin Information</h2>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>
+                                First Name
+                            </th>
+                            <th>
+                                Last Name
+                            </th>
+                            <th>
+                                Position
+                            </th>
+                            <th>
+                                Last Entry Time
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.adminModel)
+                        {
+                            <tr>
+                                <td class="py-1">
+                                    <img src="~/admin_images/@item.adminImgUrl" style="width:50px;height:40px;border-radius:5px;" />
+                                </td>
+                                <td>
+                                    @item.adminFirstName
+                                </td>
+                                <td>
+                                    @item.adminLastName
+                                </td>
+                                <td>
+                                    @item.adminType
+                                </td>
+                                <td>
+                                    @item.lastEntryTime.Date.ToLongDateString() @item.lastEntryTime.ToShortTimeString()
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+<div class="col-12 grid-margin stretch-card justify-content-around">
+<div class="col-3">
+    <div class="table-responsive card overflow-auto form_color" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-center m-auto flex-wrap">
+                <p class="card-title text-white">Total Admin Count</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-wrap mb-3">
+                <h5 class="font-weight-normal mb-0 mb-md-1 mb-lg-0 me-3 text-white">@Model.adminModel.Count()</h5>
+                <p class="text-muted mb-0">Admin</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-3">
+    <div class="table-responsive card overflow-auto form_color" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-center m-auto flex-wrap">
+                <p class="card-title text-white">Total User Count</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-wrap mb-3">
+                <h5 class="font-weight-normal mb-0 mb-md-1 mb-lg-0 me-3 text-white">@Model.userModel.Count()</h5>
+                <p class="text-muted mb-0">User</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="table-responsive card overflow-auto form_color" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-center m-auto flex-wrap">
+                <p class="card-title text-white">Total Order Count</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-wrap mb-3">
+                <h5 class="font-weight-normal mb-0 mb-md-1 mb-lg-0 me-3 text-white">@Model.orderModel.Count()</h5>
+                <p class="text-muted mb-0">Order</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+

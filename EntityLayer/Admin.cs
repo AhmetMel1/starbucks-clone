@@ -24,7 +24,8 @@ namespace EntityLayer
 		[StringLength(20)]
 		public string adminType { get; set; }
 		public DateTime adminBirthday { get; set; }
-		[StringLength(100)]
+        public DateTime lastEntryTime { get; set; }
+        [StringLength(100)]
 		public string adminImgUrl { get; set; }
         public bool adminGender { get; set; }
         public bool adminDeleted { get; set; }

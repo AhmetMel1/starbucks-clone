@@ -1,11 +1,13 @@
 ﻿@using EntityLayer
 @using StarbucksProje.PagedList;
+@using System.Security.Claims;
 @model List<Admin>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var pager = (Pager)ViewBag.pager;
     var searchText = ViewBag.searchText;
+    var adminType = (User.FindFirst(ClaimTypes.Actor)?.Value);
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
@@ -37,7 +39,7 @@
                             <td>@item.adminLastName</td>
                             <td>@item.adminMail</td>
                             <td>********</td>
-                            <td><img src="~/admin_images/@item.adminImgUrl" style="width:100%;border-radius:5px;" /></td>
+                            <td><img src="~/admin_images/@item.adminImgUrl" style="width:50px;height:40px;border-radius:5px;" /></td>
                             @if (@item.adminGender)
                             {
                                 <td>Men</td>
@@ -56,17 +58,34 @@
                             {
                                 <td class="text-success">Active</td>
                             }
-                                <td>
-                                    <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.adminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
-                                </td>
+                            @if (adminType == "Admin" && item.adminType != "Admin")
+                            {
+                            <td>
+                                <button type="button" class="btn btn-inverse-danger btn-fw" data-bs-whatever="@item.adminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-sharp"></ion-icon></button>
+                            </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            @if (adminType == "Admin"&&item.adminType != "Admin")
+                            {
                                 <td><a href="/Admin/UpdateAdmin/@item.adminId" type="button" class="btn btn-inverse-warning btn-fw">Update</a></td>
+                            }
+                             else
+                            {
+                                <td></td>
+                            }
                         </tr>
                     }
 
                 </tbody>
             </table>
             <div class="text-center d-flex justify-content-start">
+                @if (adminType == "Admin")
+            {
                 <a href="/Admin/AddAdmin" class="btn btn-inverse-success btn-fw m-2" style="font-size:20px"><ion-icon name="add"></ion-icon></a>
+            }
             </div>
         </div>
     </div>
