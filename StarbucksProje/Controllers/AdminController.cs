@@ -50,7 +50,7 @@ namespace StarbucksProje.Controllers
                 admin=adminManager.adminGetByMail(admin.adminMail);
                 admin.lastEntryTime = DateTime.Now;
                 adminManager.adminUpdate(admin);
-                return RedirectToAction("Profile", "Admin");
+                return RedirectToAction("Dashboard", "Dashboard");
 			}
 			_toastNotification.AddErrorToastMessage("Mail or password incorrect! Please try again.");
 			TempData["init"] = 1;
