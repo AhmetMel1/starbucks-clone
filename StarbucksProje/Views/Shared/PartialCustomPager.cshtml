@@ -24,7 +24,7 @@
                 <a class="page-link" asp-controller="@contr_name" asp-action="@action_name" asp-route-page="@(Model.activePage+1)" asp-route-searchText="@searchText">Next</a>
             </li>
             <li class="page-item @(Model.activePage<Model.totalPageNumber?"":"invisible")">
-                <a class="page-link" asp-controller="@contr_name" asp-action="@action_name" asp-route-page="@(Model.activePage)" asp-route-searchText="@searchText">Last Page</a>
+                <a class="page-link" asp-controller="@contr_name" asp-action="@action_name" asp-route-page="@(Model.totalPageNumber)" asp-route-searchText="@searchText">Last Page</a>
             </li>
         </ul>
     }
