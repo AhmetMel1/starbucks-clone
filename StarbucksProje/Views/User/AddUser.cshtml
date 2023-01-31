@@ -45,7 +45,7 @@
                     <select class="form-control" name="addressId">
                         @foreach (var item in Model.addressModel)
                         {
-                            <option value="@item.addressId">@item.city/@item.district</option>
+                            <option value="@item.addressId">@item.city/@item.district/@item.country</option>
                         }
                     </select>
                 </div>

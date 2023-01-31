@@ -12,6 +12,11 @@ namespace BusinessLayer.Validaitons
     {
         public AddressValidator() 
         {
+            //Rule for Country
+            RuleFor(address => address.country).NotEmpty();
+            RuleFor(address => address.country).MaximumLength(10).WithMessage("A maximum of 10 characters can be entered.");
+            RuleFor(address => address.country).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
+
             //Rule for City
             RuleFor(address => address.city).NotEmpty();
             RuleFor(address => address.city).MaximumLength(50).WithMessage("A maximum of 50 characters can be entered.");
@@ -36,6 +41,13 @@ namespace BusinessLayer.Validaitons
             RuleFor(address => address.apartmentNumber).NotEmpty();
             RuleFor(address => address.apartmentNumber).MaximumLength(10).WithMessage("A maximum of 10 characters can be entered.");
             RuleFor(address => address.apartmentNumber).MinimumLength(1).WithMessage("A minimum of 1 characters must be entered.");
+
+            //Rule for CircleNumber
+            RuleFor(address => address.circleNumber).NotEmpty();
+            RuleFor(address => address.circleNumber).MaximumLength(10).WithMessage("A maximum of 10 characters can be entered.");
+            RuleFor(address => address.circleNumber).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
+
+
         }
     }
 }

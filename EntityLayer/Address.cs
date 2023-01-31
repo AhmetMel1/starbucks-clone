@@ -21,6 +21,10 @@ namespace EntityLayer
         public string street { get; set; }
         [StringLength(10)]
         public string apartmentNumber { get; set; }
+        [StringLength(50)]
+        public string country { get; set; }
+        [StringLength(10)]
+        public string circleNumber { get; set; }
         public bool addressDeleted { get; set; }
         //Relationship with User 
         public virtual ICollection<User> users { get; set; }

@@ -16,11 +16,13 @@
         <table class="table table-hover">
             <thead>
                 <tr class="form_color text-white rounded">
+                    <th>Country</th>
                     <th>City</th>
                     <th>District</th>
                     <th>Neighbourhood</th>
                     <th>Street</th>
                     <th>Apartment Number</th>
+                    <th>Circle Number</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
@@ -30,11 +32,13 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>@item.country</td>
                         <td>@item.city</td>
                         <td>@item.district</td>
                         <td>@item.neighbourhood</td>
                         <td>@item.street st.</td>
                         <td>@item.apartmentNumber</td>
+                        <td>@item.circleNumber</td>
                         @if (@item.addressDeleted)
                         {
                             <td class="text-danger">Pasive</td>

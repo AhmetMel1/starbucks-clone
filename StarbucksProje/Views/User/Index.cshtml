@@ -21,6 +21,7 @@
                     <th>User Surname</th>
                     <th>Password</th>
                     <th>PhoneNumber</th>
+                    <th>Address</th>
                     <th>Birthday</th>
                     <th>Status</th>
                     <th></th>
@@ -36,6 +37,7 @@
                         <td>@item.surname</td>
                         <td>********</td>
                         <td>@item.phoneNumber</td>
+                        <td>@item.address.city/@item.address.district/@item.address.neighbourhood/@item.address.country</td>
                         <td>@item.birthday.ToShortDateString()</td>
                         @if (@item.userDeleted)
                             {

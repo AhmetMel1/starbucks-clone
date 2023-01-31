@@ -13,6 +13,11 @@
             </p>
             <form class="forms-sample" action="/Address/UpdateAddress" method="post">
                 <input type="hidden" class="form-control" name="addressId" value="@Model.addressId">
+                 <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" class="form-control" placeholder="Country" name="country" value="@Model.country">
+                    @Html.ValidationMessage("country","",new{@class="text-danger"})
+                </div>
                 <div class="form-group">
                     <label>City</label>
                     <input type="text" class="form-control" placeholder="City" name="city" value="@Model.city">
@@ -37,7 +42,11 @@
                     <label>Apartment Number</label>
                     <input type="text" class="form-control" placeholder="Apartment Number" name="apartmentNumber" value="@Model.apartmentNumber">
                     @Html.ValidationMessage("apartmentNumber","",new{@class="text-danger"})
-                    
+                </div>
+                <div class="form-group">
+                    <label>Circle Number</label>
+                    <input type="text" class="form-control" placeholder="Circle Number" name="circleNumber" value="@Model.circleNumber">
+                    @Html.ValidationMessage("circleNumber","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label for="exampleSelectGender">Status</label>
