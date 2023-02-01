@@ -14,9 +14,9 @@ namespace DataAccessLayer.ConCreate
         {
             
            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=DESKTOP-GCMC07J\\SQLEXPRESS;database=Starbucks;Integrated Security=True;Encrypt=False;Connect Timeout = 30;");
-           //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=LAPTOP-GC0KUGMH\\SQLEXPRESS; ; database=Starbucks ;Encrypt=False; Integrated Security=True;");
+           optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=LAPTOP-GC0KUGMH\\SQLEXPRESS; ; database=Starbucks ;Encrypt=False; Integrated Security=True;");
           //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=RUZGAR; database=Starbucks ;Encrypt=False; User ID=sa;Password=1234");
-         optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=405-14; database=Starbucks ;Encrypt=False; User ID=sa;Password=1234");
+         //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=405-14; database=Starbucks ;Encrypt=False; User ID=sa;Password=1234");
         }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Admin> Admins { get; set; }
