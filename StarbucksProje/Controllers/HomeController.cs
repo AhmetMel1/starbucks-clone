@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.ConCreate.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.Models;
 using System.Diagnostics;
 
@@ -8,6 +10,8 @@ namespace StarbucksProje.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 
+		MenuManager mm = new MenuManager(new EfMenuRepository());
+
 		public HomeController(ILogger<HomeController> logger)
 		{
 			_logger = logger;
@@ -15,7 +19,8 @@ namespace StarbucksProje.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			var menus = mm.menuList();
+            return View(menus);
 		}
 
 		public IActionResult Privacy()
