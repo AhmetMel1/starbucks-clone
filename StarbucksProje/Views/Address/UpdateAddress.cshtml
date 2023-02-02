@@ -1,8 +1,14 @@
-﻿@using EntityLayer
+﻿@using CountryData.Standard;
+@using EntityLayer
 @model Address
 @{
     ViewData["Title"] = "UpdateAddress";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var helper = new CountryHelper();
+    var data = helper.GetCountryData();
+    var countries = data.Select(country => country.CountryName).ToList();
+    var countryCodes = data.Select(country => country.CountryShortCode).ToList();
+    var j = 0;
 }
 <div class="col-11 grid-margin stretch-card">
     <div class="card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
@@ -15,8 +21,19 @@
                 <input type="hidden" class="form-control" name="addressId" value="@Model.addressId">
                  <div class="form-group">
                     <label>Country</label>
-                    <input type="text" class="form-control" placeholder="Country" name="country" value="@Model.country">
-                    @Html.ValidationMessage("country","",new{@class="text-danger"})
+                    <select class="form-control" name="country" id="c" onchange="ChangeCountry()">
+                        @foreach(var country in countries)
+                        {
+                            @if (Model.country == @country +", "+ @countryCodes[j]){
+                                <option selected>@country, @countryCodes[j]</option>
+                            }
+                            else
+                            {
+                                <option>@country, @countryCodes[j]</option> 
+                            }
+                            j++;
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>City</label>

@@ -47,8 +47,10 @@ namespace StarbucksProje.Controllers
 				.SignInAsync(
 				principal,
 				new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(20) });
+
                 admin=adminManager.adminGetByMail(admin.adminMail);
                 admin.lastEntryTime = DateTime.Now;
+
                 adminManager.adminUpdate(admin);
                 return RedirectToAction("Dashboard", "Dashboard");
 			}

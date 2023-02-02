@@ -8,7 +8,9 @@
     var data = helper.GetCountryData();
     var countries = data.Select(country => country.CountryName).ToList();
     var countryCodes = data.Select(country => country.CountryShortCode).ToList();
+    var r = helper.GetRegionByCountryCode("TR");
     var j = 0;
+    var code = "";
 
 }
 
@@ -32,7 +34,8 @@
             </div>
             <div class="form-group">
                 <label>City</label>
-                <input type="text" class="form-control" placeholder="City" name="city" value="@Model.city">
+                    <input type="text" class="form-control" placeholder="City" name="city" value="@Model.city">
+                    @Html.ValidationMessage("city","",new{@class="text-danger"})
             </div>
             <div class="form-group">
                 <label>District</label>
@@ -40,7 +43,7 @@
                 @Html.ValidationMessage("district","",new{@class="text-danger"})
             </div>
             <div class="form-group">
-                <label>Neighbourhood</label>
+                <label>Neighbourhood @code</label>
                     <input type="text" class="form-control" placeholder="Neighbourhood" name="neighbourhood" value="@Model.neighbourhood">
                 @Html.ValidationMessage("neighbourhood","",new{@class="text-danger"})
             </div>
@@ -75,12 +78,13 @@
     </div>
 </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-    function ChangeCode(){
+    function ChangeCountry() {
         var x = document.getElementById("c").value;
-        console.log(x);
+        var countryCode=x.split(" ");
+        console.log(countryCode[1])
     }
-</script>
+</script>*@
 
 
