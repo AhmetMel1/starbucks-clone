@@ -70,6 +70,10 @@ app.MapControllerRoute(
                 );
 
 app.MapControllerRoute(
+                name: "Home", pattern: "Home/HomePage", defaults: new { controller = "Home", action = "Index" }
+                );
+
+app.MapControllerRoute(
                 name: "Menu", pattern: "Menu/menu-list", defaults: new { controller = "Menu", action = "Index" }
                 );
 

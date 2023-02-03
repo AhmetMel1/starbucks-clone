@@ -2,27 +2,31 @@
 @using Microsoft.AspNetCore.Html;
 @model List<Menu>
 @{
+    int i = 1;
     void subMenuAdd(List<Menu> submenu, bool first)
     {
+        <div class="dropdown-menu" aria-labelledby="dropdown-@i">
             @foreach (var item in submenu)
             {
                 if (item.menuChildren.Count > 0)
                 {
 
-                <a class="dropdown-item" href="shop.html">@item.menuName</a>
+                <a class="dropdown-item" href="#">@item.menuName</a>
                             subMenuAdd(item.menuChildren.ToList(), false);
                 }
                 else
                 {
-                <a class="dropdown-item" href="shop.html">@item.menuName</a>
+                    <a class="dropdown-item" href="#">@item.menuName</a>
                 }
             }
+            </div>
+            i++;
     }
 }
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Coffe</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -60,24 +64,26 @@
 	        <ul class="navbar-nav ml-auto">
                 @foreach(var item in Model)
                 {
-
+                        var mclass = "";
+                        @if(item.menuId==1)
+                        {
+                            mclass="active";
+                        }
                         if (item.menuParentId == null)
                         {
                             if (item.menuChildren.Count > 0)
                             {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@item.menuName</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                        @{
-                                            subMenuAdd(item.menuChildren.ToList(),true);
+                            <li class="nav-item dropdown @mclass">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-@i" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@item.menuName</a>
+                                            @{
+                                                subMenuAdd(item.menuChildren.ToList(),true);
                                             }
-                                </div>
                             </li>
 
                             }
                             else
                             {
-                                <li class="nav-item"><a href="#" class="nav-link">@item.menuName</a></li>
+                                <li class="nav-item @mclass"><a href="#" class="nav-link">@item.menuName</a></li>
                             }
                         }
                         }
