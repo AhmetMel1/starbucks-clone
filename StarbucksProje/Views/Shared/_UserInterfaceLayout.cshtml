@@ -1,6 +1,8 @@
 ﻿@using EntityLayer
 @using Microsoft.AspNetCore.Html;
-@model List<Menu>
+@{
+        var menuList = (List<Menu>)ViewBag.menu;
+}
 @{
     int i = 1;
     void subMenuAdd(List<Menu> submenu, bool first)
@@ -26,7 +28,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Coffe</title>
+    <title>Starbucks</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -52,17 +54,18 @@
     <link rel="stylesheet" href="~/coffee-template/coffee-temp/coffee1-gh-pages/css/flaticon.css">
     <link rel="stylesheet" href="~/coffee-template/coffee-temp/coffee1-gh-pages/css/icomoon.css">
     <link rel="stylesheet" href="~/coffee-template/coffee-temp/coffee1-gh-pages/css/style.css">
+    <link rel="shortcut icon" href="~/admin_dashboard/images/sb-logo.png" />
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a>
+	      <a class="navbar-brand" href="~/Home/HomePage">Starbucks<small>Coffee</small></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-                @foreach(var item in Model)
+                @foreach(var item in menuList)
                 {
                         var mclass = "";
                         @if(item.menuId==1)
@@ -93,14 +96,10 @@
 		  </div>
 	  </nav>
     <!-- END nav -->		
-		<section class="ftco-appointment">
-			<div class="overlay"></div>
-    	<div class="container-wrap">
-    		@RenderBody()
-    	</div>
-    </section>
 
-   @* <footer class="ftco-footer ftco-section img">
+    		@RenderBody()
+
+    <footer class="ftco-footer ftco-section img">
     	<div class="overlay"></div>
       <div class="container">
         <div class="row mb-5">
@@ -175,7 +174,7 @@
           </div>
         </div>
       </div>
-    </footer>*@
+    </footer>
     
   
 
