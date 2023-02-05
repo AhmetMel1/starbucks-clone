@@ -1,0 +1,61 @@
+﻿@using EntityLayer
+@model Slider
+@{
+    ViewData["Title"] = "UpdateSlider";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-11 grid-margin stretch-card">
+    <div class="card m-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+        <div class="card-body">
+            <h4 class="card-title">Slider</h4>
+            <p class="card-description">
+                Slider Update
+            </p>
+            <form class="forms-sample" action="/Slider/UpdateSlider" method="post">
+                <input type="hidden" class="form-control" name="sliderId" value="@Model.sliderId">
+                <div class="form-group">
+                    <label>Slider Name</label>
+                    <input type="text" class="form-control" placeholder="Slider Name" name="sliderName" value="@Model.sliderName">
+                    @Html.ValidationMessage("sliderName","",new{@class="text-danger"})
+                </div>
+                <div class="form-group">
+                    <label>Slider Information</label>
+                    <input type="text" class="form-control" placeholder="Slider Information" name="sliderInformation" value="@Model.sliderInformation">
+                    @Html.ValidationMessage("sliderInformation","",new{@class="text-danger"})
+                </div>
+                <div class="form-group">
+                    <label>Slider Image</label>
+                    <input type="file" class="form-control" name="sliderImage">
+                    @Html.ValidationMessage("sliderImage","",new{@class="text-danger"})
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" name="sliderDeleted">
+                        @if (Model.sliderDeleted)
+                        {
+                            <option value="False">Active</option>
+                            <option value="True" selected>Pasive</option>
+                        }
+                        else
+                        {
+                            <option value="False" selected>Active</option>
+                            <option value="True">Pasive</option>
+                        }
+
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-inverse-info me-2">
+                    <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                    Submit
+                </button>
+                <a class="btn btn-inverse-secondary" type="reset" href="/Slider/Index">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+

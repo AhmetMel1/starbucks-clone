@@ -135,4 +135,8 @@ app.MapControllerRoute(
 app.MapControllerRoute(
                 name: "WorkTime", pattern: "WorkTime/work-time-list", defaults: new { controller = "WorkTime", action = "ListWorkTime" }
                 );
+
+app.MapControllerRoute(
+                name: "Slider", pattern: "Slider/slider-list", defaults: new { controller = "Slider", action = "ListSlider" }
+                );
 app.Run();
