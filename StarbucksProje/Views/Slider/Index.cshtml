@@ -11,7 +11,7 @@
 <div class="col-11 grid-margin stretch-card">
     <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;border-radius:5px;">
         <div class="card-head text-white form_color col-5 justify-content-center text-center m-auto p-3" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
-            <h2>Slider</h2>
+            <h2>Sliders</h2>
         </div>
         <div class="card-body">
             <table class="table table-hover">
@@ -20,6 +20,7 @@
                         <th>Slider Name</th>
                         <th>Slider Information</th>
                         <th>Slider Image</th>
+                        <th>Status</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -30,7 +31,7 @@
                         <tr>
                             <td>@item.sliderName</td>
                             <td>@item.sliderInformation</td>
-                            <td>@item.sliderImage</td>
+                            <td><img src="~/slider_images/@item.sliderImage" style="width:80px;height:40px; border-radius:5px;" /></td>
                             @if (@item.sliderDeleted)
                             {
                                 <td class="text-danger">Pasive</td>

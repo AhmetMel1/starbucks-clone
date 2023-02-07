@@ -1,0 +1,87 @@
+﻿@using EntityLayer;
+@using StarbucksProje.Models.InterfaceModel
+@model MenuPageModel
+@{
+	ViewData["Title"] = "ProductPage";
+	Layout = "~/Views/Shared/_UserInterfaceLayout.cshtml";
+	var menuList = (List<Menu>)ViewBag.menu;
+	var productSizeList = Model.productSizeModel;
+	var categoryList = Model.categoryModel;
+}
+<section class="home-slider owl-carousel">
+
+	<div class="slider-item" style="background-image: url(coffee-template/coffee-temp/coffee1-gh-pages/images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row slider-text justify-content-center align-items-center">
+
+            <div class="col-md-7 col-sm-12 text-center ftco-animate">
+            	<h1 class="mb-3 mt-5 bread">Our Menu</h1>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Menu</span></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="ftco-section">
+	<div class="container">
+		<div class="row">
+			@foreach(var item in categoryList)
+			{
+				@if (item.categoryParentId == null)
+				{
+					<div class="col-md-6 mb-5 pb-3">
+						<h3 class="mb-4 heading-pricing ftco-animate">@item.categoryName</h3>
+
+							@foreach (var productSize in productSizeList)
+							{
+								@if (productSize.product.categoryId == item.categoryId)
+								{
+									<div class="pricing-entry d-flex ftco-animate">
+										<div class="img" style="background-image: url(../../wwwroot/product_images/@productSize.product.productLogoUrl);"></div>
+										<div class="desc pl-3">
+											<div class="d-flex text align-items-center">
+												<h3><span>@productSize.product.productName</span></h3>
+												<span class="price">$@productSize.unitPrice</span>
+											</div>
+											<div class="d-block">
+												<p>@productSize.product.productDescription</p>
+											</div>
+										</div>
+									</div>
+								}
+							}
+						@if (item.categoryChildren.Count > 0)
+						{
+							@foreach (var categoryChildren in item.categoryChildren)
+							{
+								<h5 class="mb-2 ftco-animate">@categoryChildren.categoryName</h5>
+								@foreach (var productSize in productSizeList)
+								{
+									@if (productSize.product.categoryId == categoryChildren.categoryId)
+									{
+										<div class="pricing-entry d-flex ftco-animate">
+											<div class="img" style="background-image: url(../../wwwroot/product_images/@productSize.product.productLogoUrl);"></div>
+											<div class="desc pl-3">
+												<div class="d-flex text align-items-center">
+													<h3><span>@productSize.product.productName</span></h3>
+													<span class="price">$@productSize.unitPrice</span>
+												</div>
+												<div class="d-block">
+													<p>@productSize.product.productDescription</p>
+												</div>
+											</div>
+										</div>
+									}
+								}
+							}
+						}
+						
+					</div>
+				}
+			}
+			
+		</div>
+	</div>
+</section>

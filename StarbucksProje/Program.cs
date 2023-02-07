@@ -137,6 +137,6 @@ app.MapControllerRoute(
                 );
 
 app.MapControllerRoute(
-                name: "Slider", pattern: "Slider/slider-list", defaults: new { controller = "Slider", action = "ListSlider" }
+                name: "Slider", pattern: "Slider/slider-list", defaults: new { controller = "Slider", action = "Index" }
                 );
 app.Run();

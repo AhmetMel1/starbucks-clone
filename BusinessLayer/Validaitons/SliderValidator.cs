@@ -23,7 +23,7 @@ namespace BusinessLayer.Validaitons
             RuleFor(slider => slider.sliderName).MinimumLength(2).WithMessage("A minimum of 2 characters must be entered.");
 
             //Rule for sliderImage
-            RuleFor(slider => slider.sliderImage).NotEmpty();
+            RuleFor(slider => slider.imgFile).NotEmpty();
         }
     }
 }

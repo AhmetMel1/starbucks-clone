@@ -12,7 +12,7 @@
             <p class="card-description">
                 Slider Update
             </p>
-            <form class="forms-sample" action="/Slider/UpdateSlider" method="post">
+            <form class="forms-sample" action="/Slider/UpdateSlider" method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" name="sliderId" value="@Model.sliderId">
                 <div class="form-group">
                     <label>Slider Name</label>
@@ -26,8 +26,8 @@
                 </div>
                 <div class="form-group">
                     <label>Slider Image</label>
-                    <input type="file" class="form-control" name="sliderImage">
-                    @Html.ValidationMessage("sliderImage","",new{@class="text-danger"})
+                    <input type="file" class="form-control" name="imgFile">
+                    @Html.ValidationMessage("imgFile","",new{@class="text-danger"})
                 </div>
                 <div class="form-group">
                     <label>Status</label>

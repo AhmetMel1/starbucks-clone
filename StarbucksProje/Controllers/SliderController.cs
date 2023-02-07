@@ -4,6 +4,7 @@ using DataAccessLayer.ConCreate;
 using DataAccessLayer.ConCreate.EntityFramework;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using StarbucksProje.PagedList;
 
@@ -11,6 +12,12 @@ namespace StarbucksProje.Controllers
 {
     public class SliderController: Controller
     {
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public SliderController(IWebHostEnvironment webHostEnvironment)
+        {
+            this.webHostEnvironment = webHostEnvironment;
+        }
         SliderManager sliderManager = new SliderManager(new EfSliderRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
@@ -52,6 +59,7 @@ namespace StarbucksProje.Controllers
             var result = validations.Validate(slider);
             if (result.IsValid)
             {
+                slider.sliderImage = FileUpload(slider);
                 sliderManager.sliderInsert(slider);
                 int page = (int)TempData["page"];
                 return RedirectToAction("slider-list", new { page, searchText = "" });
@@ -87,6 +95,7 @@ namespace StarbucksProje.Controllers
             var result = validations.Validate(slider);
             if (result.IsValid)
             {
+                slider.sliderImage = FileUpload(slider);
                 sliderManager.sliderUpdate(slider);
                 int page = (int)TempData["page"];
                 return RedirectToAction("slider-list", new { page, searchText = "" });
@@ -100,6 +109,23 @@ namespace StarbucksProje.Controllers
                 }
                 return View(slider);
             }
+        }
+        private string FileUpload(Slider slider)
+        {
+            string uniquefileName = "";
+            if (slider.imgFile != null)
+            {
+                uniquefileName = Guid.NewGuid().ToString() + "_" + slider.imgFile.FileName;
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "slider_images");
+                string filePath = Path.Combine(uploadfolder, uniquefileName);
+
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    slider.imgFile.CopyTo(stream);
+                }
+            }
+            return uniquefileName;
         }
     }
 }

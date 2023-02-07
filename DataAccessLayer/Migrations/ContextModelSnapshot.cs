@@ -525,8 +525,8 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("sliderImage")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("sliderInformation")
                         .IsRequired()
